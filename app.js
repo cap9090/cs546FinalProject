@@ -1,4 +1,4 @@
-onst express = require("express");
+const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const static = express.static(__dirname + '/public');
