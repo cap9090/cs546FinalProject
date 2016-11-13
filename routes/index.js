@@ -1,4 +1,3 @@
-const exampleRoutes = require("./examples");
 
 const constructorMethod = (app) => {
 
