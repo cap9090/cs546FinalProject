@@ -20,4 +20,14 @@ router.get("/:id", (req, res) => {
   })
 });
 
+router.put("/:id", (req, res) => {
+  return customerData.updateCustomer(req.params.id , req.body).then((insertedId) => {
+    return customerData.getCustomerByNodeUUID(insertedId).then((customer) => {
+      res.status(200).json("Successfully updated customer with id " + customer._id);
+    })
+  }).catch((error) => {
+    res.status(500).json(error);
+  });
+});
+
 module.exports = router;

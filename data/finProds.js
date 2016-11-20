@@ -58,6 +58,19 @@ exportedMethods = {
       return error;
     })
 
+  },
+
+//called by finanical modules
+  getProductsFromArrayOfProductIds: (problemIdArray) => {
+    let products = [];
+    for (let i = 0;  i < problemIdArray.length; i++){
+      let arrayOfFinProdsForThisId = this.getProductsByProblemId(problemIdArray[i]);
+      for (let k = 0; k < arrayOfFinProdsForThisId.length; k++){
+        products.push(arrayOfFinProdsForThisId[k]);
+      }
+    }
+
+    return new Set(products);
   }
 
 }

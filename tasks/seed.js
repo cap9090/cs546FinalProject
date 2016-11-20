@@ -15,6 +15,11 @@ dbConnection().then((db)=> {
   })
 }).then(() => {
   return problems.addProblem({
+    problemId: 181,
+    problemDescription: "You're too young to retire"
+  })
+}).then(() => {
+  return problems.addProblem({
     problemId: 219,
     problemDescription: "you're montly expenses are too high based off your monthly income and asset value "
   })
@@ -81,6 +86,7 @@ dbConnection().then((db)=> {
   });
 }).then(() => {
   return customers.addCustomer({
+    hashedUserNameAndPassword: "129f28evNkfdNIL8Fq7l8xs281eSbNOFgK0M0i882ndkfVn7.298j9hU.O",
     profile: {
       firstName: "John",
       middleInit: "A",
@@ -117,6 +123,7 @@ dbConnection().then((db)=> {
   });
 }).then(() => {
   return customers.addCustomer({
+    hashedUserNameAndPassword: "$2a$08$XdvNkfdNIL8Fq7l8xsuIUeSbNOFgK0M0iV5HOskfVn7.PWncShU.O",
     profile: {
       firstName: "Jane",
       middleInit: "P",
