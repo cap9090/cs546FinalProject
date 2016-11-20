@@ -13,7 +13,7 @@ exportedMethods = {
         problemIds: finProd.problemIds
       };
       return finProds.insertOne(newFinProd).then((insertedFinProd) => {
-        if(!insertedFinProd) throw "problem not found";
+        if(!insertedFinProd) throw "product not found";
         return insertedFinProd.insertedId;
       });
     });
@@ -23,7 +23,7 @@ exportedMethods = {
   getFinProdByNodeUUID: (id) => {
     return finProdCollection().then((finProds) => {
       return finProds.findOne({_id: id}).then((finProd) => {
-        if(!finProd) throw "problem not found";
+        if(!finProd) throw "product not found";
         return finProd;
       })
     })
@@ -31,7 +31,7 @@ exportedMethods = {
 
   getAllFinProds: () => {
     return finProdCollection().then((finProds) => {
-      return finProds.find({});
+      return finProds.find({}).toArray();
     }, (error) => {
       console.error(error);
     })

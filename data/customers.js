@@ -59,7 +59,7 @@ exportedMethods = {
            }
            return age;
        }
-       //newCustomer.profile.age = getAge(newCustomer.profile.DOB);
+       newCustomer.profile.age = getAge(newCustomer.profile.DOB);
        newCustomer.profile.assets.total =
             newCustomer.profile.assets.stocks +
             newCustomer.profile.assets.bonds +
@@ -85,7 +85,7 @@ exportedMethods = {
 
 
        return customers.insertOne(newCustomer).then((insertedCustomer) => {
-         if(!insertedCustomer) throw "problem not found";
+         if(!insertedCustomer) throw "customer not found";
          return insertedCustomer.insertedId;
        });
     });
@@ -94,7 +94,7 @@ exportedMethods = {
   getCustomerByNodeUUID: (id) => {
     return customerCollection().then((customers) => {
       return customers.findOne({_id: id}).then((customer) => {
-        if(!customer) throw "problem not found";
+        if(!customer) throw "customer not found";
         return customer;
       })
     })
@@ -102,7 +102,7 @@ exportedMethods = {
 
   getAllCustomers: () => {
     return customerCollection().then((customers) => {
-      return customers.find({});
+      return customers.find({}).toArray();
     }, (error) => {
       console.error(error);
     })
