@@ -1,6 +1,6 @@
-const customers = require("./customers.js");
-const finProds = require("./finProds.js");
-const problems = require("./problems.js");
+const customerData = require("./customers.js");
+const finProdData = require("./finProds.js");
+const problemData = require("./problems.js");
 
 module.exports = {
 
