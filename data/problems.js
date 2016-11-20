@@ -5,8 +5,6 @@ const uuid = require('node-uuid');
 
 exportedMethods = {
 
-
-
   getAllProblems: () => {
     return problemCollection().then((problems) => {
       return problems.find({}).toArray();
@@ -50,7 +48,6 @@ exportedMethods = {
        });
     });
   }
-
 
 
 

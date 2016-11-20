@@ -104,7 +104,7 @@ exportedMethods = {
     return customerCollection().then((customers) => {
       return customers.find({}).toArray();
     }, (error) => {
-      console.error(error);
+      return error;
     })
   }
 }

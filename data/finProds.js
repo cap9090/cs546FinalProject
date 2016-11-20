@@ -33,8 +33,20 @@ exportedMethods = {
     return finProdCollection().then((finProds) => {
       return finProds.find({}).toArray();
     }, (error) => {
-      console.error(error);
+      return error;
     })
+  },
+
+  getProductsByProblemId: (problemId) => {
+    if(isNaN(problemId)){
+      throw "must provide a number";
+    }
+    return finProdCollection().then((finProds) => {
+      return finProds.find({ problemIds: problemId}).toArray();
+    }).catch((error) => {
+      return error;
+    })
+
   }
 
 }

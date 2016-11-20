@@ -20,6 +20,14 @@ router.get("/:id", (req, res) => {
   })
 });
 
+router.get("/problemId/:id", (req, res) => {
+  return finProdData.getProductsByProblemId(parseInt(req.params.id)).then((finProds) => {
+    res.status(200).json(finProds)
+  }).catch((error) => {
+    res.status(500).json(error);
+  })
+})
+
 
 
 
