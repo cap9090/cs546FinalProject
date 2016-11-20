@@ -32,7 +32,17 @@ exportedMethods = {
     })
   },
 
-
+  deleteProblemByNodeUUID: (id) => {
+    return problemCollection().then((problems) => {
+      return problems.deleteOne({_id: id}).then((deletionInfo) => {
+        if(deletionInfo.deletedCount === 0 ) {
+          throw ("Could not delete problem with id " + id);
+        } else {
+          return id;
+        }
+      });
+    });
+  },
 
 
   addProblem: (problem) => {

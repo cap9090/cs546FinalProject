@@ -19,6 +19,17 @@ exportedMethods = {
     });
   },
 
+  deleteFinProdByNodeUUID: (id) => {
+    return finProdCollection().then((finProds) => {
+      return finProds.deleteOne({_id: id}).then((deletionInfo) => {
+        if(deletionInfo.deletedCount === 0 ) {
+          throw ("Could not delete financial product with id " + id);
+        } else {
+          return id;
+        }
+      });
+    });
+  },
 
   getFinProdByNodeUUID: (id) => {
     return finProdCollection().then((finProds) => {

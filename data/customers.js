@@ -7,6 +7,7 @@ exportedMethods = {
   addCustomer: (customer) => {
     return customerCollection().then((customers) => {
       let newCustomer = {
+        //all commented fields in this object are calcuated based off other fields
          _id: uuid.v4(),
          profile: {
            firstName: customer.profile.firstName,
@@ -51,7 +52,7 @@ exportedMethods = {
 
        function getAge(dateString) {
            var today = new Date();
-           var birthDate = new Date(dataString);
+           var birthDate = new Date(dateString);
            var age = today.getFullYear() - birthDate.getFullYear();
            var m = today.getMonth() - birthDate.getMonth();
            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
@@ -88,6 +89,18 @@ exportedMethods = {
          if(!insertedCustomer) throw "customer not found";
          return insertedCustomer.insertedId;
        });
+    });
+  },
+
+  deleteCustomerByNodeUUID: (id) => {
+    return customerCollection().then((customers) => {
+      return customers.deleteOne({_id: id}).then((deletionInfo) => {
+        if(deletionInfo.deletedCount === 0 ) {
+          throw ("Could not delete customer with id " + id);
+        } else {
+          return id;
+        }
+      });
     });
   },
 
