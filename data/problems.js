@@ -63,4 +63,4 @@ exportedMethods = {
 
 }
 
-  module.exports = exportedMethods;
+module.exports = exportedMethods;
