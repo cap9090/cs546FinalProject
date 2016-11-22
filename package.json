@@ -10,11 +10,13 @@
   "author": "Christian Prajzner, Joesph Miles, Stephen Horn, Mingwei Xu, Carly Bean",
   "license": "MIT",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "express-handlebars": "^3.0.0",
     "mongodb": "^2.2.11",
     "node-uuid": "^1.4.7",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "passport-local": "^1.0.0"
   }
 }
