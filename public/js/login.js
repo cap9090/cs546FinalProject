@@ -1,15 +1,23 @@
 (function ($) {
-    var emailField = $("#inputEmail");
-    var passField = $("#inputPassword");
-    var remCheckBox = $("#remember-checkbox");
-    var submitButton = $("#submit-button");
+    /*login fields*/
+    var loginEmailField = $("#loginEmail");
+    var loginPassField = $("#loginPassword");
+    var loginRemCheckBox = $("#login-remember-checkbox");
+    var loginButton = $("#login-button");
+    /*signup fields*/ 
+    var signupEmailField = $("#signupEmail");
+    var signupPassField = $("#signupPassword");
+    var signupNameField = $("#signupName");
+    var signupRemCheckBox = $("#signup-remember-checkbox");
+    var signupButton = $("#signup-button");
 
-    submitButton.on("click", () => {
-        var emailValue = emailField.val();
-        var passValue = passField.val();
+/*authenticate user login*/
+    loginButton.on("click", () => {
+        var emailValue = loginEmailField.val();
+        var passValue = loginPassField.val();
         var rememberMe = false;
 
-        if (remCheckBox.is(':checked')) {
+        if (loginRemCheckBox.is(':checked')) {
             rememberMe = true;
         }
 
@@ -34,5 +42,51 @@
 
         return false;
     });
+
+/*create new user*/ 
+    signupButton.on("click", () => {
+        var emailValue = signupEmailField.val();
+        var passValue = signupPassField.val();
+        var nameValue = signupNameField.val();
+        var rememberMe = false;
+
+        if (signupRemCheckBox.is(':checked')) {
+            rememberMe = true;
+        }
+
+        var credentials = {
+            name: nameValue,
+            username: emailValue,
+            pass: passValue
+        };
+
+        if (emailValue && passValue) {
+            var requestConfig = {
+                method: "POST",
+                url: "/customers/new",
+                contentType: 'application/json',
+                data: JSON.stringify(credentials)
+            };
+
+            $.ajax(requestConfig).then(function (responseMessage) {
+                console.log(responseMessage);
+            });
+
+        }
+
+        return false;
+    });
+
+/*Flip to sign up card*/ 
+    $('.new-signup').click(function(){
+        $('.flip').find('.login-signup').addClass('flipped');
+        return false;
+    });
+/*Flip back to login card*/ 
+    $('.back-to-login').click(function(){
+        $('.flip').find('.login-signup').removeClass('flipped');
+        return false;
+    });
+
 
 })(window.jQuery);

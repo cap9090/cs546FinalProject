@@ -20,6 +20,11 @@ router.get("/:id", (req, res) => {
   })
 });
 
+/*route to add customer from signup form and redirect to profile page so customer can add profile info*/
+router.post("/new", (req, res) => {
+
+});
+
 router.put("/:id", (req, res) => {
   return customerData.updateCustomer(req.params.id , req.body).then((insertedId) => {
     return customerData.getCustomerByNodeUUID(insertedId).then((customer) => {
