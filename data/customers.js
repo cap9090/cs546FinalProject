@@ -19,6 +19,7 @@ exportedMethods = {
            noDependents: customer.profile.noDependents,
            zipCode: customer.profile.zipCode,
            monthlyIncome: customer.profile.monthlyIncome,
+           desiredRetirementAge: customer.profile.desiredRetirementAge;
            assets: {
              stocks: customer.profile.assets.stocks,
              bonds: customer.profile.assets.bonds,
@@ -146,6 +147,8 @@ exportedMethods = {
     if(newCustomerData.profile.noDependents !== undefined && typeof newCustomerData.profile.noDependents === 'number'){
       updatedCustomer.profile.noDependents = newCustomerData.profile.noDependents;
     }
+    if(newCustomerData.profile.desiredRetirementAge !== undefined && typeof newCustomerData.profile.desiredRetirementAge ==='number')
+      updatedCustomer.profile.desiredRetirementAge =  newCustomerData.profile.desiredRetirementAge;
     if(newCustomerData.profile.assets !== undefined && typeof newCustomerData.profile.assets === 'object'){
       //updatedCustomer.profile.assets = newCustomerData.profile.assets;
       /*

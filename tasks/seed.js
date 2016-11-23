@@ -113,6 +113,7 @@ dbConnection().then((db)=> {
       noDependents: 4,
       zipCode: 19121,
       monthlyIncome: 0, //lets assume this guy is retired
+      desiredRetirementAge: 67,
       assets: {
         stocks: 25000,
         bonds: 15000,
@@ -150,6 +151,7 @@ dbConnection().then((db)=> {
       noDependents: 0,
       zipCode: 90005,
       monthlyIncome: 4000,
+      desiredRetirementAge: 67,
       assets: {
         stocks: 100,
         bonds: 150,
