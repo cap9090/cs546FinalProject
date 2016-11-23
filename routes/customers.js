@@ -3,7 +3,8 @@ const router = express.Router();
 const data = require("../data");
 const customerData = data.customers;
 
-
+/*
+//Do we want to allow for customers to see list of other customers? I would think no
 router.get("/", (req,res) => {
   return customerData.getAllCustomers().then((customers) => {
      return res.status(200).json(customers);
@@ -11,6 +12,11 @@ router.get("/", (req,res) => {
      return res.status(500).json(error);
   });
 });
+*/
+router.get("/", (req,res) => {
+  res.render("/signup", {});
+});
+
 
 router.get("/:id", (req, res) => {
   return customerData.getCustomerByNodeUUID(req.params.id).then((customer) => {
@@ -20,7 +26,13 @@ router.get("/:id", (req, res) => {
   })
 });
 
-/*route to add customer from signup form and redirect to profile page so customer can add profile info*/
+//redirect new customer from signup page to form for customer data entry
+router.get("/new", (req,res) => {
+    res.render('form', {});
+});
+
+
+/*route for ajax post to send new customer data to database*/
 router.post("/new", (req, res) => {
 
 });

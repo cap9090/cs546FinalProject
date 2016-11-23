@@ -60,7 +60,7 @@ exportedMethods = {
 
   },
 
-//called by finanical modules
+//called by finanical modules to get a full list of all products that will solve the problems with the problem ids in the array
   getProductsFromArrayOfProductIds: (problemIdArray) => {
     let products = [];
     for (let i = 0;  i < problemIdArray.length; i++){
@@ -69,7 +69,6 @@ exportedMethods = {
         products.push(arrayOfFinProdsForThisId[k]);
       }
     }
-
     return new Set(products);
   }
 
