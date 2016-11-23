@@ -36,6 +36,9 @@
 
             $.ajax(requestConfig).then(function (responseMessage) {
                 //logged in successfully
+                window.location.assign("/customers/" + responseMessage.message);
+            },function () {
+                //login failed, prompt user to check credentials and retry
             });
 
         }

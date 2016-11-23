@@ -29,11 +29,13 @@ exportedMethods = {
         */
 
         //return customers.getCustomerByHashedUserNameAndPassword()
-
+        let retrievedCustomer = {};
         return hashedUsernameAndPassword.then((hash) => {
-            return new Promise((resolve, reject) => {
-                bcrypt.compare()
+            return customers.getCustomerByHashedUserNameAndPassword(hash).then((foundCustomer) => {
+                return foundCustomer;
             })
+        }).catch((error)=> {
+            throw error;
         });
     }
 }
