@@ -1,5 +1,6 @@
 const dbConnection = require("../config/mongoConnection");
 const data = require("../data/");
+const bcrypt = require("bcrypt-nodejs");
 const problems = data.problems;
 const finProds = data.finProds;
 const customers = data.customers;
@@ -85,8 +86,25 @@ dbConnection().then((db)=> {
     ]
   });
 }).then(() => {
+  let hash = bcrypt.hashSync("admin@stevens.edu"+"abc123");
+  let hashedUsernameAndPassword = new Promise((resolve, reject) => {
+            bcrypt.hash(hash, null, null, function (error, hash) {
+                if (error) {
+                    reject(error);
+                }
+                else {
+                    resolve(hash);
+                }
+            });
+  });
+  return hashedUsernameAndPassword.then((hash) => {
+    return hash;
+  });
+}).then((hashedInfo) => {
+  console.log(hashedInfo);
   return customers.addCustomer({
-    hashedUserNameAndPassword: "129f28evNkfdNIL8Fq7l8xs281eSbNOFgK0M0i882ndkfVn7.298j9hU.O",
+    hashedUserNameAndPassword: hashedInfo,
+    //hashedUserNameAndPassword: "129f28evNkfdNIL8Fq7l8xs281eSbNOFgK0M0i882ndkfVn7.298j9hU.O",
     profile: {
       firstName: "John",
       middleInit: "A",
