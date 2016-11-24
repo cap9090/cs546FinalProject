@@ -19,7 +19,7 @@ exportedMethods = {
            noDependents: customer.profile.noDependents,
            zipCode: customer.profile.zipCode,
            monthlyIncome: customer.profile.monthlyIncome,
-           desiredRetirementAge: customer.profile.desiredRetirementAge;
+           desiredRetirementAge: customer.profile.desiredRetirementAge,
            assets: {
              stocks: customer.profile.assets.stocks,
              bonds: customer.profile.assets.bonds,
