@@ -38,7 +38,10 @@
                 //logged in successfully
                 window.location.assign("/customers/" + responseMessage.message);
             },function () {
+               // alert("Sorry, we don't recognize those credentials. Please check them and try again!");
                 //login failed, prompt user to check credentials and retry
+                $("#errorModal").modal();
+                $('.login-error').removeClass('hidden');
             });
 
         }
