@@ -1,15 +1,44 @@
 (function ($) {
     /*login fields*/
+
     var loginEmailField = $("#loginEmail");
     var loginPassField = $("#loginPassword");
     var loginRemCheckBox = $("#login-remember-checkbox");
     var loginButton = $("#login-button");
-    /*signup fields*/ 
-    var signupEmailField = $("#signupEmail");
-    var signupPassField = $("#signupPassword");
-    var signupNameField = $("#signupName");
+    /*signup fields*/
+
     var signupRemCheckBox = $("#signup-remember-checkbox");
     var signupButton = $("#signup-button");
+    var signupUsername = $("#username");
+    var signupPassword = $("#password");
+    var signupFirstName = $("#firstName");
+    var signupMiddleInit= $("#middleInit");
+    var signupLastName = $("#lastName");
+    var signupDOB = $("DOB");
+    var signupNoDependents = $("#noDependents");
+    var signupZipCode = $("zipCode");
+    var signupMonthlyIncome = $("#monthlyIncome");
+    var signupRetirmentAge = $("desiredRetirementAge");
+    var signupStocks = $("stocks");
+    var signupBonds =  $("bonds");
+    var signupCash = $("cash");
+    var signupRetirementAccounts = $("retirementAccounts");
+    var signupAnnuities = $("annuites");
+    var signupProperty = $("property");
+    var signupOther = $("other");
+    var signupSavingsRateOfIncome = $("savingsRateOfIncome");
+    var signupCar = $("car");
+    var signupRentOrMortgage = $("rentOrMortgage");
+    var signupGroceries = $("groceries");
+    var signupBills = $("bills");
+    var signupOtherExpenses = $("otherExpenses");
+    var signupMortage = $("mortgage");
+    var signupHomeEquityLoans = $("homeEquityLoans");
+    var signupStudentLoans = $("studentLoans");
+    var signupCreditCardDebt =$("creditCardDebt");
+    var signupOtherDebt = $("otherDebt");
+
+
 
 /*authenticate user login*/
 /*
@@ -50,11 +79,39 @@
         return false;
     });
 */
-/*create new user*/ 
+/*create new user*/
     signupButton.on("click", () => {
-        var emailValue = signupEmailField.val();
-        var passValue = signupPassField.val();
-        var nameValue = signupNameField.val();
+
+        var password = signupPassword.val();
+        var username = signupUsername.val();
+        var firstName = signupFirstName.val();
+        var middleInit = signupMiddleInit.val();
+        var lastName = signupLastName.val();
+        var  DOB = signupDOB.val();
+        var noDependents = signupNoDependents.val();
+        var zipCode = signupZipCode.val();
+        var monthlyIncome = signupMonthlyIncome.val();
+        var desiredRetirementAge = signupRetirementAccounts.val();
+        var savingsRateOfIncome = signupSavingsRateOfIncome.val();
+        var stocks = signupStocks.val();
+        var bonds = signupBonds.val();
+        var cash = signupCash.val();
+        var retirementAccounts = signupRetirementAccounts.val();
+        var annuities = signupAnnuities.val();
+        var property = signupProperty.val();
+        var other = signupOther.val();
+        var car = signupCar.val();
+        var rentOrMortgage = signupRentOrMortgage.val();
+        var groceries = signupGroceries.val();
+        var bills = signupBills.val();
+        var otherExpenses = signupOtherExpenses.val();
+        var mortgage = signupMortage.val();
+        var homeEquityLoans = signupHomeEquityLoans.val();
+        var studentLoans = signupStudentLoans.val();
+        var creditCardDebt = signupCreditCardDebt.val();
+        var otherDebt = signupOtherDebt.val();
+
+
         var rememberMe = false;
 
         if (signupRemCheckBox.is(':checked')) {
@@ -62,12 +119,46 @@
         }
 
         var credentials = {
-            name: nameValue,
-            username: emailValue,
-            pass: passValue
-        };
+            password: password,
+            username: username,
+            profile: {
+                firstName: firstName,
+                middleInit: middleInit,
+                lastName: lastName,
+                DOB: DOB,
+                noDependents, noDependents,
+                zipCode: zipCode,
+                monthlyIncome: monthlyIncome,
+                desiredRetirementAge: desiredRetirementAge,
+                savingsRateOfIncome: savingsRateOfIncome,
+                assets : {
+                  stocks: stocks,
+                  bonds: bonds,
+                  cash: cash,
+                  retirementAccounts: retirementAccounts,
+                  annuities: annuities,
+                  property: property,
+                  other: other
+                },
+                monthlyCosts: {
+                  car: car,
+                  rentOrMortgage: rentOrMortgage,
+                  groceries: groceries,
+                  bills: bills,
+                  otherExpenses: otherExpenses
+                },
+                liability: {
+                  mortgage:mortgage,
+                  homeEquityLoans: homeEquityLoans,
+                  studentLoans: studentLoans,
+                  creditCardDebt: creditCardDebt,
+                  otherDebt: otherDebt
+                }
 
-        if (emailValue && passValue) {
+              }
+            };
+
+        if (true) {
             var requestConfig = {
                 method: "POST",
                 url: "/customers/new",
@@ -84,12 +175,12 @@
         return false;
     });
 
-/*Flip to sign up card*/ 
+/*Flip to sign up card*/
     $('.new-signup').click(function(){
         $('.flip').find('.login-signup').addClass('flipped');
         return false;
     });
-/*Flip back to login card*/ 
+/*Flip back to login card*/
     $('.back-to-login').click(function(){
         $('.flip').find('.login-signup').removeClass('flipped');
         return false;

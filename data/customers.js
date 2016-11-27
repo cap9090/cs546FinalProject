@@ -126,6 +126,17 @@ const bcrypt = require('bcrypt-nodejs');
     })
   };
 
+  checkIfUsernameAlreadyTaken = (username) => {
+    return getAllCustomers().then((customers) => {
+      for (let i  = 0; i < customers.length; i++) {
+        if(username === customers[i].username){
+          throw "username already taken";
+        }
+      }
+      return;
+    })
+  };
+
   updateCustomer = (id, newCustomerData) => {
 
     return getCustomerByNodeUUID(id).then((customer ) => {
@@ -294,6 +305,7 @@ const bcrypt = require('bcrypt-nodejs');
 
 
 module.exports = {
+  checkIfUsernameAlreadyTaken: checkIfUsernameAlreadyTaken,
   getAllCustomers: getAllCustomers,
   addCustomer: addCustomer,
   deleteCustomerByNodeUUID: deleteCustomerByNodeUUID,

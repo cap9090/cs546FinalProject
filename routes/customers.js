@@ -40,7 +40,12 @@ router.get("/home", userAuthenticated, (req, res) => {
 
 /*route for ajax post to send new customer data to database*/
 router.post("/new", (req, res) => {
-
+  console.log(req.body);
+  return customerData.checkIfUsernameAlreadyTaken(req.body.username).then(() => {
+    return customerData.addCustomer(req.body);
+  }).catch((error) => {
+    res.status(500).json(error);
+  })
 });
 
 router.get("/:id", (req, res) => {
