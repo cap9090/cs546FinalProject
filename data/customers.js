@@ -3,9 +3,9 @@ const customerCollection = collections.customers;
 const uuid = require('node-uuid');
 const bcrypt = require('bcrypt-nodejs');
 
-exportedMethods = {
 
-  addCustomer: (customer) => {
+
+  addCustomer = (customer) => {
     return customerCollection().then((customers) => {
       let newCustomer = {
         //all commented fields in this object are calcuated based off other fields
@@ -95,9 +95,9 @@ exportedMethods = {
          return insertedCustomer.insertedId;
        });
     });
-  },
+  };
 
-  deleteCustomerByNodeUUID: (id) => {
+  deleteCustomerByNodeUUID = (id) => {
     return customerCollection().then((customers) => {
       return customers.deleteOne({_id: id}).then((deletionInfo) => {
         if(deletionInfo.deletedCount === 0 ) {
@@ -107,186 +107,199 @@ exportedMethods = {
         }
       });
     });
-  },
+  };
 
-  getCustomerByNodeUUID: (id) => {
+  getCustomerByNodeUUID = (id) => {
     return customerCollection().then((customers) => {
       return customers.findOne({_id: id}).then((customer) => {
         if(!customer) throw "customer not found";
         return customer;
       })
     })
-  },
+  };
 
-  getAllCustomers: () => {
+  getAllCustomers = () => {
     return customerCollection().then((customers) => {
       return customers.find({}).toArray();
     }, (error) => {
       return error;
     })
-  },
+  };
 
-  updateCustomer: (id, newCustomerData) => {
-    let updatedCustomer = {
-      _id : id,
+  updateCustomer = (id, newCustomerData) => {
 
-    };
+    return getCustomerByNodeUUID(id).then((customer ) => {
+        let updatedCustomer = customer;
+        return updatedCustomer;
+    }).then((updatedCustomer) => {
 
-    //In order for this to work..we need spearate documents for each subdocument
-    //then populate them in the if statemnts and then put them togethero in a final document somehow
+      if(newCustomerData.profile.firstName != undefined && typeof newCustomerData.profile.firstName === 'string'){
+        updatedCustomer.profile.firstName = newCustomerData.profile.firstName;
+      }
 
-    if(newCustomerData.profile.firstName !== undefined && typeof newCustomerData.profile.firstName === 'string'){
-      updatedCustomer.profile.firstName = newCustomerData.profile.firstName;
-    }
-    if(newCustomerData.profile.middleInit !== undefined && typeof newCustomerData.profile.middleInit === 'string'){
-      updatedCustomer.profile.middleInit = newCustomerData.profile.middleInit;
-    }
-    if(newCustomerData.profile.lastName !== undefined && typeof newCustomerData.profile.lastName === 'string'){
-      updatedCustomer.profile.lastName = newCustomerData.profile.lastName;
-    }
-    if(newCustomerData.profile.DOB !== undefined && typeof newCustomerData.profile.DOB === 'object'){
-      updatedCustomer.profile.DOB = newCustomerData.profile.DOB;
-    }
-    if(newCustomerData.profile.noDependents !== undefined && typeof newCustomerData.profile.noDependents === 'number'){
-      updatedCustomer.profile.noDependents = newCustomerData.profile.noDependents;
-    }
-    if(newCustomerData.profile.desiredRetirementAge !== undefined && typeof newCustomerData.profile.desiredRetirementAge ==='number')
-      updatedCustomer.profile.desiredRetirementAge =  newCustomerData.profile.desiredRetirementAge;
-    if(newCustomerData.profile.assets !== undefined && typeof newCustomerData.profile.assets === 'object'){
-      //updatedCustomer.profile.assets = newCustomerData.profile.assets;
-      /*
-      if(newCustomerData.profile.assets.stocks !== undefined && typeof newCustomerData.profile.assets.stocks === 'number'){
-        updatedCustomer.profile.assets.stocks = newCustomerData.profile.assets.stocks;
+      if(newCustomerData.profile.middleInit !== undefined && typeof newCustomerData.profile.middleInit === 'string'){
+        updatedCustomer.profile.middleInit = newCustomerData.profile.middleInit;
       }
-      if(newCustomerData.profile.assets.bonds !== undefined && typeof newCustomerData.profile.assets.bonds === 'number'){
-        updatedCustomer.profile.assets.bonds = newCustomerData.profile.assets.bonds;
+
+      if(newCustomerData.profile.lastName !== undefined && typeof newCustomerData.profile.lastName === 'string'){
+        updatedCustomer.profile.lastName = newCustomerData.profile.lastName;
       }
-      if(newCustomerData.profile.assets.cash !== undefined && typeof newCustomerData.profile.assets.cash === 'number'){
-        updatedCustomer.profile.assets.cash = newCustomerData.profile.assets.cash;
+      if(newCustomerData.profile.DOB !== undefined && typeof newCustomerData.profile.DOB === 'object'){
+        updatedCustomer.profile.DOB = newCustomerData.profile.DOB;
       }
-      if(newCustomerData.profile.assets.retirementAccounts !== undefined && typeof newCustomerData.profile.assets.retirementAccounts === 'number'){
-        updatedCustomer.profile.assets.retirementAccounts = newCustomerData.profile.assets.retirementAccounts;
+      if(newCustomerData.profile.noDependents !== undefined && typeof newCustomerData.profile.noDependents === 'number'){
+        updatedCustomer.profile.noDependents = newCustomerData.profile.noDependents;
       }
-      if(newCustomerData.profile.assets.annuites !== undefined && typeof newCustomerData.profile.assets.annuites === 'number'){
-        updatedCustomer.assets.annuites = newCustomerData.profile.assets.annuites;
+      if(newCustomerData.profile.desiredRetirementAge !== undefined && typeof newCustomerData.profile.desiredRetirementAge ==='number'){
+        updatedCustomer.profile.desiredRetirementAge =  newCustomerData.profile.desiredRetirementAge;
       }
-      if(newCustomerData.profile.assets.property !== undefined && typeof newCustomerData.profile.assets.property === 'number'){
-        updatedCustomer.profile.assets.property = newCustomerData.profile.assets.property;
-      }
-      if(newCustomerData.profile.assets.other !== undefined && typeof newCustomerData.profile.assets.other === 'number'){
-        updatedCustomer.profile.assets.other = newCustomerData.profile.assets.other;
-      }
-      */
-    }
+      if(newCustomerData.profile.assets !== undefined && typeof newCustomerData.profile.assets === 'object'){
 
 
-    if(newCustomerData.profile.savingsRateOfIncome !== undefined && typeof newCustomerData.profile.savingsRateOfIncome === 'number'){
-      updatedCustomer.profile.savingsRateOfIncome = newCustomerData.profile.savingsRateOfIncome;
-    }
-    if(newCustomerData.profile.monthlyCosts !== undefined && typeof newCustomerData.profile.monthlyCosts === 'object'){
-      //updatedCustomer.profile.monthlyCosts = newCustomerData.profile.monthlyCosts;
-      /*
-      if(newCustomerData.profile.monthlyCosts.car !== undefined && typeof newCustomerData.profile.monthlyCosts.car === 'number'){
-        updatedCustomer.profile.monthlyCosts.car = newCustomerData.profile.monthlyCosts.car;
-      }
-      if(newCustomerData.profile.monthlyCosts.rentOrMortgage !== undefined && typeof newCustomerData.profile.monthlyCosts.rentOrMortgage === 'number'){
-        updatedCustomer.profile.monthlyCosts.rentOrMortgage = newCustomerData.profile.monthlyCosts.rentOrMortgage;
-      }
-      if(newCustomerData.profile.monthlyCosts.groceries !== undefined && typeof newCustomerData.profile.monthlyCosts.groceries === 'number'){
-        updatedCustomer.profile.monthlyCosts.groceries = newCustomerData.profile.monthlyCosts.groceries;
-      }
-      if(newCustomerData.profile.monthlyCosts.bills !== undefined && typeof newCustomerData.profile.monthlyCosts.bills === 'number'){
-        updatedCustomer.profile.monthlyCosts.bills = newCustomerData.profile.monthlyCosts.bills;
-      }
-      if(newCustomerData.profile.monthlyCosts.otherExpenses !== undefined && typeof newCustomerData.profile.monthlyCosts.otherExpenses === 'number'){
-        updatedCustomer.profile.monthlyCosts.otherExpenses = newCustomerData.profile.monthlyCosts.otherExpenses;
-      }
-      */
-    }
-    if(newCustomerData.profile.liability !== undefined && typeof newCustomerData.profile.liability === 'object'){
-      // updatedCustomer.profile.liability = newCustomerData.profile.liability;
-      /*
-      if(newCustomerData.profile.liability.mortgage !== undefined && typeof newCustomerData.profile.liability.mortgage === 'number'){
-        updatedCustomer.profile.liability.mortgage = newCustomerData.profile.liability.mortgage;
-      }
-      if(newCustomerData.profile.liability.homeEquityLoans !== undefined && typeof newCustomerData.profile.liability.homeEquityLoans === 'number'){
-        updatedCustomer.profile.liability.homeEquityLoans = newCustomerData.profile.liability.homeEquityLoans;
-      }
-      if(newCustomerData.profile.liability.studentLoans !== undefined && typeof newCustomerData.profile.liability.studentLoans === 'number'){
-        updatedCustomer.profile.liability.studentLoans = newCustomerData.profile.liability.studentLoans;
-      }
-      if(newCustomerData.profile.liability.creditCardDebt !== undefined && typeof newCustomerData.profile.liability.creditCardDebt === 'number'){
-        updatedCustomer.profile.liability.creditCardDebt = newCustomerData.profile.liability.creditCardDebt;
-      }
-      if(newCustomerData.profile.liability.otherDebt !== undefined && typeof newCustomerData.profile.liability.otherDebt === 'number'){
-        updatedCustomer.profile.liability.otherDebt = newCustomerData.profile.liability.otherDebt;
-      }
-      */
-    }
+        if(newCustomerData.profile.assets.stocks !== undefined && typeof newCustomerData.profile.assets.stocks === 'number'){
+          updatedCustomer.profile.assets.stocks = newCustomerData.profile.assets.stocks;
+        }
 
-    //
-    // function getAge(dateString) {
-    //     var today = new Date();
-    //     var birthDate = new Date(dateString);
-    //     var age = today.getFullYear() - birthDate.getFullYear();
-    //     var m = today.getMonth() - birthDate.getMonth();
-    //     if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    //         age--;
-    //     }
-    //     return age;
-    // }
-    // newCustomerData.profile.age = getAge(newCustomerData.profile.DOB);
-    // newCustomerData.profile.assets.total =
-    //      newCustomerData.profile.assets.stocks +
-    //      newCustomerData.profile.assets.bonds +
-    //      newCustomerData.profile.assets.cash +
-    //      newCustomerData.profile.assets.retirementAccounts +
-    //      newCustomerData.profile.assets.annuites +
-    //      newCustomerData.profile.assets.property +
-    //      newCustomerData.profile.assets.other  ;
-    //  newCustomerData.profile.monthlyCosts.total =
-    //      newCustomerData.profile.monthlyCosts.car +
-    //      newCustomerData.profile.monthlyCosts.rentOrMortgage +
-    //      newCustomerData.profile.monthlyCosts.groceries +
-    //      newCustomerData.profile.monthlyCosts.bills +
-    //      newCustomerData.profile.monthlyCosts.otherExpenses ;
-    //    newCustomerData.profile.liability.total =
-    //      newCustomerData.profile.liability.mortgage +
-    //      newCustomerData.profile.liability.homeEquityLoans +
-    //      newCustomerData.profile.liability.studentLoans +
-    //      newCustomerData.profile.liability.creditCardDebt +
-    //      newCustomerData.profile.liability.otherDebt ;
-    //    newCustomerData.profile.netWorth = newCustomerData.profile.assets.total - newCustomerData.profile.liability.total;
-    //
+
+        if(newCustomerData.profile.assets.bonds !== undefined && typeof newCustomerData.profile.assets.bonds === 'number'){
+          updatedCustomer.profile.assets.bonds = newCustomerData.profile.assets.bonds;
+        }
+        if(newCustomerData.profile.assets.cash !== undefined && typeof newCustomerData.profile.assets.cash === 'number'){
+          updatedCustomer.profile.assets.cash = newCustomerData.profile.assets.cash;
+        }
+        if(newCustomerData.profile.assets.retirementAccounts !== undefined && typeof newCustomerData.profile.assets.retirementAccounts === 'number'){
+          updatedCustomer.profile.assets.retirementAccounts = newCustomerData.profile.assets.retirementAccounts;
+        }
+        if(newCustomerData.profile.assets.annuites !== undefined && typeof newCustomerData.profile.assets.annuites === 'number'){
+          updatedCustomer.profile.assets.annuites = newCustomerData.profile.assets.annuites;
+        }
+        if(newCustomerData.profile.assets.property !== undefined && typeof newCustomerData.profile.assets.property === 'number'){
+          updatedCustomer.profile.assets.property = newCustomerData.profile.assets.property;
+        }
+        if(newCustomerData.profile.assets.other !== undefined && typeof newCustomerData.profile.assets.other === 'number'){
+          updatedCustomer.profile.assets.other = newCustomerData.profile.assets.other;
+        }
+
+      }
+
+
+      if(newCustomerData.profile.savingsRateOfIncome !== undefined && typeof newCustomerData.profile.savingsRateOfIncome === 'number'){
+        updatedCustomer.profile.savingsRateOfIncome = newCustomerData.profile.savingsRateOfIncome;
+      }
+
+      if(newCustomerData.profile.monthlyCosts !== undefined && typeof newCustomerData.profile.monthlyCosts === 'object'){
+
+        if(newCustomerData.profile.monthlyCosts.car !== undefined && typeof newCustomerData.profile.monthlyCosts.car === 'number'){
+          updatedCustomer.profile.monthlyCosts.car = newCustomerData.profile.monthlyCosts.car;
+        }
+        if(newCustomerData.profile.monthlyCosts.rentOrMortgage !== undefined && typeof newCustomerData.profile.monthlyCosts.rentOrMortgage === 'number'){
+          updatedCustomer.profile.monthlyCosts.rentOrMortgage = newCustomerData.profile.monthlyCosts.rentOrMortgage;
+        }
+        if(newCustomerData.profile.monthlyCosts.groceries !== undefined && typeof newCustomerData.profile.monthlyCosts.groceries === 'number'){
+          updatedCustomer.profile.monthlyCosts.groceries = newCustomerData.profile.monthlyCosts.groceries;
+        }
+        if(newCustomerData.profile.monthlyCosts.bills !== undefined && typeof newCustomerData.profile.monthlyCosts.bills === 'number'){
+          updatedCustomer.profile.monthlyCosts.bills = newCustomerData.profile.monthlyCosts.bills;
+        }
+        if(newCustomerData.profile.monthlyCosts.otherExpenses !== undefined && typeof newCustomerData.profile.monthlyCosts.otherExpenses === 'number'){
+          updatedCustomer.profile.monthlyCosts.otherExpenses = newCustomerData.profile.monthlyCosts.otherExpenses;
+        }
+
+      }
+
+      if(newCustomerData.profile.liability !== undefined && typeof newCustomerData.profile.liability === 'object'){
+
+        if(newCustomerData.profile.liability.mortgage !== undefined && typeof newCustomerData.profile.liability.mortgage === 'number'){
+          updatedCustomer.profile.liability.mortgage = newCustomerData.profile.liability.mortgage;
+        }
+        if(newCustomerData.profile.liability.homeEquityLoans !== undefined && typeof newCustomerData.profile.liability.homeEquityLoans === 'number'){
+          updatedCustomer.profile.liability.homeEquityLoans = newCustomerData.profile.liability.homeEquityLoans;
+        }
+        if(newCustomerData.profile.liability.studentLoans !== undefined && typeof newCustomerData.profile.liability.studentLoans === 'number'){
+          updatedCustomer.profile.liability.studentLoans = newCustomerData.profile.liability.studentLoans;
+        }
+        if(newCustomerData.profile.liability.creditCardDebt !== undefined && typeof newCustomerData.profile.liability.creditCardDebt === 'number'){
+          updatedCustomer.profile.liability.creditCardDebt = newCustomerData.profile.liability.creditCardDebt;
+        }
+        if(newCustomerData.profile.liability.otherDebt !== undefined && typeof newCustomerData.profile.liability.otherDebt === 'number'){
+          updatedCustomer.profile.liability.otherDebt = newCustomerData.profile.liability.otherDebt;
+        }
+
+      }
 
 
 
-    return customerCollection().then((customers) => {
-        return customers.updateOne({_id: id}, {$set : updatedCustomer}).then(() => {
-          return updateCustomer._id;
+
+      function getAge(dateString) {
+          var today = new Date();
+          var birthDate = new Date(dateString);
+          var age = today.getFullYear() - birthDate.getFullYear();
+          var m = today.getMonth() - birthDate.getMonth();
+          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+              age--;
+          }
+          return age;
+      }
+      // console.log(updatedCustomer);
+      updatedCustomer.profile.age = getAge(updatedCustomer.profile.DOB);
+      updatedCustomer.profile.assets.total =
+           updatedCustomer.profile.assets.stocks +
+           updatedCustomer.profile.assets.bonds +
+           updatedCustomer.profile.assets.cash +
+           updatedCustomer.profile.assets.retirementAccounts +
+           updatedCustomer.profile.assets.annuites +
+           updatedCustomer.profile.assets.property +
+           updatedCustomer.profile.assets.other  ;
+       updatedCustomer.profile.monthlyCosts.total =
+           updatedCustomer.profile.monthlyCosts.car +
+           updatedCustomer.profile.monthlyCosts.rentOrMortgage +
+           updatedCustomer.profile.monthlyCosts.groceries +
+           updatedCustomer.profile.monthlyCosts.bills +
+           updatedCustomer.profile.monthlyCosts.otherExpenses ;
+         updatedCustomer.profile.liability.total =
+           updatedCustomer.profile.liability.mortgage +
+           updatedCustomer.profile.liability.homeEquityLoans +
+           updatedCustomer.profile.liability.studentLoans +
+           updatedCustomer.profile.liability.creditCardDebt +
+           updatedCustomer.profile.liability.otherDebt ;
+         updatedCustomer.profile.netWorth = updatedCustomer.profile.assets.total - updatedCustomer.profile.liability.total;
+
+         return updatedCustomer;
+      }).then((updatedCustomer) => {
+        return customerCollection().then((customers) => {
+            return customers.updateOne({_id: id}, {$set : updatedCustomer}).then(() => {
+              return updatedCustomer._id;
+            });
         });
-    });
-  },
+      });
+  };
 
-  getCustomerByHashedUserNameAndPassword: (hashedUserNameAndPassword_input) => {
+  getCustomerByHashedUserNameAndPassword = (hashedUserNameAndPassword_input) => {
     return customerCollection().then((customers) => {
       return customers.findOne({hashedUserNameAndPassword: hashedUserNameAndPassword_input}).then((customer) => {
         if(!customer) throw "customer not found";
         return customer;
       })
     })
-  },
+  };
 
-  getCustomerByUsername: (inputUsername) => {
+  getCustomerByUsername = (inputUsername) => {
     return customerCollection().then((customers) => {
       return customers.findOne({username: inputUsername}).then((customer) => {
         if(!customer) throw "customer not found";
           return customer;
       })
     })
-  }
-}
+  };
 
 
+module.exports = {
+  getAllCustomers: getAllCustomers,
+  addCustomer: addCustomer,
+  deleteCustomerByNodeUUID: deleteCustomerByNodeUUID,
+  getCustomerByUsername: getCustomerByUsername,
+  getCustomerByNodeUUID: getCustomerByNodeUUID,
+  getCustomerByHashedUserNameAndPassword: getCustomerByHashedUserNameAndPassword,
+  updateCustomer: updateCustomer
 
-  module.exports = exportedMethods;
+};
