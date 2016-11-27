@@ -1,6 +1,7 @@
 const collections = require("../config/MongoCollections.js");
 const customerCollection = collections.customers;
 const uuid = require('node-uuid');
+const bcrypt = require('bcrypt-nodejs');
 
 exportedMethods = {
 
@@ -9,6 +10,8 @@ exportedMethods = {
       let newCustomer = {
         //all commented fields in this object are calcuated based off other fields
          _id: uuid.v4(),
+         username: customer.username,
+         hashPass: bcrypt.hashSync(customer.password),
          //hashedUserNameAndPassword: customer.hashedUserNameAndPassword,
          profile: {
            firstName: customer.profile.firstName,
@@ -270,6 +273,15 @@ exportedMethods = {
       return customers.findOne({hashedUserNameAndPassword: hashedUserNameAndPassword_input}).then((customer) => {
         if(!customer) throw "customer not found";
         return customer;
+      })
+    })
+  },
+
+  getCustomerByUsername: (inputUsername) => {
+    return customerCollection().then((customers) => {
+      return customers.findOne({username: inputUsername}).then((customer) => {
+        if(!customer) throw "customer not found";
+          return customer;
       })
     })
   }

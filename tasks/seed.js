@@ -86,24 +86,9 @@ dbConnection().then((db)=> {
     ]
   });
 }).then(() => {
-  let hash = bcrypt.hashSync("admin@stevens.edu"+"abc123");
-  let hashedUsernameAndPassword = new Promise((resolve, reject) => {
-            bcrypt.hash(hash, null, null, function (error, hash) {
-                if (error) {
-                    reject(error);
-                }
-                else {
-                    resolve(hash);
-                }
-            });
-  });
-  return hashedUsernameAndPassword.then((hash) => {
-    return hash;
-  });
-}).then((hashedInfo) => {
-  console.log(hashedInfo);
   return customers.addCustomer({
-    hashedUserNameAndPassword: hashedInfo,
+    username: "admin@stevens.edu",
+    password: "abc123",
     //hashedUserNameAndPassword: "129f28evNkfdNIL8Fq7l8xs281eSbNOFgK0M0i882ndkfVn7.298j9hU.O",
     profile: {
       firstName: "John",

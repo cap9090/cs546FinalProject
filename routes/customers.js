@@ -18,23 +18,33 @@ router.get("/", (req,res) => {
 });
 
 
-router.get("/:id", (req, res) => {
-  return customerData.getCustomerByNodeUUID(req.params.id).then((customer) => {
-    res.status(200).json(customer)
-  }).catch((error) => {
-    res.status(500).json(error);
-  })
-});
+
 
 //redirect new customer from signup page to form for customer data entry
 router.get("/new", (req,res) => {
     res.render('form', {});
 });
 
+router.get("/home", (req, res) => {
+  if(!req.user) {
+    res.redirect("/");
+  }
+  else {
+    res.render("pages/customerHome", {user: req.user});
+  }
+});
 
 /*route for ajax post to send new customer data to database*/
 router.post("/new", (req, res) => {
 
+});
+
+router.get("/:id", (req, res) => {
+  return customerData.getCustomerByNodeUUID(req.params.id).then((customer) => {
+    res.status(200).json(customer)
+  }).catch((error) => {
+    res.status(500).json(error);
+  })
 });
 
 router.put("/:id", (req, res) => {

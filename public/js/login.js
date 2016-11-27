@@ -12,6 +12,7 @@
     var signupButton = $("#signup-button");
 
 /*authenticate user login*/
+/*
     loginButton.on("click", () => {
         var emailValue = loginEmailField.val();
         var passValue = loginPassField.val();
@@ -23,7 +24,7 @@
 
         var credentials = {
             username: emailValue,
-            pass: passValue
+            password: passValue
         };
 
         if (emailValue && passValue) {
@@ -36,7 +37,7 @@
 
             $.ajax(requestConfig).then(function (responseMessage) {
                 //logged in successfully
-                window.location.assign("/customers/" + responseMessage.message);
+                window.location.assign("/customers/home" + responseMessage.message);
             },function () {
                // alert("Sorry, we don't recognize those credentials. Please check them and try again!");
                 //login failed, prompt user to check credentials and retry
@@ -48,7 +49,7 @@
 
         return false;
     });
-
+*/
 /*create new user*/ 
     signupButton.on("click", () => {
         var emailValue = signupEmailField.val();

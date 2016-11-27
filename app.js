@@ -1,5 +1,10 @@
 const express = require("express");
+const expressSession = require('express-session');
+const passport = require('passport');
+const bcrypt = require('bcrypt-nodejs');
+const flash = require('connect-flash');
 const bodyParser = require("body-parser");
+const passportInit = require("./data/authentication");
 const app = express();
 const static = express.static(__dirname + '/public');
 
@@ -43,7 +48,14 @@ app.use(rewriteUnsupportedBrowserMethods);
 app.engine('handlebars', handlebarsInstance.engine);
 app.set('view engine', 'handlebars');
 
-configRoutes(app);
+app.use(flash());
+app.use(expressSession({secret: "secret"}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passportInit(passport);
+
+configRoutes(app, passport);
 
 app.listen(3000, () => {
     console.log("We've now got a server!");
