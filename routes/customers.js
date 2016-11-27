@@ -3,6 +3,15 @@ const router = express.Router();
 const data = require("../data");
 const customerData = data.customers;
 
+
+function userAuthenticated(req, res, next) {
+    if (req.isAuthenticated()){
+        return next();
+    }
+
+    res.redirect('/');
+}
+
 /*
 //Do we want to allow for customers to see list of other customers? I would think no
 router.get("/", (req,res) => {
@@ -25,13 +34,8 @@ router.get("/new", (req,res) => {
     res.render('form', {});
 });
 
-router.get("/home", (req, res) => {
-  if(!req.user) {
-    res.redirect("/");
-  }
-  else {
+router.get("/home", userAuthenticated, (req, res) => {
     res.render("pages/customerHome", {user: req.user});
-  }
 });
 
 /*route for ajax post to send new customer data to database*/
