@@ -1,4 +1,4 @@
-(function ($) {
+(function ($, window) {
     /*login fields*/
 
     var loginEmailField = $("#loginEmail");
@@ -8,7 +8,10 @@
     /*signup fields*/
 
     var signupRemCheckBox = $("#signup-remember-checkbox");
+    var signupForm = $("#signup-form");
     var signupButton = $("#signup-button");
+
+    //fields
     var signupUsername = $("#username");
     var signupPassword = $("#password");
     var signupFirstName = $("#firstName");
@@ -80,8 +83,8 @@
     });
 */
 /*create new user*/
-    signupButton.on("click", () => {
-
+    signupForm.submit((event) => {
+        event.preventDefault();
         var password = signupPassword.val();
         var username = signupUsername.val();
         var firstName = signupFirstName.val();
@@ -163,7 +166,12 @@
                 method: "POST",
                 url: "/customers/new",
                 contentType: 'application/json',
-                data: JSON.stringify(credentials)
+                data: JSON.stringify(credentials),
+                success: (returnedData) => {
+                console.log(returnedData.redirect)
+                if (typeof returnedData.redirect == 'string')
+                    window.location = returnedData.redirect;
+                }
             };
 
             $.ajax(requestConfig).then(function (responseMessage) {
@@ -187,4 +195,4 @@
     });
 
 
-})(window.jQuery);
+})(window.jQuery, window);

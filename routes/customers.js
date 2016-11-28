@@ -42,7 +42,9 @@ router.get("/home", userAuthenticated, (req, res) => {
 router.post("/new", (req, res) => {
   console.log(req.body);
   return customerData.checkIfUsernameAlreadyTaken(req.body.username).then(() => {
-    return customerData.addCustomer(req.body);
+    customerData.addCustomer(req.body).then(() => {
+       res.send({redirect: 'http://localhost:3000/customers/home'});
+    })
   }).catch((error) => {
     res.status(500).json(error);
   })
