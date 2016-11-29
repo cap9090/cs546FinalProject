@@ -1,1 +1,120 @@
-<h2>logged in as {{user.username}}</h2>
+<div>
+	<h1>Welcome {{ user.profile.firstName }}!</h1>
+	<h3>What would you like to do?</h3>
+	<div class='action-forms'>
+		<div class='customer-home-form'>
+			<form id='update-form' class='hidden'>
+				<label for="username" class="">Username</label>
+	            <input type="text" id="username" class="form-control" value ="{{ user.username}}" required autofocus>
+
+	            <label for="password" class=""> Password</label>
+	            <input type="password" id="password" class="form-control" placeholder="type new password" required>
+
+	            <label for="firstName" class="">firstName</label>
+	            <input type="text" id="firstName" class="form-control" value="{{ user.profile.firstName }}" required autofocus>
+
+	            <label for="middleInit" class="">Middle Init</label>
+	            <input type="text" id="middleInit" class="form-control" value="{{ user.profile.middleInit}}" required autofocus>
+
+	            <label for="lastName" class="">lastName</label>
+	            <input type="text" id="lastName" class="form-control" value="{{ user.profile.lastName }}" required autofocus>
+
+	            <label for="DOB" class="">DOB</label>
+	            <input type="date" id="DOB" class="form-control"  value="{{ user.profile.DOB }}" required autofocus>
+
+	            <label for="noDependents" class="">noDependents</label>
+	            <input type="number" id="noDependents" class="form-control" value="{{ user.profile.noDependents }}" required autofocus>
+
+	            <label for="zipCode" class="">zipCode</label>
+	            <input type="text" id="zipCode" class="form-control" value="{{ user.profile.zipCode }}" required autofocus>
+
+	            <label for="monthlyIncome" class="">monthlyIncome</label>
+	            <input type="number" id="monthlyIncome" class="form-control" value="{{ user.profile.monthlyIncome}}" required autofocus>
+
+	            <label for="desiredRetirementAge" class="">desiredRetirementAge</label>
+	            <input type="number" id="desiredRetirementAge" class="form-control" value="{{ user.profile.desiredRetirementAge }}" required autofocus>
+
+	            <label for="stocks" class="">stocks</label>
+	            <input type="number" id="stocks" class="form-control" value="{{ user.profile.assets.stocks }}" required autofocus>
+
+	            <label for="bonds" class="">bonds</label>
+	            <input type="number" id="bonds" class="form-control" value="{{ user.profile.assets.bonds}}" required autofocus>
+
+	            <label for="cash" class="">cash</label>
+	            <input type="number" id="cash" class="form-control" value="{{ user.profile.assets.cash }}" required autofocus>
+
+	            <label for="retirementAccounts" class="">retirementAccounts</label>
+	            <input type="number" id="retirementAccounts" class="form-control" value="{{ user.profile.assets.retirementAccounts }}" required autofocus>
+
+	            <label for="annuites" class="">annuites</label>
+	            <input type="number" id="annuites" class="form-control" value="{{ user.profile.assets.annuites }}" required autofocus>
+
+	            <label for="property" class="">property</label>
+	            <input type="number" id="property" class="form-control" value="{{ user.profile.assets.property}}" required autofocus>
+
+
+	            <label for="other" class="">other</label>
+	            <input type="number" id="other" class="form-control" value="{{ user.profile.assets.other}}" required autofocus>
+
+	            <label for="savingsRateOfIncome" class="">savingsRateOfIncome</label>
+	            <input type="number" id="savingsRateOfIncome" class="form-control" value="{{ user.profile.savingsRateOfIncome}}" required autofocus>
+
+	            <label for="car" class="">car</label>
+	            <input type="car" id="car" class="form-control" value="{{ user.profile.monthlyCosts.car }}" required autofocus>
+
+	            <label for="rentOrMortgage" class="">rentOrMortgage</label>
+	            <input type="number" id="rentOrMortgage" class="form-control" value="{{ user.profile.monthlyCosts.rentOrMortgage }}" required autofocus>
+
+	            <label for="groceries" class="">groceries</label>
+	            <input type="number" id="groceries" class="form-control" value="{{ user.profile.monthlyCosts.groceries }}" required autofocus>
+
+	            <label for="bills" class="">bills</label>
+	            <input type="number" id="bills" class="form-control" value="{{ user.profile.monthlyCosts.bills}}" required autofocus>
+
+	            <label for="otherExpenses" class="">otherExpenses</label>
+	            <input type="number" id="otherExpenses" class="form-control" value="{{ user.profile.monthlyCosts.otherExpenses }}" required autofocus>
+
+	            <label for="mortgage" class="">mortgage</label>
+	            <input type="number" id="mortgage" class="form-control" value="{{ customer.profile.liability.mortgage }}" required autofocus>
+
+	            <label for="homeEquityLoans" class="">homeEquityLoans</label>
+	            <input type="number" id="homeEquityLoans" class="form-control" value="{{ customer.profile.liability.homeEquityLoans}}" required autofocus>
+
+	            <label for="studentLoans" class="">studentLoans</label>
+	            <input type="number" id="studentLoans" class="form-control" value="{{ customer.profile.liability.studentLoans}}" required autofocus>
+
+	            <label for="creditCardDebt" class="">creditCardDebt</label>
+	            <input type="number" id="creditCardDebt" class="form-control" value="{{ customer.profile.liability.creditCardDebt }}" required autofocus>
+
+	            <label for="otherDebt" class="">otherDebt</label>
+	            <input type="number" id="otherDebt" class="form-control" value="{{ customer.profile.liability.otherDebt }}" required autofocus>
+
+	            <label for="password" class=""> Password</label>
+	            <input type="password" id="password" class="form-control" placeholder="re-enter new password" required>
+	            <div class="checkbox">
+	                <label>
+	                    <input type="checkbox" value="remember-me" id="signup-remember-checkbox">Remember me
+	                </label>
+	            </div>
+	            <button class="btn btn-signup" type="submit" id="signup-button">Sign Up</button>
+	            <div class = "back-to-login">
+			</form>
+		</div>
+		<div class='customer-home-form'>
+			<form id='goal-form' class='hidden'>
+			</form>
+		</div>
+	</div>
+	<div class='action-buttons'>
+		<button id='show-goal-form-button' type='button' class='btn btn-goal btn-primary'>Enter a financial goal</button>
+		<button id='show-update-form-button' type='button' class='btn btn-update btn-primary'>Update my financial information</button>
+	</div>
+	</div>
+</div>
+
+
+
+
+
+
+

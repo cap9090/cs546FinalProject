@@ -30,7 +30,7 @@ const bcrypt = require('bcrypt-nodejs');
              retirementAccounts: customer.profile.assets.retirementAccounts,
              annuites: customer.profile.assets.annuites,
              property: customer.profile.assets.property,
-             other: customer.profile.assets.property
+             other: customer.profile.assets.other
              //total
            },
            savingsRateOfIncome: customer.profile.savingsRateOfIncome,
