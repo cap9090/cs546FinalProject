@@ -167,33 +167,20 @@
                 url: "/customers/new",
                 contentType: 'application/json',
                 data: JSON.stringify(credentials),
-                success: (returnedData) => {
-                    console.log(returnedData.redirect)
-                    /*
-                    if (typeof returnedData.redirect == 'string')
-                        window.location = returnedData.redirect;
-                    }
-                    */
-                    var loginRequest = {
+            };
+
+            $.ajax(requestConfig).then(function (responseMessage) {
+                 var loginRequest = {
                         method: "POST",
                         url: "/login",
                         contentType: 'application/json',
                         data: JSON.stringify({username: credentials.username, password: credentials.password}),
-                        success: (returnedData) => {
-                            console.log(returnedData.redirect)
-                        }
                     };
                     $.ajax(loginRequest).then(function (response) {
                         window.location.assign("/customers/home");
                         console.log(response);
                     });
-                }
-            };
-
-            $.ajax(requestConfig).then(function (responseMessage) {
-                console.log(responseMessage);
             });
-
         }
 
         return false;

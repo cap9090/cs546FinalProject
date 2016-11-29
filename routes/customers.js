@@ -40,7 +40,6 @@ router.get("/home", userAuthenticated, (req, res) => {
 
 /*route for ajax post to send new customer data to database*/
 router.post("/new", (req, res) => {
-  console.log(req.body);
   return customerData.checkIfUsernameAlreadyTaken(req.body.username).then(() => {
     customerData.addCustomer(req.body).then(() => {
        res.send({redirect: 'http://localhost:3000/customers/home'});
