@@ -28,7 +28,7 @@ const bcrypt = require('bcrypt-nodejs');
              bonds: customer.profile.assets.bonds,
              cash: customer.profile.assets.cash,
              retirementAccounts: customer.profile.assets.retirementAccounts,
-             annuites: customer.profile.assets.annuites,
+             annuities: customer.profile.assets.annuities,
              property: customer.profile.assets.property,
              other: customer.profile.assets.other
              //total
@@ -71,7 +71,7 @@ const bcrypt = require('bcrypt-nodejs');
             newCustomer.profile.assets.bonds +
             newCustomer.profile.assets.cash +
             newCustomer.profile.assets.retirementAccounts +
-            newCustomer.profile.assets.annuites +
+            newCustomer.profile.assets.annuities +
             newCustomer.profile.assets.property +
             newCustomer.profile.assets.other  ;
         newCustomer.profile.monthlyCosts.total =
@@ -181,8 +181,8 @@ const bcrypt = require('bcrypt-nodejs');
         if(newCustomerData.profile.assets.retirementAccounts !== undefined && typeof newCustomerData.profile.assets.retirementAccounts === 'number'){
           updatedCustomer.profile.assets.retirementAccounts = newCustomerData.profile.assets.retirementAccounts;
         }
-        if(newCustomerData.profile.assets.annuites !== undefined && typeof newCustomerData.profile.assets.annuites === 'number'){
-          updatedCustomer.profile.assets.annuites = newCustomerData.profile.assets.annuites;
+        if(newCustomerData.profile.assets.annuities !== undefined && typeof newCustomerData.profile.assets.annuities === 'number'){
+          updatedCustomer.profile.assets.annuities = newCustomerData.profile.assets.annuities;
         }
         if(newCustomerData.profile.assets.property !== undefined && typeof newCustomerData.profile.assets.property === 'number'){
           updatedCustomer.profile.assets.property = newCustomerData.profile.assets.property;
@@ -258,7 +258,7 @@ const bcrypt = require('bcrypt-nodejs');
            updatedCustomer.profile.assets.bonds +
            updatedCustomer.profile.assets.cash +
            updatedCustomer.profile.assets.retirementAccounts +
-           updatedCustomer.profile.assets.annuites +
+           updatedCustomer.profile.assets.annuities +
            updatedCustomer.profile.assets.property +
            updatedCustomer.profile.assets.other  ;
        updatedCustomer.profile.monthlyCosts.total =

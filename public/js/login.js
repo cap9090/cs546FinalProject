@@ -21,12 +21,12 @@
     var signupNoDependents = $("#noDependents");
     var signupZipCode = $("#zipCode");
     var signupMonthlyIncome = $("#monthlyIncome");
-    var signupRetirmentAge = $("#desiredRetirementAge");
+    var signupRetirementAge = $("#desiredRetirementAge");
     var signupStocks = $("#stocks");
     var signupBonds =  $("#bonds");
     var signupCash = $("#cash");
-    var signupRetirementAccounts = $("retirementAccounts");
-    var signupAnnuities = $("#annuites");
+    var signupRetirementAccounts = $("#retirementAccounts");
+    var signupAnnuities = $("#annuities");
     var signupProperty = $("#property");
     var signupOther = $("#other");
     var signupSavingsRateOfIncome = $("#savingsRateOfIncome");
