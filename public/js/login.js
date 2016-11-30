@@ -11,6 +11,10 @@
     var signupForm = $("#signup-form");
     var signupButton = $("#signup-button");
 
+    /*error fields*/
+    var errorModal = $('#errorModal');
+    var errorText = $('#errorText');
+
     //fields
     var signupUsername = $("#username");
     var signupPassword = $("#password");
