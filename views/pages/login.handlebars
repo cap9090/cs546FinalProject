@@ -16,7 +16,9 @@
             <div class = "new-signup">
                 <a id="new-signup-link" href="">New User? Sign Up!</a>
             </div>
-            <p id="errorText">{{error}}</p>
+            {{#if error }}
+            <p class="alert alert-danger" id="errorText">{{error}}</p>
+            {{/if}}
         </form>
     </div>
     <div class="face signup">
@@ -121,15 +123,3 @@
     </div>
 </div>
 </section>
-
-<!--error modal-->
-<div class="modal fade" id="errorModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-body">
-          <p>Sorry, we don't recognize those login credentials.</p>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Try Again</button>
-        </div>
-      </div>
-    </div>
-  </div>
