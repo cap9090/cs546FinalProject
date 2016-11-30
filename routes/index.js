@@ -10,7 +10,7 @@ const constructorMethod = (app, passport) => {
     //app.use("/auth", authRoutes);
 
     app.get("/", function (request, response) {
-        response.render("pages/login", {});
+        response.render("pages/login", {error: request.flash("error")[0]});
     });
     
     app.post("/login", passport.authenticate('local', {  successRedirect: '/customers/home',
