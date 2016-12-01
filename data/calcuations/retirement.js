@@ -5,24 +5,25 @@ const finProdData = require('../finProds');
 const problemData = require('../problems')
 
 /**** all rates adjusted for inflation ****/
-const salaryGrowthRate = 3.8
+const salaryGrowthRate = 3
 const percentNeedPerYear = 85;  /*percentOfSalaryNeededAnuallyAfterRetirement*/
 const liabilityInterestRate = 3;
-const averageAnnualCapitalGrowthRate = 6;
+const averageAnnualCapitalGrowthRatePreRetire = 5;
+const averageAnnualCapitalGrowthRatePostRetire = 2;
 const needGrowthRate = 2.3;
 
 ///*test case
 let customer = {
 	profile: {
 		desiredRetirementAge: 67,
-		monthlyIncome: 4200,
+		monthlyIncome: 4166,
 		age: 40,
 		savingsRateOfIncome: 15,
 		assets: {
-			total: 100000
+			total: 200000
 		},
 		liabilities: {
-			total: 0
+			total: 100000
 		}
 	}
 };
@@ -39,12 +40,14 @@ let exportedMethods = {
 		let annualSalary = 12 * customer.profile.monthlyIncome;
 
 		let yearsUntilRetirement = customer.profile.desiredRetirementAge - customer.profile.age;
-		let annualSalaryAtRetirement = calculations.annuallyCompoundedTotal(annualSalary, salaryGrowthRate/100, yearsUntilRetirement)
+		let annualSalaryAtRetirement = calculations.annuallyCompoundedTotal(annualSalary, salaryGrowthRate, yearsUntilRetirement)
 
 		let totalMoneySavedFromPresentToRetirement = (() => {
-			let lumpSum = annualSalary;
+			let lumpSum = (customer.profile.savingsRateOfIncome/100)*annualSalary;
+			let adjustedSalary = annualSalary;
 			for (let i = 1; i <= yearsUntilRetirement; i++) {
-				let addition = calculations.annuallyCompoundedTotal((customer.profile.savingsRateOfIncome/100)*annualSalary, (salaryGrowthRate+averageAnnualCapitalGrowthRate)/100, i);
+				 adjustedSalary = calculations.annuallyCompoundedTotal(adjustedSalary, salaryGrowthRate, 1)
+				let addition = calculations.annuallyCompoundedTotal((customer.profile.savingsRateOfIncome/100)*adjustedSalary, (averageAnnualCapitalGrowthRatePreRetire), i);
 				lumpSum += addition;
 			}
 			return lumpSum;
@@ -52,32 +55,31 @@ let exportedMethods = {
 
 		let fundsNeededForRetirementFirstYear = percentNeedPerYear/100 * annualSalaryAtRetirement; 
 		let totalNeedAfterRetirement = (() => {
-			let lumpSum = annualSalary;
+			let lumpSum = fundsNeededForRetirementFirstYear;
 			for (let i = 1; i <= yearsOfRetirement; i++) {
-				let addition = calculations.annuallyCompoundedTotal(fundsNeededForRetirementFirstYear, needGrowthRate/100, i);
+				let addition = calculations.annuallyCompoundedTotal(fundsNeededForRetirementFirstYear, needGrowthRate, i);
 				lumpSum += addition;
 			}
 			return lumpSum;
 		})();
 
-		let total = (() => {
+		let totalSocialSecurity = (() => {
 			let lumpSum = annualSalary;
 			for (let i = 1; i <= yearsOfRetirement; i++) {
-				let addition = calculations.annuallyCompoundedTotal(1300, averageAnnualCapitalGrowthRate/100, i);
+				let addition = calculations.annuallyCompoundedTotal(1300, averageAnnualCapitalGrowthRatePreRetire, i);
 				lumpSum += addition;
 			}
 			return lumpSum;
 		})();
-		//console.log(total)
 		
 		
-		let totalSavingsAtRetirement = totalMoneySavedFromPresentToRetirement + calculations.annuallyCompoundedTotal(customer.profile.assets.total, averageAnnualCapitalGrowthRate/100, yearsUntilRetirement);
-		let totalLiabilitiesAtRetirement = calculations.annuallyCompoundedTotal(customer.profile.liabilities.total, liabilityInterestRate/100, yearsUntilRetirement);
-			//console.log(totalMoneySavedFromPresentToRetirement)
-			//console.log(totalLiabilitiesAtRetirement)
-			//console.log(totalNeedAfterRetirement)
-			//console.log(totalSavingsAtRetirement)
-			console.log(totalSavingsAtRetirement - totalLiabilitiesAtRetirement - totalNeedAfterRetirement);
+		let savingsUpToRetirement = calculations.annuallyCompoundedTotal(customer.profile.assets.total, averageAnnualCapitalGrowthRatePreRetire, yearsUntilRetirement)
+		let savingsThroughRetirement = calculations.annuallyCompoundedTotal(savingsUpToRetirement, averageAnnualCapitalGrowthRatePostRetire, yearsOfRetirement)
+		let totalSavingsAtRetirement = totalMoneySavedFromPresentToRetirement + savingsUpToRetirement + savingsThroughRetirement;
+		let totalLiabilitiesAtRetirement = calculations.annuallyCompoundedTotal(customer.profile.liabilities.total, liabilityInterestRate, yearsUntilRetirement);
+			console.log(totalSavingsAtRetirement)
+			console.log(totalNeedAfterRetirement)
+			console.log(totalSavingsAtRetirement + totalSocialSecurity - totalLiabilitiesAtRetirement - totalNeedAfterRetirement);
 		//});
 	},
 
