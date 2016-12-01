@@ -9,11 +9,11 @@ const problemData = require('../problems')
 let exportedMethods = {
 	getServicesForUser: (id) => {
 		let problemsArray = [];
+		
 
 
 
-
-
+		return finProd.getProductsFromArrayOfProductIds(problemsArray);
 	}
 
 

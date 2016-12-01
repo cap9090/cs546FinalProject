@@ -1,3 +1,10 @@
+h1, h2, h3, h4, h5 {
+  
+}
+.wrapper {
+  
+}
+
 .col-sm-6 {
     margin: 0 auto;
     float: none;
@@ -41,18 +48,17 @@
 .login-form {
  /*center login form on screen*/ 
     padding: 30px;
-    background: lightgray;
     border: 1px solid #ccc;
     border-radius: 25px;
     background-color: #66B2FF;
 
 }
 
-.update-form {
+#update-form {
 
 }
 
-.goal-form {
+#goal-form {
 
 }
 
