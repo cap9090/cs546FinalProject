@@ -10,6 +10,18 @@ router.post("/", passport.authenticate('local', { successRedirect: '/customers/h
                                                   failureFlash: true})
 );
 
+app.post('/', function(req, res, next) {
+    passport.authenticate('local', function(error, user, info) {
+        if(error) {
+            return res.status(500).json(error);
+        }
+        if(!user) {
+            return res.status(401).json(info.message);
+        }
+        res.json(user);
+    })(req, res, next);
+});
+
 router.post("/", (req, res) => {
   return authData.authenticateLogin(req.params.username , req.params.pass).then((customer) => {
       res.status(200).json({success: true, message: customer._id});
