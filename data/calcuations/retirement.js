@@ -12,7 +12,7 @@ const averageAnnualCapitalGrowthRatePreRetire = 5;
 const averageAnnualCapitalGrowthRatePostRetire = 2;
 const needGrowthRate = 2.3;
 
-///*test case
+/*test case
 let customer = {
 	profile: {
 		desiredRetirementAge: 67,
@@ -27,15 +27,11 @@ let customer = {
 		}
 	}
 };
-//*/
-
-
-
-
+*/
 
 let exportedMethods = {
 	calculateRetirement: (customerNodeUUID) => {
-		//customerData.getCustomerByNodeUUID(customerNodeUUID).then( (customer) => {
+		customerData.getCustomerByNodeUUID(customerNodeUUID).then( (customer) => {
 		let yearsOfRetirement = 92 - customer.profile.desiredRetirementAge;
 		let annualSalary = 12 * customer.profile.monthlyIncome;
 
@@ -80,7 +76,7 @@ let exportedMethods = {
 			console.log(totalSavingsAtRetirement)
 			console.log(totalNeedAfterRetirement)
 			console.log(totalSavingsAtRetirement + totalSocialSecurity - totalLiabilitiesAtRetirement - totalNeedAfterRetirement);
-		//});
+		});
 	},
 
 
@@ -89,6 +85,6 @@ let exportedMethods = {
 
 module.exports = exportedMethods;
 
-exportedMethods.calculateRetirement(1);
+console.log(calculations)
 
 
