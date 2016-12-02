@@ -104,7 +104,7 @@ dbConnection().then((db)=> {
         bonds: 15000,
         cash: 40000,
         retirementAccounts: 30000,
-        annuites: 1000,
+        annuities: 1000,
         property: 250000,
         other: 2000
       },
