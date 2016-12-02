@@ -65,9 +65,9 @@ router.get("/:id", (req, res) => {
 });
 
 router.put("/update", (req, res) => {
-  return customerData.updateCustomer(req.body._id , req.body).then((insertedId) => {
+  return customerData.updateCustomer(req.body.id, req.body).then((insertedId) => {
     return customerData.getCustomerByNodeUUID(insertedId).then((customer) => {
-      res.status(200).json("Successfully updated customer with id " + customer._id);
+      res.status(200).json('success for' + customer._id);
     })
   }).catch((error) => {
     res.status(500).json(error);

@@ -182,7 +182,6 @@
                     };
                     $.ajax(loginRequest).then(function (response) {
                         window.location.assign("/customers/home");
-                        console.log(response);
                     });
             });
         }

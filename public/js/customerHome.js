@@ -1,11 +1,13 @@
 (function ($, window) {
 	$('#show-update-form-button').click(() => {
+		 $('#update-success').addClass('hidden');
 		$('#update-form').removeClass('hidden');
 		$('#show-update-form-button').addClass('hidden');
 		$('#goal-form').addClass('hidden');
 		$('#show-goal-form-button').removeClass('hidden');
 	})
 	$('#show-goal-form-button').click(() => {
+		$('#update-success').addClass('hidden');
 		$('#goal-form').removeClass('hidden');
 		$('#show-goal-form-button').addClass('hidden');
 		$('#update-form').addClass('hidden');
@@ -24,69 +26,70 @@
 		}
 	});
 
+	var signupRemCheckBox = $("#update-remember-checkbox");
 
-	/*
-
-	var signupUsername = $("#username");
-    var signupPassword = $("#password");
-    var signupFirstName = $("#firstName");
-    var signupMiddleInit= $("#middleInit");
-    var signupLastName = $("#lastName");
-    var signupDOB = $("#DOB");
-    var signupNoDependents = $("#noDependents");
-    var signupZipCode = $("#zipCode");
-    var signupMonthlyIncome = $("#monthlyIncome");
-    var signupRetirementAge = $("#desiredRetirementAge");
-    var signupStocks = $("#stocks");
-    var signupBonds =  $("#bonds");
-    var signupCash = $("#cash");
-    var signupRetirementAccounts = $("#retirementAccounts");
-    var signupAnnuities = $("#annuities");
-    var signupProperty = $("#property");
-    var signupOther = $("#other");
-    var signupSavingsRateOfIncome = $("#savingsRateOfIncome");
-    var signupCar = $("#car");
-    var signupRentOrMortgage = $("#rentOrMortgage");
-    var signupGroceries = $("#groceries");
-    var signupBills = $("#bills");
-    var signupOtherExpenses = $("#otherExpenses");
-    var signupMortage = $("#mortgage");
-    var signupHomeEquityLoans = $("#homeEquityLoans");
-    var signupStudentLoans = $("#studentLoans");
-    var signupCreditCardDebt =$("#creditCardDebt");
-    var signupOtherDebt = $("#otherDebt");
+	var idField = $('#nodeUUID');
+	var updateUsername = $("#username");
+    var updatePassword = $("#password");
+    var updateFirstName = $("#firstName");
+    var updateMiddleInit= $("#middleInit");
+    var updateLastName = $("#lastName");
+    var updateDOB = $("#DOB");
+    var updateNoDependents = $("#noDependents");
+    var updateZipCode = $("#zipCode");
+    var updateMonthlyIncome = $("#monthlyIncome");
+    var updateRetirementAge = $("#desiredRetirementAge");
+    var updateStocks = $("#stocks");
+    var updateBonds =  $("#bonds");
+    var updateCash = $("#cash");
+    var updateRetirementAccounts = $("#retirementAccounts");
+    var updateAnnuities = $("#annuities");
+    var updateProperty = $("#property");
+    var updateOther = $("#other");
+    var updateSavingsRateOfIncome = $("#savingsRateOfIncome");
+    var updateCar = $("#car");
+    var updateRentOrMortgage = $("#rentOrMortgage");
+    var updateGroceries = $("#groceries");
+    var updateBills = $("#bills");
+    var updateOtherExpenses = $("#otherExpenses");
+    var updateMortage = $("#mortgage");
+    var updateHomeEquityLoans = $("#homeEquityLoans");
+    var updateStudentLoans = $("#studentLoans");
+    var updateCreditCardDebt =$("#creditCardDebt");
+    var updateOtherDebt = $("#otherDebt");
 	
 
-	('#update-form').submit((event) => {
+	$('#update-form').submit((event) => {
         event.preventDefault();
-        var password = signupPassword.val();
-        var username = signupUsername.val();
-        var firstName = signupFirstName.val();
-        var middleInit = signupMiddleInit.val();
-        var lastName = signupLastName.val();
-        var  DOB = signupDOB.val();
-        var noDependents = signupNoDependents.val();
-        var zipCode = signupZipCode.val();
-        var monthlyIncome = signupMonthlyIncome.val();
-        var desiredRetirementAge = signupRetirementAccounts.val();
-        var savingsRateOfIncome = signupSavingsRateOfIncome.val();
-        var stocks = signupStocks.val();
-        var bonds = signupBonds.val();
-        var cash = signupCash.val();
-        var retirementAccounts = signupRetirementAccounts.val();
-        var annuities = signupAnnuities.val();
-        var property = signupProperty.val();
-        var other = signupOther.val();
-        var car = signupCar.val();
-        var rentOrMortgage = signupRentOrMortgage.val();
-        var groceries = signupGroceries.val();
-        var bills = signupBills.val();
-        var otherExpenses = signupOtherExpenses.val();
-        var mortgage = signupMortage.val();
-        var homeEquityLoans = signupHomeEquityLoans.val();
-        var studentLoans = signupStudentLoans.val();
-        var creditCardDebt = signupCreditCardDebt.val();
-        var otherDebt = signupOtherDebt.val();
+        var id = idField.val();
+        var password = updatePassword.val();
+        var username = updateUsername.val();
+        var firstName = updateFirstName.val();
+        var middleInit = updateMiddleInit.val();
+        var lastName = updateLastName.val();
+        var  DOB = updateDOB.val();
+        var noDependents = updateNoDependents.val();
+        var zipCode = updateZipCode.val();
+        var monthlyIncome = updateMonthlyIncome.val();
+        var desiredRetirementAge = updateRetirementAge.val();
+        var savingsRateOfIncome = updateSavingsRateOfIncome.val();
+        var stocks = updateStocks.val();
+        var bonds = updateBonds.val();
+        var cash = updateCash.val();
+        var retirementAccounts = updateRetirementAccounts.val();
+        var annuities = updateAnnuities.val();
+        var property = updateProperty.val();
+        var other = updateOther.val();
+        var car = updateCar.val();
+        var rentOrMortgage = updateRentOrMortgage.val();
+        var groceries = updateGroceries.val();
+        var bills = updateBills.val();
+        var otherExpenses = updateOtherExpenses.val();
+        var mortgage = updateMortage.val();
+        var homeEquityLoans = updateHomeEquityLoans.val();
+        var studentLoans = updateStudentLoans.val();
+        var creditCardDebt = updateCreditCardDebt.val();
+        var otherDebt = updateOtherDebt.val();
 
 
         var rememberMe = false;
@@ -96,6 +99,7 @@
         }
 
         var credentials = {
+            id: id,
             password: password,
             username: username,
             profile: {
@@ -134,8 +138,7 @@
 
               }
             };
-
-     
+            
             var requestConfig = {
                 method: "PUT",
                 url: "/customers/update",
@@ -149,10 +152,9 @@
                         url: "/login",
                         contentType: 'application/json',
                         data: JSON.stringify({username: credentials.username, password: credentials.password}),
-                    };
+                 };
                     $.ajax(loginRequest).then(function (response) {
                         window.location.assign("/customers/home");
-                        console.log(response);
                     });
             });
 
@@ -162,7 +164,7 @@
 
 
 
-	*/
+	
 
 
 

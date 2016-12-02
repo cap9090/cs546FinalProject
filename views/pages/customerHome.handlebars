@@ -1,9 +1,13 @@
 <div class='wrapper'>
 	<h1>Welcome {{ user.profile.firstName }}!</h1>
 	<h3>What would you like to do?</h3>
+	<p id='update-success' class='hidden'>We have succesfully updated your information</p>
 	<div class='action-forms'>
 		<div class='customer-home-form'>
 			<form id='update-form' class='hidden'>
+				<!-- This if so that jquery has access the node uuid so that it can make an ajax request to the put route -->
+				<input type="hidden" id='nodeUUID' name="nodeUUID" value="{{ user._id }}">
+
 				<label for="username" class="">Username</label>
 	            <input type="email" id="username" class="form-control" value ="{{ user.username}}" required autofocus>
 
@@ -90,11 +94,10 @@
 
 	            <div class="checkbox">
 	                <label>
-	                    <input type="checkbox" value="remember-me" id="signup-remember-checkbox">Remember me
+	                    <input type="checkbox" value="remember-me" id="update-remember-checkbox">Remember me
 	                </label>
 	            </div>
-	            <input class="btn btn-signup btn-primary" type="submit" id="signup-button"/>
-	            <div class = "back-to-login">
+	            <input class="btn btn-signup btn-primary" type="submit" id="update-button"/>
 			</form>
 		</div>
 		<div class='customer-home-form'>
@@ -102,7 +105,7 @@
 				  <ul class="nav nav-tabs">
 					<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
 					<li><a data-toggle="tab" href="#menu1">Retirement</a></li>
-					<li><a data-toggle="tab" href="#menu2">Hosue Ownership</a></li>
+					<li><a data-toggle="tab" href="#menu2">House Ownership</a></li>
 					<li><a data-toggle="tab" href="#menu3">Education</a></li>
 					<li><a data-toggle="tab" href="#menu4">Car Ownership</a></li>
 				</ul>
