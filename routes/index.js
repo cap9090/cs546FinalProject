@@ -18,6 +18,13 @@ const constructorMethod = (app, passport) => {
                                                         failureFlash: true })
     );
 
+    //route to log out
+    app.get('/logout',
+        function(req, res){
+        req.logout();
+        res.redirect('/');
+    });
+
     app.use("*", (req, res) => {
         res.sendStatus(404);
     })
