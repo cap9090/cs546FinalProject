@@ -49,6 +49,13 @@ router.post("/new", (req, res) => {
   })
 });
 
+//   post extra data for calculations and call getServicesForUser(user, goal, data) as defined in finProdSelection Module
+router.post('/calculations', (req, res) => {
+    res.status(200);
+})
+
+
+
 router.get("/:id", (req, res) => {
   return customerData.getCustomerByNodeUUID(req.params.id).then((customer) => {
     res.status(200).json(customer)
@@ -57,8 +64,8 @@ router.get("/:id", (req, res) => {
   })
 });
 
-router.put("/:id", (req, res) => {
-  return customerData.updateCustomer(req.params.id , req.body).then((insertedId) => {
+router.put("/update", (req, res) => {
+  return customerData.updateCustomer(req.body._id , req.body).then((insertedId) => {
     return customerData.getCustomerByNodeUUID(insertedId).then((customer) => {
       res.status(200).json("Successfully updated customer with id " + customer._id);
     })
