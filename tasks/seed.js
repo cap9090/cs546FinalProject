@@ -22,7 +22,7 @@ dbConnection().then((db)=> {
 }).then(() => {
   return problems.addProblem({
     problemId: 219,
-    problemDescription: "you're montly expenses are too high based off your monthly income and asset value "
+    problemDescription: "your monthly expenses are too high based off your monthly income and asset value "
   })
 }).then(() => {
   return problems.addProblem({
