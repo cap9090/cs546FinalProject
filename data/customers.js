@@ -158,82 +158,82 @@ const bcrypt = require('bcrypt-nodejs');
       if(newCustomerData.profile.DOB !== undefined && typeof newCustomerData.profile.DOB === 'object'){
         updatedCustomer.profile.DOB = newCustomerData.profile.DOB;
       }
-      if(newCustomerData.profile.noDependents !== undefined && typeof newCustomerData.profile.noDependents === 'number'){
-        updatedCustomer.profile.noDependents = newCustomerData.profile.noDependents;
+      if(newCustomerData.profile.noDependents !== undefined && typeof parseInt(newCustomerData.profile.noDependents) === 'number'){
+        updatedCustomer.profile.noDependents = parseInt(newCustomerData.profile.noDependents);
       }
-      if(newCustomerData.profile.desiredRetirementAge !== undefined && typeof newCustomerData.profile.desiredRetirementAge ==='number'){
-        updatedCustomer.profile.desiredRetirementAge =  newCustomerData.profile.desiredRetirementAge;
+      if(newCustomerData.profile.desiredRetirementAge !== undefined && typeof parseInt(newCustomerData.profile.desiredRetirementAge) ==='number'){
+        updatedCustomer.profile.desiredRetirementAge =  parseInt(newCustomerData.profile.desiredRetirementAge);
       }
       if(newCustomerData.profile.assets !== undefined && typeof newCustomerData.profile.assets === 'object'){
 
 
-        if(newCustomerData.profile.assets.stocks !== undefined && typeof newCustomerData.profile.assets.stocks === 'number'){
-          updatedCustomer.profile.assets.stocks = newCustomerData.profile.assets.stocks;
+        if(newCustomerData.profile.assets.stocks !== undefined && typeof parseInt(newCustomerData.profile.assets.stocks) === 'number'){
+          updatedCustomer.profile.assets.stocks = parseInt(newCustomerData.profile.assets.stocks);
         }
 
 
-        if(newCustomerData.profile.assets.bonds !== undefined && typeof newCustomerData.profile.assets.bonds === 'number'){
-          updatedCustomer.profile.assets.bonds = newCustomerData.profile.assets.bonds;
+        if(newCustomerData.profile.assets.bonds !== undefined && typeof parseInt(newCustomerData.profile.assets.bonds) === 'number'){
+          updatedCustomer.profile.assets.bonds = parseInt(newCustomerData.profile.assets.bonds);
         }
-        if(newCustomerData.profile.assets.cash !== undefined && typeof newCustomerData.profile.assets.cash === 'number'){
-          updatedCustomer.profile.assets.cash = newCustomerData.profile.assets.cash;
+        if(newCustomerData.profile.assets.cash !== undefined && typeof parseInt(newCustomerData.profile.assets.cash) === 'number'){
+          updatedCustomer.profile.assets.cash = parseInt(newCustomerData.profile.assets.cash);
         }
-        if(newCustomerData.profile.assets.retirementAccounts !== undefined && typeof newCustomerData.profile.assets.retirementAccounts === 'number'){
-          updatedCustomer.profile.assets.retirementAccounts = newCustomerData.profile.assets.retirementAccounts;
+        if(newCustomerData.profile.assets.retirementAccounts !== undefined && typeof parseInt(newCustomerData.profile.assets.retirementAccounts) === 'number'){
+          updatedCustomer.profile.assets.retirementAccounts = parseInt(newCustomerData.profile.assets.retirementAccounts);
         }
-        if(newCustomerData.profile.assets.annuities !== undefined && typeof newCustomerData.profile.assets.annuities === 'number'){
-          updatedCustomer.profile.assets.annuities = newCustomerData.profile.assets.annuities;
+        if(newCustomerData.profile.assets.annuities !== undefined && typeof parseInt(newCustomerData.profile.assets.annuities) === 'number'){
+          updatedCustomer.profile.assets.annuities = parseInt(newCustomerData.profile.assets.annuities);
         }
-        if(newCustomerData.profile.assets.property !== undefined && typeof newCustomerData.profile.assets.property === 'number'){
-          updatedCustomer.profile.assets.property = newCustomerData.profile.assets.property;
+        if(newCustomerData.profile.assets.property !== undefined && typeof parseInt(newCustomerData.profile.assets.property) === 'number'){
+          updatedCustomer.profile.assets.property = parseInt(newCustomerData.profile.assets.property);
         }
-        if(newCustomerData.profile.assets.other !== undefined && typeof newCustomerData.profile.assets.other === 'number'){
-          updatedCustomer.profile.assets.other = newCustomerData.profile.assets.other;
+        if(newCustomerData.profile.assets.other !== undefined && typeof parseInt(newCustomerData.profile.assets.other) === 'number'){
+          updatedCustomer.profile.assets.other = parseInt(newCustomerData.profile.assets.other);
         }
 
       }
 
 
-      if(newCustomerData.profile.savingsRateOfIncome !== undefined && typeof newCustomerData.profile.savingsRateOfIncome === 'number'){
-        updatedCustomer.profile.savingsRateOfIncome = newCustomerData.profile.savingsRateOfIncome;
+      if(newCustomerData.profile.savingsRateOfIncome !== undefined && typeof parseInt(newCustomerData.profile.savingsRateOfIncome) === 'number'){
+        updatedCustomer.profile.savingsRateOfIncome = parseInt(newCustomerData.profile.savingsRateOfIncome);
       }
 
       if(newCustomerData.profile.monthlyCosts !== undefined && typeof newCustomerData.profile.monthlyCosts === 'object'){
 
-        if(newCustomerData.profile.monthlyCosts.car !== undefined && typeof newCustomerData.profile.monthlyCosts.car === 'number'){
-          updatedCustomer.profile.monthlyCosts.car = newCustomerData.profile.monthlyCosts.car;
+        if(newCustomerData.profile.monthlyCosts.car !== undefined && typeof parseInt(newCustomerData.profile.monthlyCosts.car) === 'number'){
+          updatedCustomer.profile.monthlyCosts.car = parseInt(newCustomerData.profile.monthlyCosts.car);
         }
-        if(newCustomerData.profile.monthlyCosts.rentOrMortgage !== undefined && typeof newCustomerData.profile.monthlyCosts.rentOrMortgage === 'number'){
-          updatedCustomer.profile.monthlyCosts.rentOrMortgage = newCustomerData.profile.monthlyCosts.rentOrMortgage;
+        if(newCustomerData.profile.monthlyCosts.rentOrMortgage !== undefined && typeof parseInt(newCustomerData.profile.monthlyCosts.rentOrMortgage) === 'number'){
+          updatedCustomer.profile.monthlyCosts.rentOrMortgage = parseInt(newCustomerData.profile.monthlyCosts.rentOrMortgage);
         }
-        if(newCustomerData.profile.monthlyCosts.groceries !== undefined && typeof newCustomerData.profile.monthlyCosts.groceries === 'number'){
-          updatedCustomer.profile.monthlyCosts.groceries = newCustomerData.profile.monthlyCosts.groceries;
+        if(newCustomerData.profile.monthlyCosts.groceries !== undefined && typeof parseInt(newCustomerData.profile.monthlyCosts.groceries) === 'number'){
+          updatedCustomer.profile.monthlyCosts.groceries = parseInt(newCustomerData.profile.monthlyCosts.groceries);
         }
-        if(newCustomerData.profile.monthlyCosts.bills !== undefined && typeof newCustomerData.profile.monthlyCosts.bills === 'number'){
-          updatedCustomer.profile.monthlyCosts.bills = newCustomerData.profile.monthlyCosts.bills;
+        if(newCustomerData.profile.monthlyCosts.bills !== undefined && typeof parseInt(newCustomerData.profile.monthlyCosts.bills) === 'number'){
+          updatedCustomer.profile.monthlyCosts.bills = parseInt(newCustomerData.profile.monthlyCosts.bills);
         }
-        if(newCustomerData.profile.monthlyCosts.otherExpenses !== undefined && typeof newCustomerData.profile.monthlyCosts.otherExpenses === 'number'){
-          updatedCustomer.profile.monthlyCosts.otherExpenses = newCustomerData.profile.monthlyCosts.otherExpenses;
+        if(newCustomerData.profile.monthlyCosts.otherExpenses !== undefined && typeof parseInt(newCustomerData.profile.monthlyCosts.otherExpenses) === 'number'){
+          updatedCustomer.profile.monthlyCosts.otherExpenses = parseInt(newCustomerData.profile.monthlyCosts.otherExpenses);
         }
 
       }
 
       if(newCustomerData.profile.liability !== undefined && typeof newCustomerData.profile.liability === 'object'){
 
-        if(newCustomerData.profile.liability.mortgage !== undefined && typeof newCustomerData.profile.liability.mortgage === 'number'){
-          updatedCustomer.profile.liability.mortgage = newCustomerData.profile.liability.mortgage;
+        if(newCustomerData.profile.liability.mortgage !== undefined && typeof parseInt(newCustomerData.profile.liability.mortgage) === 'number'){
+          updatedCustomer.profile.liability.mortgage = parseInt(newCustomerData.profile.liability.mortgage);
         }
-        if(newCustomerData.profile.liability.homeEquityLoans !== undefined && typeof newCustomerData.profile.liability.homeEquityLoans === 'number'){
-          updatedCustomer.profile.liability.homeEquityLoans = newCustomerData.profile.liability.homeEquityLoans;
+        if(newCustomerData.profile.liability.homeEquityLoans !== undefined && typeof parseInt(newCustomerData.profile.liability.homeEquityLoans) === 'number'){
+          updatedCustomer.profile.liability.homeEquityLoans = parseInt(newCustomerData.profile.liability.homeEquityLoans);
         }
-        if(newCustomerData.profile.liability.studentLoans !== undefined && typeof newCustomerData.profile.liability.studentLoans === 'number'){
-          updatedCustomer.profile.liability.studentLoans = newCustomerData.profile.liability.studentLoans;
+        if(newCustomerData.profile.liability.studentLoans !== undefined && typeof parseInt(newCustomerData.profile.liability.studentLoans) === 'number'){
+          updatedCustomer.profile.liability.studentLoans = parseInt(newCustomerData.profile.liability.studentLoans);
         }
-        if(newCustomerData.profile.liability.creditCardDebt !== undefined && typeof newCustomerData.profile.liability.creditCardDebt === 'number'){
-          updatedCustomer.profile.liability.creditCardDebt = newCustomerData.profile.liability.creditCardDebt;
+        if(newCustomerData.profile.liability.creditCardDebt !== undefined && typeof parseInt(newCustomerData.profile.liability.creditCardDebt) === 'number'){
+          updatedCustomer.profile.liability.creditCardDebt = parseInt(newCustomerData.profile.liability.creditCardDebt);
         }
-        if(newCustomerData.profile.liability.otherDebt !== undefined && typeof newCustomerData.profile.liability.otherDebt === 'number'){
-          updatedCustomer.profile.liability.otherDebt = newCustomerData.profile.liability.otherDebt;
+        if(newCustomerData.profile.liability.otherDebt !== undefined && typeof parseInt(newCustomerData.profile.liability.otherDebt) === 'number'){
+          updatedCustomer.profile.liability.otherDebt = parseInt(newCustomerData.profile.liability.otherDebt);
         }
 
       }
@@ -274,7 +274,6 @@ const bcrypt = require('bcrypt-nodejs');
            updatedCustomer.profile.liability.creditCardDebt +
            updatedCustomer.profile.liability.otherDebt ;
          updatedCustomer.profile.netWorth = updatedCustomer.profile.assets.total - updatedCustomer.profile.liability.total;
-
          return updatedCustomer;
       }).then((updatedCustomer) => {
         return customerCollection().then((customers) => {

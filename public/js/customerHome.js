@@ -144,10 +144,14 @@
                 url: "/customers/update",
                 contentType: 'application/json',
                 data: JSON.stringify(credentials),
+                success: function(responseMessage) {
+                    alert("Financial information successfully updated.");
+                }
             };
-
+            
             $.ajax(requestConfig).then(function (responseMessage) {
-                 var loginRequest = {
+                console.log(responseMessage);
+                 /*var loginRequest = {
                         method: "POST",
                         url: "/login",
                         contentType: 'application/json',
@@ -155,9 +159,9 @@
                  };
                     $.ajax(loginRequest).then(function (response) {
                         window.location.assign("/customers/home");
-                    });
+                    });*/
             });
-
+            
         return false;
     });
 
