@@ -35,6 +35,9 @@ router.get("/new", (req,res) => {
 });
 
 router.get("/home", userAuthenticated, (req, res) => {
+    req.user.profile.DOB = {year: req.user.profile.DOB.substring(0,4),
+                            month: req.user.profile.DOB.substring(5,7),
+                            day: req.user.profile.DOB.substring(8,10)};
     res.render("pages/customerHome", {user: req.user});
 });
 

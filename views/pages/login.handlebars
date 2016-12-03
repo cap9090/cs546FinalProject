@@ -40,8 +40,14 @@
             <label for="lastName" class="sr-only">lastName</label>
             <input type="text" id="lastName" class="form-control" placeholder="Last Name" required autofocus>
 
-            <label for="DOB" class="sr-only">DOB</label>
-            <input type="date" id="DOB" class="form-control"  placeholder="Date of Birth" required autofocus>
+            <label for="year" class="sr-only">DOB</label>
+            <div class="input-group">
+	            	<input type="number" id="year" class="form-control"  placeholder="YYYY" required autofocus>
+					<span class="input-group-addon">-</span>
+					<input type="number" id="month" class="form-control" placeholder="MM" required autofocus>
+					<span class="input-group-addon">-</span>
+					<input type="number" id="day" class="form-control" placeholder="DD" required autofocus>
+			</div>
 
             <label for="noDependents" class="sr-only">noDependents</label>
             <input type="number" id="noDependents" class="form-control" placeholder="No. of Dependents" required autofocus>

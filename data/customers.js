@@ -155,7 +155,7 @@ const bcrypt = require('bcrypt-nodejs');
       if(newCustomerData.profile.lastName !== undefined && typeof newCustomerData.profile.lastName === 'string'){
         updatedCustomer.profile.lastName = newCustomerData.profile.lastName;
       }
-      if(newCustomerData.profile.DOB !== undefined && typeof newCustomerData.profile.DOB === 'object'){
+      if(newCustomerData.profile.DOB !== undefined && typeof newCustomerData.profile.DOB === 'string'){
         updatedCustomer.profile.DOB = newCustomerData.profile.DOB;
       }
       if(newCustomerData.profile.noDependents !== undefined && typeof parseInt(newCustomerData.profile.noDependents) === 'number'){

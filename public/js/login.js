@@ -21,7 +21,10 @@
     var signupFirstName = $("#firstName");
     var signupMiddleInit= $("#middleInit");
     var signupLastName = $("#lastName");
-    var signupDOB = $("#DOB");
+    var signupYear = $("#year");
+    var signupMonth = $("#month");
+    var signupDay = $("#day");
+    //var signupDOB = $("#DOB");
     var signupNoDependents = $("#noDependents");
     var signupZipCode = $("#zipCode");
     var signupMonthlyIncome = $("#monthlyIncome");
@@ -94,7 +97,11 @@
         var firstName = signupFirstName.val();
         var middleInit = signupMiddleInit.val();
         var lastName = signupLastName.val();
-        var  DOB = signupDOB.val();
+        var dobYear = signupYear.val();
+        var dobMonth = signupMonth.val();
+        var dobDay = signupDay.val();
+        var DOB = dobYear + "-" + dobMonth + "-" + dobDay;
+        //var  DOB = signupDOB.val();
         var noDependents = signupNoDependents.val();
         var zipCode = signupZipCode.val();
         var monthlyIncome = signupMonthlyIncome.val();

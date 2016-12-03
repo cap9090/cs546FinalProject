@@ -34,7 +34,10 @@
     var updateFirstName = $("#firstName");
     var updateMiddleInit= $("#middleInit");
     var updateLastName = $("#lastName");
-    var updateDOB = $("#DOB");
+    //var updateDOB = $("#DOB");
+    var updateYear = $("#year");
+    var updateMonth = $("#month");
+    var updateDay = $("#day");
     var updateNoDependents = $("#noDependents");
     var updateZipCode = $("#zipCode");
     var updateMonthlyIncome = $("#monthlyIncome");
@@ -62,8 +65,12 @@
     var errorText = document.getElementById("errorText");
 
     $(document.body).click(function() {
-        successText.classList.add("hidden");
-        errorText.classList.add("hidden");
+        if(successText) {
+            successText.classList.add("hidden");
+        }
+        if(errorText) {
+            errorText.classList.add("hidden");
+        }
     });
 
 	$('#update-form').submit((event) => {
@@ -74,7 +81,11 @@
         var firstName = updateFirstName.val();
         var middleInit = updateMiddleInit.val();
         var lastName = updateLastName.val();
-        var  DOB = updateDOB.val();
+        var year = updateYear.val();
+        var month = updateMonth.val();
+        var day = updateDay.val();
+        var DOB = year + "-" + month + "-" + day;
+        //var  DOB = updateDOB.val();
         var noDependents = updateNoDependents.val();
         var zipCode = updateZipCode.val();
         var monthlyIncome = updateMonthlyIncome.val();
