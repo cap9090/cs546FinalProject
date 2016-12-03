@@ -58,6 +58,13 @@
     var updateCreditCardDebt =$("#creditCardDebt");
     var updateOtherDebt = $("#otherDebt");
 	
+    var successText = document.getElementById("successText");
+    var errorText = document.getElementById("errorText");
+
+    $(document.body).click(function() {
+        successText.classList.add("hidden");
+        errorText.classList.add("hidden");
+    });
 
 	$('#update-form').submit((event) => {
         event.preventDefault();
@@ -145,7 +152,11 @@
                 contentType: 'application/json',
                 data: JSON.stringify(credentials),
                 success: function(responseMessage) {
-                    alert("Financial information successfully updated.");
+                    successText.classList.remove("hidden");
+                    //alert("Financial information successfully updated.");
+                },
+                error: function(responseMessage) {
+                    errorText.classList.remove("hidden");
                 }
             };
             
@@ -164,18 +175,6 @@
             
         return false;
     });
-
-
-
-
-	
-
-
-
-
-
-
-
 
 
 

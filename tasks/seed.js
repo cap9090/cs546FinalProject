@@ -94,7 +94,8 @@ dbConnection().then((db)=> {
       firstName: "John",
       middleInit: "A",
       lastName: "Doe",
-      DOB: new Date(55, 11, 20), //November 20th, 1955
+      DOB: "1955-11-20",
+      //DOB: new Date(55, 11, 20), //November 20th, 1955
       noDependents: 4,
       zipCode: 19121,
       monthlyIncome: 0, //lets assume this guy is retired
@@ -132,7 +133,8 @@ dbConnection().then((db)=> {
       firstName: "Jane",
       middleInit: "P",
       lastName: "Smith",
-      DOB: new Date(90, 1, 2), //Jan 2nd, 1990
+      DOB: "1990-01-02",
+      //DOB: new Date(90, 1, 2), //Jan 2nd, 1990
       noDependents: 0,
       zipCode: 90005,
       monthlyIncome: 4000,

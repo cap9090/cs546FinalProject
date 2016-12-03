@@ -23,7 +23,7 @@
 	            <label for="lastName" class="">lastName</label>
 	            <input type="text" id="lastName" class="form-control" value="{{ user.profile.lastName }}" required autofocus>
 
-	            <label for="DOB" class="">DOB</label>
+	            <label for="DOB" class="">DOB (Please use YYYY-MM-DD format)</label>
 	            <input type="date" id="DOB" class="form-control"  value="{{ user.profile.DOB }}" required autofocus>
 
 	            <label for="noDependents" class="">noDependents</label>
@@ -98,6 +98,8 @@
 	                </label>
 	            </div>
 	            <input class="btn btn-signup btn-primary" type="submit" id="update-button"/>
+				<p class="alert alert-success hidden" id="successText">Financial information updated successfully.</p>
+				<p class="alert alert-danger hidden" id="errorText">Update failed - please check your changes and try again.</p>
 			</form>
 		</div>
 		<div class='customer-home-form'>
