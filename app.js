@@ -4,14 +4,8 @@ const passport = require('passport');
 const bcrypt = require('bcrypt-nodejs');
 const flash = require('connect-flash');
 const bodyParser = require("body-parser");
-const passportInit = require("./data/authentication");
-const app = express();
-const static = express.static(__dirname + '/public');
-
-const configRoutes = require("./routes");
-
+const cookieParser = require('cookie-parser');
 const exphbs = require('express-handlebars');
-
 const Handlebars = require('handlebars');
 
 const handlebarsInstance = exphbs.create({
@@ -40,7 +34,13 @@ const rewriteUnsupportedBrowserMethods = (req, res, next) => {
     next();
 };
 
+const configRoutes = require("./routes");
+const app = express();
+const static = express.static(__dirname + '/public');
+const passportInit = require("./data/authentication");
+
 app.use("/public", static);
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(rewriteUnsupportedBrowserMethods);
@@ -48,10 +48,10 @@ app.use(rewriteUnsupportedBrowserMethods);
 app.engine('handlebars', handlebarsInstance.engine);
 app.set('view engine', 'handlebars');
 
-app.use(flash());
-app.use(expressSession({secret: "secret"}));
+app.use(expressSession({ secret: 'final project', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 passportInit(passport);
 

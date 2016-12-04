@@ -1,6 +1,7 @@
 const customers = require("./customers");
 const bcrypt = require("bcrypt-nodejs");
 const LocalStrategy = require('passport-local').Strategy;
+const xss = require('xss');
 
 module.exports = function(passport){
     passport.serializeUser(function(user, done) {
@@ -14,9 +15,9 @@ module.exports = function(passport){
     });
     passport.use(new LocalStrategy(
         function(username, password, done) {
-            return customers.getCustomerByUsername(username).then((foundUser) => {
+            return customers.getCustomerByUsername(xss(username)).then((foundUser) => {
                 //console.log("pass: " + foundUser.password);
-                bcrypt.compare(password, foundUser.hashPass, function (err, res) {
+                bcrypt.compare(xss(password), foundUser.hashPass, function (err, res) {
                     if (res === true) {
                         return done(null, foundUser);
                     }

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const data = require("../data");
+const xss = require('xss');
 const customerData = data.customers;
 
 
@@ -26,39 +27,48 @@ router.get("/", (req,res) => {
   res.render("/signup", {});
 });
 
-
-
-
 //redirect new customer from signup page to form for customer data entry
 router.get("/new", (req,res) => {
     res.render('form', {});
 });
 
 router.get("/home", userAuthenticated, (req, res) => {
+
+    let dateString = req.user.profile.DOB.toString();
+    // console.log(dateString);
+    // console.log(dateString.substring(11,15));
+    // console.log(dateString.substring(4,7));
+    // console.log(dateString.substring(8,10));
+    // return;
+    req.user.profile.DOB = {year: dateString.substring(11,15),
+                            month: dateString.substring(4,7),
+                            day: dateString.substring(8,10)};
     res.render("pages/customerHome", {user: req.user});
 });
 
-/*route for ajax post to send new customer data to database*/
-router.post("/new", (req, res) => {
-  return customerData.checkIfUsernameAlreadyTaken(req.body.username).then(() => {
-    customerData.addCustomer(req.body).then(() => {
-       res.send({redirect: 'http://localhost:3000/customers/home'});
-    })
-  }).catch((error) => {
-    res.status(500).json(error);
-  })
-});
+router.get('/profile', userAuthenticated, (req, res) => {
+  let dateString = req.user.profile.DOB.toString();
+   req.user.profile.DOB = {year: dateString.substring(11,15),
+                           month: dateString.substring(4,7),
+                           day: dateString.substring(8,10)};
+    res.render("pages/profile", {user: req.user});
+})
 
-//   post extra data for calculations and call getServicesForUser(user, goal, data) as defined in finProdSelection Module
-router.post('/calculations', (req, res) => {
-    res.status(200);
+router.get('/goals', userAuthenticated, (req, res) => {
+  let dateString = req.user.profile.DOB.toString();
+   req.user.profile.DOB = {year: dateString.substring(11,15),
+                           month: dateString.substring(4,7),
+                           day: dateString.substring(8,10)};
+    res.render("pages/goals", {user: req.user});
 })
 
 
-
-router.get("/:id", (req, res) => {
-  return customerData.getCustomerByNodeUUID(req.params.id).then((customer) => {
-    res.status(200).json(customer)
+/*route for ajax post to send new customer data to database*/
+router.post("/new", (req, res) => {
+  return customerData.checkIfUsernameAlreadyTaken(xss(req.body.username)).then(() => {
+    customerData.addCustomer(req.body).then(() => {
+       res.send({redirect: 'http://localhost:3000/customers/home'});
+    })
   }).catch((error) => {
     res.status(500).json(error);
   })
@@ -74,4 +84,21 @@ router.put("/update", (req, res) => {
   });
 });
 
+//   post extra data for calculations and call getServicesForUser(user, goal, data) as defined in finProdSelection Module
+router.post('/calculations', (req, res) => {
+    console.log("here");
+    res.status(200);
+})
+
 module.exports = router;
+
+
+/*
+router.get("/:id", (req, res) => {
+  return customerData.getCustomerByNodeUUID(req.params.id).then((customer) => {
+    res.status(200).json(customer)
+  }).catch((error) => {
+    res.status(500).json(error);
+  })
+});
+*/

@@ -67,7 +67,7 @@ input {
 
 }
 
-.action-buttons {
+.action-button {
   padding: 40px;
 }
 
@@ -82,30 +82,7 @@ input {
   background: #fff
 }
 
-.collapse.after {
-    /* symbol for "opening" panels */
-    font-family:'Glyphicons Halflings';
-    /* essential for enabling glyphicon */
-    content:"\e114";
-    /* adjust as needed, taken from bootstrap.css */
-    float: right;
-    position: relative;
-    bottom: 23px;
-    font-size: 15pt;
-    /* adjust as needed */
-    color: grey;
-    /* adjust as needed */
-}
-collapse.collapsed:after {
-    /* symbol for "collapsed" panels */
-    content:"\e080";
-    /* adjust as needed, taken from bootstrap.css */
-}
+#car-dropdown {
+  padding: 30px;
 
-.panel-heading:hover {
-    cursor: pointer;
-}
-
-.panel-heading:hover h4 {
-    text-decoration: underline;
 }

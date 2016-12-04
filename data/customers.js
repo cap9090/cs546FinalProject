@@ -2,6 +2,7 @@ const collections = require("../config/MongoCollections.js");
 const customerCollection = collections.customers;
 const uuid = require('node-uuid');
 const bcrypt = require('bcrypt-nodejs');
+const xss = require('xss');
 
 
 
@@ -10,44 +11,44 @@ const bcrypt = require('bcrypt-nodejs');
       let newCustomer = {
         //all commented fields in this object are calcuated based off other fields
          _id: uuid.v4(),
-         username: customer.username,
-         hashPass: bcrypt.hashSync(customer.password),
+         username: xss(customer.username),
+         hashPass: bcrypt.hashSync(xss(customer.password)),
          //hashedUserNameAndPassword: customer.hashedUserNameAndPassword,
          profile: {
-           firstName: customer.profile.firstName,
-           middleInit: customer.profile.middleInit,
-           lastName: customer.profile.lastName,
-           DOB: customer.profile.DOB,
+           firstName: xss(customer.profile.firstName),
+           middleInit: xss(customer.profile.middleInit),
+           lastName: xss(customer.profile.lastName),
+           DOB: xss(customer.profile.DOB),
            //age
-           noDependents: customer.profile.noDependents,
-           zipCode: customer.profile.zipCode,
-           monthlyIncome: customer.profile.monthlyIncome,
-           desiredRetirementAge: customer.profile.desiredRetirementAge,
+           noDependents: xss(customer.profile.noDependents),
+           zipCode: xss(customer.profile.zipCode),
+           monthlyIncome: xss(customer.profile.monthlyIncome),
+           desiredRetirementAge: xss(customer.profile.desiredRetirementAge),
            assets: {
-             stocks: customer.profile.assets.stocks,
-             bonds: customer.profile.assets.bonds,
-             cash: customer.profile.assets.cash,
-             retirementAccounts: customer.profile.assets.retirementAccounts,
-             annuities: customer.profile.assets.annuities,
-             property: customer.profile.assets.property,
-             other: customer.profile.assets.other
+             stocks: xss(customer.profile.assets.stocks),
+             bonds: xss(customer.profile.assets.bonds),
+             cash: xss(customer.profile.assets.cash),
+             retirementAccounts: xss(customer.profile.assets.retirementAccounts),
+             annuities: xss(customer.profile.assets.annuities),
+             property: xss(customer.profile.assets.property),
+             other: xss(customer.profile.assets.other)
              //total
            },
-           savingsRateOfIncome: customer.profile.savingsRateOfIncome,
+           savingsRateOfIncome: xss(customer.profile.savingsRateOfIncome),
            monthlyCosts: {
-             car: customer.profile.monthlyCosts.car,
-             rentOrMortgage: customer.profile.monthlyCosts.rentOrMortgage,
-             groceries: customer.profile.monthlyCosts.groceries,
-             bills: customer.profile.monthlyCosts.bills,
-             otherExpenses: customer.profile.monthlyCosts.otherExpenses
+             car: xss(customer.profile.monthlyCosts.car),
+             rentOrMortgage: xss(customer.profile.monthlyCosts.rentOrMortgage),
+             groceries: xss(customer.profile.monthlyCosts.groceries),
+             bills: xss(customer.profile.monthlyCosts.bills),
+             otherExpenses: xss(customer.profile.monthlyCosts.otherExpenses)
              //total
            },
            liability: {
-             mortgage: customer.profile.liability.mortgage,
-             homeEquityLoans: customer.profile.liability.homeEquityLoans,
-             studentLoans: customer.profile.liability.studentLoans,
-             creditCardDebt: customer.profile.liability.creditCardDebt,
-             otherDebt: customer.profile.liability.otherDebt
+             mortgage: xss(customer.profile.liability.mortgage),
+             homeEquityLoans: xss(customer.profile.liability.homeEquityLoans),
+             studentLoans: xss(customer.profile.liability.studentLoans),
+             creditCardDebt: xss(customer.profile.liability.creditCardDebt),
+             otherDebt: xss(customer.profile.liability.otherDebt)
              //total
            }
            //netWorth
@@ -145,75 +146,75 @@ const bcrypt = require('bcrypt-nodejs');
     }).then((updatedCustomer) => {
 
       if(newCustomerData.profile.firstName != undefined && typeof newCustomerData.profile.firstName === 'string'){
-        updatedCustomer.profile.firstName = newCustomerData.profile.firstName;
+        updatedCustomer.profile.firstName = xss(newCustomerData.profile.firstName);
       }
 
       if(newCustomerData.profile.middleInit !== undefined && typeof newCustomerData.profile.middleInit === 'string'){
-        updatedCustomer.profile.middleInit = newCustomerData.profile.middleInit;
+        updatedCustomer.profile.middleInit = xss(newCustomerData.profile.middleInit);
       }
 
       if(newCustomerData.profile.lastName !== undefined && typeof newCustomerData.profile.lastName === 'string'){
-        updatedCustomer.profile.lastName = newCustomerData.profile.lastName;
+        updatedCustomer.profile.lastName = xss(newCustomerData.profile.lastName);
       }
-      if(newCustomerData.profile.DOB !== undefined && typeof newCustomerData.profile.DOB === 'object'){
-        updatedCustomer.profile.DOB = newCustomerData.profile.DOB;
+      if(newCustomerData.profile.DOB !== undefined && typeof newCustomerData.profile.DOB === 'string'){
+        updatedCustomer.profile.DOB = xss(newCustomerData.profile.DOB);
       }
       if(newCustomerData.profile.noDependents !== undefined && typeof parseInt(newCustomerData.profile.noDependents) === 'number'){
-        updatedCustomer.profile.noDependents = parseInt(newCustomerData.profile.noDependents);
+        updatedCustomer.profile.noDependents = parseInt(xss(newCustomerData.profile.noDependents));
       }
       if(newCustomerData.profile.desiredRetirementAge !== undefined && typeof parseInt(newCustomerData.profile.desiredRetirementAge) ==='number'){
-        updatedCustomer.profile.desiredRetirementAge =  parseInt(newCustomerData.profile.desiredRetirementAge);
+        updatedCustomer.profile.desiredRetirementAge =  parseInt(xss(newCustomerData.profile.desiredRetirementAge));
       }
       if(newCustomerData.profile.assets !== undefined && typeof newCustomerData.profile.assets === 'object'){
 
 
         if(newCustomerData.profile.assets.stocks !== undefined && typeof parseInt(newCustomerData.profile.assets.stocks) === 'number'){
-          updatedCustomer.profile.assets.stocks = parseInt(newCustomerData.profile.assets.stocks);
+          updatedCustomer.profile.assets.stocks = parseInt(xss(newCustomerData.profile.assets.stocks));
         }
 
 
         if(newCustomerData.profile.assets.bonds !== undefined && typeof parseInt(newCustomerData.profile.assets.bonds) === 'number'){
-          updatedCustomer.profile.assets.bonds = parseInt(newCustomerData.profile.assets.bonds);
+          updatedCustomer.profile.assets.bonds = parseInt(xss(newCustomerData.profile.assets.bonds));
         }
         if(newCustomerData.profile.assets.cash !== undefined && typeof parseInt(newCustomerData.profile.assets.cash) === 'number'){
-          updatedCustomer.profile.assets.cash = parseInt(newCustomerData.profile.assets.cash);
+          updatedCustomer.profile.assets.cash = parseInt(xss(newCustomerData.profile.assets.cash));
         }
         if(newCustomerData.profile.assets.retirementAccounts !== undefined && typeof parseInt(newCustomerData.profile.assets.retirementAccounts) === 'number'){
-          updatedCustomer.profile.assets.retirementAccounts = parseInt(newCustomerData.profile.assets.retirementAccounts);
+          updatedCustomer.profile.assets.retirementAccounts = parseInt(xss(newCustomerData.profile.assets.retirementAccounts));
         }
         if(newCustomerData.profile.assets.annuities !== undefined && typeof parseInt(newCustomerData.profile.assets.annuities) === 'number'){
-          updatedCustomer.profile.assets.annuities = parseInt(newCustomerData.profile.assets.annuities);
+          updatedCustomer.profile.assets.annuities = parseInt(xss(newCustomerData.profile.assets.annuities));
         }
         if(newCustomerData.profile.assets.property !== undefined && typeof parseInt(newCustomerData.profile.assets.property) === 'number'){
-          updatedCustomer.profile.assets.property = parseInt(newCustomerData.profile.assets.property);
+          updatedCustomer.profile.assets.property = parseInt(xss(newCustomerData.profile.assets.property));
         }
         if(newCustomerData.profile.assets.other !== undefined && typeof parseInt(newCustomerData.profile.assets.other) === 'number'){
-          updatedCustomer.profile.assets.other = parseInt(newCustomerData.profile.assets.other);
+          updatedCustomer.profile.assets.other = parseInt(xss(newCustomerData.profile.assets.other));
         }
 
       }
 
 
       if(newCustomerData.profile.savingsRateOfIncome !== undefined && typeof parseInt(newCustomerData.profile.savingsRateOfIncome) === 'number'){
-        updatedCustomer.profile.savingsRateOfIncome = parseInt(newCustomerData.profile.savingsRateOfIncome);
+        updatedCustomer.profile.savingsRateOfIncome = parseInt(xss(newCustomerData.profile.savingsRateOfIncome));
       }
 
       if(newCustomerData.profile.monthlyCosts !== undefined && typeof newCustomerData.profile.monthlyCosts === 'object'){
 
         if(newCustomerData.profile.monthlyCosts.car !== undefined && typeof parseInt(newCustomerData.profile.monthlyCosts.car) === 'number'){
-          updatedCustomer.profile.monthlyCosts.car = parseInt(newCustomerData.profile.monthlyCosts.car);
+          updatedCustomer.profile.monthlyCosts.car = parseInt(xss(newCustomerData.profile.monthlyCosts.car));
         }
         if(newCustomerData.profile.monthlyCosts.rentOrMortgage !== undefined && typeof parseInt(newCustomerData.profile.monthlyCosts.rentOrMortgage) === 'number'){
-          updatedCustomer.profile.monthlyCosts.rentOrMortgage = parseInt(newCustomerData.profile.monthlyCosts.rentOrMortgage);
+          updatedCustomer.profile.monthlyCosts.rentOrMortgage = parseInt(xss(newCustomerData.profile.monthlyCosts.rentOrMortgage));
         }
         if(newCustomerData.profile.monthlyCosts.groceries !== undefined && typeof parseInt(newCustomerData.profile.monthlyCosts.groceries) === 'number'){
-          updatedCustomer.profile.monthlyCosts.groceries = parseInt(newCustomerData.profile.monthlyCosts.groceries);
+          updatedCustomer.profile.monthlyCosts.groceries = parseInt(xss(newCustomerData.profile.monthlyCosts.groceries));
         }
         if(newCustomerData.profile.monthlyCosts.bills !== undefined && typeof parseInt(newCustomerData.profile.monthlyCosts.bills) === 'number'){
-          updatedCustomer.profile.monthlyCosts.bills = parseInt(newCustomerData.profile.monthlyCosts.bills);
+          updatedCustomer.profile.monthlyCosts.bills = parseInt(xss(newCustomerData.profile.monthlyCosts.bills));
         }
         if(newCustomerData.profile.monthlyCosts.otherExpenses !== undefined && typeof parseInt(newCustomerData.profile.monthlyCosts.otherExpenses) === 'number'){
-          updatedCustomer.profile.monthlyCosts.otherExpenses = parseInt(newCustomerData.profile.monthlyCosts.otherExpenses);
+          updatedCustomer.profile.monthlyCosts.otherExpenses = parseInt(xss(newCustomerData.profile.monthlyCosts.otherExpenses));
         }
 
       }
@@ -221,19 +222,19 @@ const bcrypt = require('bcrypt-nodejs');
       if(newCustomerData.profile.liability !== undefined && typeof newCustomerData.profile.liability === 'object'){
 
         if(newCustomerData.profile.liability.mortgage !== undefined && typeof parseInt(newCustomerData.profile.liability.mortgage) === 'number'){
-          updatedCustomer.profile.liability.mortgage = parseInt(newCustomerData.profile.liability.mortgage);
+          updatedCustomer.profile.liability.mortgage = parseInt(xss(newCustomerData.profile.liability.mortgage));
         }
         if(newCustomerData.profile.liability.homeEquityLoans !== undefined && typeof parseInt(newCustomerData.profile.liability.homeEquityLoans) === 'number'){
-          updatedCustomer.profile.liability.homeEquityLoans = parseInt(newCustomerData.profile.liability.homeEquityLoans);
+          updatedCustomer.profile.liability.homeEquityLoans = parseInt(xss(newCustomerData.profile.liability.homeEquityLoans));
         }
         if(newCustomerData.profile.liability.studentLoans !== undefined && typeof parseInt(newCustomerData.profile.liability.studentLoans) === 'number'){
-          updatedCustomer.profile.liability.studentLoans = parseInt(newCustomerData.profile.liability.studentLoans);
+          updatedCustomer.profile.liability.studentLoans = parseInt(xss(newCustomerData.profile.liability.studentLoans));
         }
         if(newCustomerData.profile.liability.creditCardDebt !== undefined && typeof parseInt(newCustomerData.profile.liability.creditCardDebt) === 'number'){
-          updatedCustomer.profile.liability.creditCardDebt = parseInt(newCustomerData.profile.liability.creditCardDebt);
+          updatedCustomer.profile.liability.creditCardDebt = parseInt(xss(newCustomerData.profile.liability.creditCardDebt));
         }
         if(newCustomerData.profile.liability.otherDebt !== undefined && typeof parseInt(newCustomerData.profile.liability.otherDebt) === 'number'){
-          updatedCustomer.profile.liability.otherDebt = parseInt(newCustomerData.profile.liability.otherDebt);
+          updatedCustomer.profile.liability.otherDebt = parseInt(xss(newCustomerData.profile.liability.otherDebt));
         }
 
       }

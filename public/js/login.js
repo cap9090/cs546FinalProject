@@ -1,4 +1,4 @@
-(function ($, window) {
+(function ($, window, localStorage) {
     /*login fields*/
 
     var loginEmailField = $("#loginEmail");
@@ -21,7 +21,10 @@
     var signupFirstName = $("#firstName");
     var signupMiddleInit= $("#middleInit");
     var signupLastName = $("#lastName");
-    var signupDOB = $("#DOB");
+    var signupYear = $("#year");
+    var signupMonth = $("#month");
+    var signupDay = $("#day");
+    //var signupDOB = $("#DOB");
     var signupNoDependents = $("#noDependents");
     var signupZipCode = $("#zipCode");
     var signupMonthlyIncome = $("#monthlyIncome");
@@ -87,14 +90,36 @@
     });
 */
 /*create new user*/
+    if(localStorage["username"]){
+        loginEmailField.val(JSON.parse(localStorage["username"]));
+    }
+
+    loginButton.click(function() {
+        if(loginRemCheckBox.is(':checked')){
+            localStorage["username"] = JSON.stringify(loginEmailField.val());
+        }
+        else{
+            localStorage["username"] = JSON.stringify("");
+        }
+    });
     signupForm.submit((event) => {
         event.preventDefault();
         var password = signupPassword.val();
         var username = signupUsername.val();
+        if(signupRemCheckBox.is(':checked')){
+            localStorage["username"] = JSON.stringify(username);
+        }
+        else {
+            localStorage["username"] = JSON.stringify("");
+        }
         var firstName = signupFirstName.val();
         var middleInit = signupMiddleInit.val();
         var lastName = signupLastName.val();
-        var  DOB = signupDOB.val();
+        var dobYear = signupYear.val();
+        var dobMonth = signupMonth.val();
+        var dobDay = signupDay.val();
+        var DOB = dobYear + "-" + dobMonth + "-" + dobDay;
+        //var  DOB = signupDOB.val();
         var noDependents = signupNoDependents.val();
         var zipCode = signupZipCode.val();
         var monthlyIncome = signupMonthlyIncome.val();
@@ -118,12 +143,13 @@
         var creditCardDebt = signupCreditCardDebt.val();
         var otherDebt = signupOtherDebt.val();
 
-
+        /*
         var rememberMe = false;
 
         if (signupRemCheckBox.is(':checked')) {
             rememberMe = true;
         }
+        */
 
         var credentials = {
             password: password,
@@ -201,4 +227,4 @@
     });
 
 
-})(window.jQuery, window);
+})(window.jQuery, window, window.localStorage);
