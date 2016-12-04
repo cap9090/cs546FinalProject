@@ -1,5 +1,23 @@
 (function ($, window) {
-	$('#show-update-form-button').click(() => {
+    //console.log(window.location.href)
+    if (window.location.href.includes('/home')) {
+        $('#myNavbar ul li.home').addClass('active');
+        $('#myNavbar ul li.home').siblings().removeClass('active');
+    }
+    if (window.location.href.includes('/profile')) {
+        $('#myNavbar ul li.profile').addClass('active');
+        $('#myNavbar ul li.profile').siblings().removeClass('active');
+    }
+    if (window.location.href.includes('/goals')) {
+        $('#myNavbar ul li.goals').addClass('active');
+        $('#myNavbar ul li.goals').siblings().removeClass('active');
+    }
+    if (window.location.href.includes('/products')) {
+        $('#myNavbar ul li.products').addClass('active');
+        $('#myNavbar ul li.products').siblings().removeClass('active');
+    }
+        
+    $('#show-update-form-button').click(() => {
 		 $('#update-success').addClass('hidden');
 		$('#update-form').removeClass('hidden');
 		$('#show-update-form-button').addClass('hidden');
@@ -30,13 +48,6 @@
         console.log($('#car-options').val($(this).text()))
         
     })
-
-
-
-
-
-
-
 
 
 
