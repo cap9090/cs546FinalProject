@@ -91,14 +91,14 @@ input {
   width: inherit;
 }
 
-.glyphicon:after {
+.glyphicon.toggle:after {
     /* symbol for "opening" panels */
     font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
     content: "\e114";    /* adjust as needed, taken from bootstrap.css */
     float: right;        /* adjust as needed */
     color: grey;         /* adjust as needed */
 }
-.glyphicon.collapsed:after {
+.glyphicon.toggle.collapsed:after {
     /* symbol for "collapsed" panels */
     content: "\e080";    /* adjust as needed, taken from bootstrap.css */
 }
