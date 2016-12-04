@@ -68,25 +68,25 @@ const xss = require('xss');
        }
        newCustomer.profile.age = getAge(newCustomer.profile.DOB);
        newCustomer.profile.assets.total =
-            newCustomer.profile.assets.stocks +
-            newCustomer.profile.assets.bonds +
-            newCustomer.profile.assets.cash +
-            newCustomer.profile.assets.retirementAccounts +
-            newCustomer.profile.assets.annuities +
-            newCustomer.profile.assets.property +
-            newCustomer.profile.assets.other  ;
+            parseInt(newCustomer.profile.assets.stocks) +
+            parseInt(newCustomer.profile.assets.bonds) +
+            parseInt(newCustomer.profile.assets.cash) +
+            parseInt(newCustomer.profile.assets.retirementAccounts) +
+            parseInt(newCustomer.profile.assets.annuities) +
+            parseInt(newCustomer.profile.assets.property) +
+            parseInt(newCustomer.profile.assets.other)  ;
         newCustomer.profile.monthlyCosts.total =
-            newCustomer.profile.monthlyCosts.car +
-            newCustomer.profile.monthlyCosts.rentOrMortgage +
-            newCustomer.profile.monthlyCosts.groceries +
-            newCustomer.profile.monthlyCosts.bills +
-            newCustomer.profile.monthlyCosts.otherExpenses ;
+            parseInt(newCustomer.profile.monthlyCosts.car) +
+            parseInt(newCustomer.profile.monthlyCosts.rentOrMortgage) +
+            parseInt(newCustomer.profile.monthlyCosts.groceries) +
+            parseInt(newCustomer.profile.monthlyCosts.bills) +
+            parseInt(newCustomer.profile.monthlyCosts.otherExpenses) ;
           newCustomer.profile.liability.total =
-            newCustomer.profile.liability.mortgage +
-            newCustomer.profile.liability.homeEquityLoans +
-            newCustomer.profile.liability.studentLoans +
-            newCustomer.profile.liability.creditCardDebt +
-            newCustomer.profile.liability.otherDebt ;
+            parseInt(newCustomer.profile.liability.mortgage) +
+            parseInt(newCustomer.profile.liability.homeEquityLoans) +
+            parseInt(newCustomer.profile.liability.studentLoans) +
+            parseInt(newCustomer.profile.liability.creditCardDebt) +
+            parseInt(newCustomer.profile.liability.otherDebt) ;
           newCustomer.profile.netWorth = newCustomer.profile.assets.total - newCustomer.profile.liability.total;
 
 
@@ -245,6 +245,7 @@ const xss = require('xss');
       function getAge(dateString) {
           var today = new Date();
           var birthDate = new Date(dateString);
+          console.log(dateString);
           var age = today.getFullYear() - birthDate.getFullYear();
           var m = today.getMonth() - birthDate.getMonth();
           if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {

@@ -69,7 +69,7 @@ exportedMethods = {
         products.push(arrayOfFinProdsForThisId[k]);
       }
     }
-    return new Set(products);
+    return products;
   }
 
 }

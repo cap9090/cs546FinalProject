@@ -35,11 +35,6 @@ router.get("/new", (req,res) => {
 router.get("/home", userAuthenticated, (req, res) => {
 
     let dateString = req.user.profile.DOB.toString();
-    // console.log(dateString);
-    // console.log(dateString.substring(11,15));
-    // console.log(dateString.substring(4,7));
-    // console.log(dateString.substring(8,10));
-    // return;
     req.user.profile.DOB = {year: dateString.substring(11,15),
                             month: dateString.substring(4,7),
                             day: dateString.substring(8,10)};
