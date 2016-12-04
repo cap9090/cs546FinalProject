@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const data = require("../data");
+const xss = require('xss');
 const customerData = data.customers;
 
 
@@ -64,7 +65,7 @@ router.get('/goals', userAuthenticated, (req, res) => {
 
 /*route for ajax post to send new customer data to database*/
 router.post("/new", (req, res) => {
-  return customerData.checkIfUsernameAlreadyTaken(req.body.username).then(() => {
+  return customerData.checkIfUsernameAlreadyTaken(xss(req.body.username)).then(() => {
     customerData.addCustomer(req.body).then(() => {
        res.send({redirect: 'http://localhost:3000/customers/home'});
     })
