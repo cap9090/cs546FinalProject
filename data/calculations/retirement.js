@@ -2,7 +2,7 @@
 const calculations = require('./financialCalculations');
 const customerData = require('../customers');
 const finProdData = require('../finProds');
-const problemData = require('../problems')
+const problemData = require('../problems');
 
 /**** all rates adjusted for inflation ****/
 const salaryGrowthRate = 3
