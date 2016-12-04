@@ -34,36 +34,28 @@
 					<div id="menu4" class="tab-pane fade">
 						<p>You may enter details about a car you would like to by or a by a monthly payment you can afford</p>
 							<div id='car-dropdown'>
-								<select class='car-dropdown'>
-									<option value=''></option>
+								<select name="Select" class='car-dropdown'>
+									<option value=''>Select</option>
 									<option value='1'>By Car Price</option>
 									<option value='2'>By Monthly Payment</option>
 								</select>
 							</div>
-						<div id='new-car-form' class='hidden'>
+						<div id='car-price-form-area' class='hidden'>
 							<h3>I'd like to buy a New Car</h3>
-							<form id="newcar" class='goal'>
-								<label for='monthy-payment'>How much will you pay per month?</label>
-								<input id='monthy-payment' type='number' class='form-control car-input' name='monthy-payment' placeholder='Enter your monthy car payment' required/>
+							<form id="car-price-form" class='goal'>
+								<label id='car-price-label' for='car-price'>How much is the car you would like to buy?</label>
+								<input id='car-price' type='number' class='form-control car-input' name='car-price' placeholder='Enter amount' required/>
 
 								<label for='loan-term'>What length do you expect your loan term to be?</label>
-								<input id='loan-term' type='number' class='form-control' name='loan-term' placeholder='Enter how long your loan term to be' required/>
+								<input id='loan-term' type='number' class='form-control' name='loan-term' placeholder='Enter length' required/>
 
 								<label for='finance-rate'>What do you expect your finance rate to be?</label>
-								<input id='finance-rate' type='number' class='form-control' name='finance-rate' placeholder='Enter the finance rate for your car' required/>
-
-								<label for='current-value'>What is the value of the car you own now?</label>
-								<input id='current-value' type='number' class='form-control' name='current-value' placeholder='Enter the value of your current car' required/>
-
-								<label for='current-car-owed'>What amount of it do you still owe?</label>
-								<input id='current-car-owed' type='number' class='form-control' name='current-car-owed' placeholder='Enter how much of your current car you still owe' required/>
+								<input id='finance-rate' type='number' class='form-control' name='finance-rate' placeholder='Enter amount' required/>
 
 								<label for='down-payment'>How much do you expect your down payment to be?</label>
-								<input id='down-payment' type='number' class='form-control' name='down-payment' placeholder='Enter your down payment' required/>
+								<input id='down-payment' type='number' class='form-control' name='down-payment' placeholder='Enter amount' required/>
 
 								<input type='submit' class="btn btn-signup btn-primary" id='car-submit' />
-
-								<p>*Enter 0 in the fields related to current car if you are buying a car for the first time*</p>
 							</form>
 						</div>
 					</div>

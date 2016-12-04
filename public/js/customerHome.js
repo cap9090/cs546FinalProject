@@ -19,7 +19,8 @@
         
    
 	$('#show-goal-form-button').click(() => {
-		$('#update-success').addClass('hidden');
+		
+        $('#update-success').addClass('hidden');
 		$('#goal-form').removeClass('hidden');
 		$('#show-goal-form-button').addClass('hidden');
 		$('#update-form').addClass('hidden');
@@ -35,11 +36,50 @@
 		}
 	});
 
-    $('#dropdown-menu li').click(() => {
-        console.log($('#car-options').val($(this).text()))
+
+//******GOAL: CAR**********************************************
+    $('#car-dropdown').change(() => {
+        var carPriceForm = $('#car-price-form-area');
+        var selection = $('#car-dropdown :selected').val();
+        if (parseInt(selection) === 1) {
+            $('#car-price-label').text('How much is the car you would like to purchase?');
+            carPriceForm.removeClass('hidden');
+        }
+        else if (parseInt(selection) === 2) {
+            carPriceForm.removeClass('hidden');
+            $('#car-price-label').text('How much will you pay per month?');
+        }
         
     })
 
+    $('#car-price-form').submit((event) => {
+        event.preventDefault();
+        var price = $('#car-price').val();
+        var loanTerm = $('#loan-term-cp').val();
+        var interestRate = $('#finance-rate').val();
+        var downPayment = $('#down-payment').val();
+
+        var carData = {
+            value: $('#car-dropdown :selected').val(),   //1 means user has chosen by car price, 2 means by monthly payment
+            price: price,
+            downPayment: downPayment,
+            months: loanTerm,
+            interestRate: interestRate
+        }
+
+         var carRequestConfig = {
+                method: "POST",
+                url: "/customers/calculations",
+                contentType: 'application/json',
+                data: JSON.stringify(carData)
+            };
+            
+            $.ajax(carRequestConfig).then(function (responseMessage) {
+                console.log(responseMessage);
+            });
+    })
+
+   
 
 
 
@@ -48,22 +88,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//*****UPDATE INFO**********************************************
      $('#show-update-form-button').click(() => {
          $('#update-success').addClass('hidden');
         $('#update-form').removeClass('hidden');

@@ -76,6 +76,7 @@ router.put("/update", (req, res) => {
 
 //   post extra data for calculations and call getServicesForUser(user, goal, data) as defined in finProdSelection Module
 router.post('/calculations', (req, res) => {
+    console.log("here");
     res.status(200);
 })
 
