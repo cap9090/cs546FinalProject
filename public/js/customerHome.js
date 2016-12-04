@@ -17,13 +17,7 @@
         $('#myNavbar ul li.products').siblings().removeClass('active');
     }
         
-    $('#show-update-form-button').click(() => {
-		 $('#update-success').addClass('hidden');
-		$('#update-form').removeClass('hidden');
-		$('#show-update-form-button').addClass('hidden');
-		$('#goal-form').addClass('hidden');
-		$('#show-goal-form-button').removeClass('hidden');
-	})
+   
 	$('#show-goal-form-button').click(() => {
 		$('#update-success').addClass('hidden');
 		$('#goal-form').removeClass('hidden');
@@ -33,10 +27,7 @@
 		
 	})
 	
-
-
-
-	//create dropdown for retirement years
+    //create dropdown for retirement years
 	$(function(){
 		var $select = $(".retirementYears");
 		for (i=1;i<=50;i++){
@@ -73,7 +64,13 @@
 
 
 
-
+     $('#show-update-form-button').click(() => {
+         $('#update-success').addClass('hidden');
+        $('#update-form').removeClass('hidden');
+        $('#show-update-form-button').addClass('hidden');
+        $('#goal-form').addClass('hidden');
+        $('#show-goal-form-button').removeClass('hidden');
+    })
 
 	var signupRemCheckBox = $("#update-remember-checkbox");
     var idField = $('#nodeUUID');

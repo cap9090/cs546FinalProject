@@ -37,6 +37,7 @@ const rewriteUnsupportedBrowserMethods = (req, res, next) => {
 const configRoutes = require("./routes");
 const app = express();
 const static = express.static(__dirname + '/public');
+const passportInit = require("./data/authentication");
 
 app.use("/public", static);
 app.use(cookieParser());
@@ -51,6 +52,8 @@ app.use(expressSession({ secret: 'final project', resave: false, saveUninitializ
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+
+passportInit(passport);
 
 configRoutes(app, passport);
 
