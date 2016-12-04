@@ -1,4 +1,4 @@
-(function ($, window) {
+(function ($, window, localStorage) {
     /*login fields*/
 
     var loginEmailField = $("#loginEmail");
@@ -90,10 +90,28 @@
     });
 */
 /*create new user*/
+    if(localStorage["username"]){
+        loginEmailField.val(JSON.parse(localStorage["username"]));
+    }
+
+    loginButton.click(function() {
+        if(loginRemCheckBox.is(':checked')){
+            localStorage["username"] = JSON.stringify(loginEmailField.val());
+        }
+        else{
+            localStorage["username"] = JSON.stringify("");
+        }
+    });
     signupForm.submit((event) => {
         event.preventDefault();
         var password = signupPassword.val();
         var username = signupUsername.val();
+        if(signupRemCheckBox.is(':checked')){
+            localStorage["username"] = JSON.stringify(username);
+        }
+        else {
+            localStorage["username"] = JSON.stringify("");
+        }
         var firstName = signupFirstName.val();
         var middleInit = signupMiddleInit.val();
         var lastName = signupLastName.val();
@@ -125,12 +143,13 @@
         var creditCardDebt = signupCreditCardDebt.val();
         var otherDebt = signupOtherDebt.val();
 
-
+        /*
         var rememberMe = false;
 
         if (signupRemCheckBox.is(':checked')) {
             rememberMe = true;
         }
+        */
 
         var credentials = {
             password: password,
@@ -208,4 +227,4 @@
     });
 
 
-})(window.jQuery, window);
+})(window.jQuery, window, window.localStorage);
