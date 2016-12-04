@@ -249,6 +249,4 @@
     });
 
 
-
-
 })(window.jQuery, window);
