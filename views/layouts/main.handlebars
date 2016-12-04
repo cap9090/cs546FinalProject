@@ -11,41 +11,39 @@
 </head>
 
 <body>
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">Stevens Financial</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="home active"><a href="/customers/home">Home</a></li>
-        {{#if user }}
-        <li class='profile'><a href="/customers/profile">My Profile</a></li>
-        <li class='goals'><a  href="/customers/goals">Goals</a></li>
-        <li class='products'><a  href="/financialProducts">Our Products</a></li>
-        {{/if}}
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        {{#if user }}
-            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-        {{ else }}
-            <li><a class="new-signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a class="back-to-login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        {{/if}}
-      </ul>
-    </div>
-  </div>
-</nav>
+                <a class="navbar-brand" href="#">Stevens Financial</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="home active"><a href="/customers/home">Home</a></li>
+                    {{#if user }}
+                    <li class='profile'><a href="/customers/profile">My Profile</a></li>
+                    <li class='goals'><a href="/customers/goals">Goals</a></li>
+                    <li class='products'><a href="/financialProducts">Our Products</a></li>
+                    {{/if}}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {{#if user }}
+                    <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    {{ else }}
+                    <li><a href="" class="new-signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="" class="back-to-login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </nav>
 
     <main class="container">
-        <div class="row">
-            {{{body}}}
-        </div>
+        {{{body}}}
     </main>
 
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
