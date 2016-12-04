@@ -14,21 +14,22 @@ let exportedMethods = {
 		case retirement:
 			if (retirementCalculations.calculateRetirement(id) > 0) {
 				problemsArray.push(181);
+				problemsArray.push(123);
 			}
 			break;
 		case newCar:
 			if (newCarCalculations.calculateNewCar(id, data)) {
 				problemsArray.push(100);
-				problemsArray.push(219);
 			}
 			break;
 		case newHouse:
 			if (newHouseCalculations.calculateNewHouse(id, data)) {
 				problemsArray.push(100);
-				problemsArray.push(219);
 			}
 			break;
 		}
 		return finProd.getProductsFromArrayOfProductIds(problemsArray);
 	}
 }
+
+module.exports = exportedMethods;

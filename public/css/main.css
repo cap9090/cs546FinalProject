@@ -66,10 +66,14 @@ input {
 
 }
 
-.action-buttons {
+.action-button {
   padding: 40px;
 }
 
 .form-control {
     padding: 10px;
+}
+
+#car-dropdown {
+  padding: 30px;
 }

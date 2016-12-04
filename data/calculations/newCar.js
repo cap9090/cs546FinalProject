@@ -29,6 +29,8 @@ function calculateMonthlyPayment(data) {
 	return monthlyPayment;
 }
 
+console.log(calculateMonthlyPayment(data));
+
 // with fixed monthly payment
 function calculateCarPrice(data) {
 	if (data.monthlyPayment == null || data.downPayment == null || data.months == null || data.interestRate == null)

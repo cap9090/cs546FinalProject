@@ -26,9 +26,46 @@
 		}
 	});
 
-	var signupRemCheckBox = $("#update-remember-checkbox");
+    $('#dropdown-menu li').click(() => {
+        console.log($('#car-options').val($(this).text()))
+        
+    })
 
-	var idField = $('#nodeUUID');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	var signupRemCheckBox = $("#update-remember-checkbox");
+    var idField = $('#nodeUUID');
 	var updateUsername = $("#username");
     var updatePassword = $("#password");
     var updateFirstName = $("#firstName");
@@ -173,15 +210,6 @@
             
             $.ajax(requestConfig).then(function (responseMessage) {
                 console.log(responseMessage);
-                 /*var loginRequest = {
-                        method: "POST",
-                        url: "/login",
-                        contentType: 'application/json',
-                        data: JSON.stringify({username: credentials.username, password: credentials.password}),
-                 };
-                    $.ajax(loginRequest).then(function (response) {
-                        window.location.assign("/customers/home");
-                    });*/
             });
             
         return false;
