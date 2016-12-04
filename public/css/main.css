@@ -1,3 +1,7 @@
+body {
+  background-color: #f5f5f5
+}
+
 h1, h2, h3, h4, h5 {
 
 }
@@ -9,10 +13,6 @@ input {
   
 }
 
-.col-sm-6 {
-    margin: 0 auto;
-    float: none;
-}
 .flip {
   width: 400px;
   height: 276px;
@@ -55,6 +55,7 @@ input {
     border: 1px solid #ccc;
     border-radius: 25px;
     background-color: #66B2FF;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 
 }
 
@@ -72,4 +73,39 @@ input {
 
 .form-control {
     padding: 10px;
+}
+
+.card.card-block {
+  padding: 30px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  border-radius: 5px;
+  background: #fff
+}
+
+.collapse.after {
+    /* symbol for "opening" panels */
+    font-family:'Glyphicons Halflings';
+    /* essential for enabling glyphicon */
+    content:"\e114";
+    /* adjust as needed, taken from bootstrap.css */
+    float: right;
+    position: relative;
+    bottom: 23px;
+    font-size: 15pt;
+    /* adjust as needed */
+    color: grey;
+    /* adjust as needed */
+}
+collapse.collapsed:after {
+    /* symbol for "collapsed" panels */
+    content:"\e080";
+    /* adjust as needed, taken from bootstrap.css */
+}
+
+.panel-heading:hover {
+    cursor: pointer;
+}
+
+.panel-heading:hover h4 {
+    text-decoration: underline;
 }
