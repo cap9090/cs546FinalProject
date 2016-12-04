@@ -32,23 +32,32 @@ router.get("/new", (req,res) => {
 });
 
 router.get("/home", userAuthenticated, (req, res) => {
-    req.user.profile.DOB = {year: req.user.profile.DOB.substring(0,4),
-                            month: req.user.profile.DOB.substring(5,7),
-                            day: req.user.profile.DOB.substring(8,10)};
+
+    let dateString = req.user.profile.DOB.toString();
+    // console.log(dateString);
+    // console.log(dateString.substring(11,15));
+    // console.log(dateString.substring(4,7));
+    // console.log(dateString.substring(8,10));
+    // return;
+    req.user.profile.DOB = {year: dateString.substring(11,15),
+                            month: dateString.substring(4,7),
+                            day: dateString.substring(8,10)};
     res.render("pages/customerHome", {user: req.user});
 });
 
 router.get('/profile', userAuthenticated, (req, res) => {
-   req.user.profile.DOB = {year: req.user.profile.DOB.substring(0,4),
-                            month: req.user.profile.DOB.substring(5,7),
-                            day: req.user.profile.DOB.substring(8,10)};
+  let dateString = req.user.profile.DOB.toString();
+   req.user.profile.DOB = {year: dateString.substring(11,15),
+                           month: dateString.substring(4,7),
+                           day: dateString.substring(8,10)};
     res.render("pages/profile", {user: req.user});
 })
 
 router.get('/goals', userAuthenticated, (req, res) => {
-   req.user.profile.DOB = {year: req.user.profile.DOB.substring(0,4),
-                            month: req.user.profile.DOB.substring(5,7),
-                            day: req.user.profile.DOB.substring(8,10)};
+  let dateString = req.user.profile.DOB.toString();
+   req.user.profile.DOB = {year: dateString.substring(11,15),
+                           month: dateString.substring(4,7),
+                           day: dateString.substring(8,10)};
     res.render("pages/goals", {user: req.user});
 })
 
@@ -92,5 +101,3 @@ router.get("/:id", (req, res) => {
   })
 });
 */
-
-
