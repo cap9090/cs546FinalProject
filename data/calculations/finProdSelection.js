@@ -12,7 +12,7 @@ let exportedMethods = {
 		let problemsArray = [];
 		switch(goal) {
 		case retirement:
-			if (retirementCalculations.calculateRetirement(id) > 0) {
+			if (retirementCalculations.calculateRetirement(id, data)) {
 				problemsArray.push(181);
 				problemsArray.push(123);
 			}
