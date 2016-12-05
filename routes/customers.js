@@ -43,7 +43,6 @@ router.get("/home", userAuthenticated, (req, res) => {
 
 router.get('/profile', userAuthenticated, (req, res) => {
   let dateString = req.user.profile.DOB.toString();
-  console.log(dateString);
    req.user.profile.DOB = {year: dateString.substring(0,4),
                            month: dateString.substring(5,7),
                            day: dateString.substring(8,10)};
