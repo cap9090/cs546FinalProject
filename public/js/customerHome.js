@@ -16,93 +16,112 @@
         $('#myNavbar ul li.products').addClass('active');
         $('#myNavbar ul li.products').siblings().removeClass('active');
     }
-        
-   
-	$('#show-goal-form-button').click(() => {
-		
+
+
+    $('#show-goal-form-button').click(() => {
+
         $('#update-success').addClass('hidden');
-		$('#goal-form').removeClass('hidden');
-		$('#show-goal-form-button').addClass('hidden');
-		$('#update-form').addClass('hidden');
-		$('#show-update-form-button').removeClass('hidden');
-		
-	})
-	
-    //create dropdown for retirement years
-	$(function(){
-		var $select = $(".retirementYears");
-		for (i=1;i<=50;i++){
-			$select.append($('<option></option>').val(i).html(i))
-		}
-	});
+        $('#goal-form').removeClass('hidden');
+        $('#show-goal-form-button').addClass('hidden');
+        $('#update-form').addClass('hidden');
+        $('#show-update-form-button').removeClass('hidden');
 
-
-//******GOAL: CAR**********************************************
-    $('#car-dropdown').change(() => {
-        var carPriceForm = $('#car-price-form-area');
-        var selection = $('#car-dropdown :selected').val();
-        if (parseInt(selection) === 1) {
-            $('#car-price-label').text('How much is the car you would like to purchase?');
-            carPriceForm.removeClass('hidden');
-        }
-        else if (parseInt(selection) === 2) {
-            carPriceForm.removeClass('hidden');
-            $('#car-price-label').text('How much will you pay per month?');
-        }
-        
     })
 
-    $('#car-price-form').submit((event) => {
+    //create dropdown for retirement years
+    $(function () {
+        var $select = $(".retirementYears");
+        for (i = 1; i <= 50; i++) {
+            $select.append($('<option></option>').val(i).html(i))
+        }
+    });
+
+    //******GOAL: HOUSE**********************************************
+    var buyHouseForm = $('#buy-house-form');
+
+    buyHouseForm.submit((event) => {
         event.preventDefault();
-        var price = $('#car-price').val();
-        var loanTerm = $('#loan-term-cp').val();
-        var interestRate = $('#finance-rate').val();
-        var downPayment = $('#down-payment').val();
+
+        var price = $('#house-price').val();
+        var loanTerm = $('#house-loan-term').val();
+        var interestRate = $('#house-finance-rate').val();
+        var downPayment = $('#house-down-payment').val();
 
         var carData = {
-            value: $('#car-dropdown :selected').val(),   //1 means user has chosen by car price, 2 means by monthly payment
             price: price,
             downPayment: downPayment,
             months: loanTerm,
             interestRate: interestRate
         }
 
-         var carRequestConfig = {
-                method: "POST",
-                url: "/customers/calculations",
-                contentType: 'application/json',
-                data: JSON.stringify(carData)
-            };
-            
-            $.ajax(carRequestConfig).then(function (responseMessage) {
-                console.log(responseMessage);
-            });
-    })
+        var carRequestConfig = {
+            method: "POST",
+            url: "/customers/calculations",
+            contentType: 'application/json',
+            data: JSON.stringify(carData)
+        };
 
-   
+        $.ajax(carRequestConfig).then(function (responseMessage) {
+            console.log(responseMessage);
+        });
+    });
 
 
 
+    //******GOAL: CAR**********************************************
+    var buyCarForm = $('#buy-car-form');
+
+    buyCarForm.submit((event) => {
+        event.preventDefault();
+
+        var price = $('#car-price').val();
+        var loanTerm = $('#car-loan-term').val();
+        var interestRate = $('#car-finance-rate').val();
+        var downPayment = $('#car-down-payment').val();
+
+        var carData = {
+            price: price,
+            downPayment: downPayment,
+            months: loanTerm,
+            interestRate: interestRate
+        }
+
+        var carRequestConfig = {
+            method: "POST",
+            url: "/customers/calculations",
+            contentType: 'application/json',
+            data: JSON.stringify(carData)
+        };
+
+        $.ajax(carRequestConfig).then(function (responseMessage) {
+            console.log(responseMessage);
+        });
+    });
 
 
 
 
 
-//*****UPDATE INFO**********************************************
-     $('#show-update-form-button').click(() => {
-         $('#update-success').addClass('hidden');
+
+
+
+
+
+    //*****UPDATE INFO**********************************************
+    $('#show-update-form-button').click(() => {
+        $('#update-success').addClass('hidden');
         $('#update-form').removeClass('hidden');
         $('#show-update-form-button').addClass('hidden');
         $('#goal-form').addClass('hidden');
         $('#show-goal-form-button').removeClass('hidden');
-    })
+    });
 
-	var signupRemCheckBox = $("#update-remember-checkbox");
+    var signupRemCheckBox = $("#update-remember-checkbox");
     var idField = $('#nodeUUID');
-	var updateUsername = $("#username");
+    var updateUsername = $("#username");
     var updatePassword = $("#password");
     var updateFirstName = $("#firstName");
-    var updateMiddleInit= $("#middleInit");
+    var updateMiddleInit = $("#middleInit");
     var updateLastName = $("#lastName");
     //var updateDOB = $("#DOB");
     var updateYear = $("#year");
@@ -113,7 +132,7 @@
     var updateMonthlyIncome = $("#monthlyIncome");
     var updateRetirementAge = $("#desiredRetirementAge");
     var updateStocks = $("#stocks");
-    var updateBonds =  $("#bonds");
+    var updateBonds = $("#bonds");
     var updateCash = $("#cash");
     var updateRetirementAccounts = $("#retirementAccounts");
     var updateAnnuities = $("#annuities");
@@ -128,22 +147,22 @@
     var updateMortage = $("#mortgage");
     var updateHomeEquityLoans = $("#homeEquityLoans");
     var updateStudentLoans = $("#studentLoans");
-    var updateCreditCardDebt =$("#creditCardDebt");
+    var updateCreditCardDebt = $("#creditCardDebt");
     var updateOtherDebt = $("#otherDebt");
-	
+
     var successText = document.getElementById("successText");
     var errorText = document.getElementById("errorText");
 
-    $(document.body).click(function() {
-        if(successText) {
+    $(document.body).click(function () {
+        if (successText) {
             successText.classList.add("hidden");
         }
-        if(errorText) {
+        if (errorText) {
             errorText.classList.add("hidden");
         }
     });
 
-	$('#update-form').submit((event) => {
+    $('#update-form').submit((event) => {
         event.preventDefault();
         var id = idField.val();
         var password = updatePassword.val();
@@ -200,51 +219,51 @@
                 monthlyIncome: monthlyIncome,
                 desiredRetirementAge: desiredRetirementAge,
                 savingsRateOfIncome: savingsRateOfIncome,
-                assets : {
-                  stocks: stocks,
-                  bonds: bonds,
-                  cash: cash,
-                  retirementAccounts: retirementAccounts,
-                  annuities: annuities,
-                  property: property,
-                  other: other
+                assets: {
+                    stocks: stocks,
+                    bonds: bonds,
+                    cash: cash,
+                    retirementAccounts: retirementAccounts,
+                    annuities: annuities,
+                    property: property,
+                    other: other
                 },
                 monthlyCosts: {
-                  car: car,
-                  rentOrMortgage: rentOrMortgage,
-                  groceries: groceries,
-                  bills: bills,
-                  otherExpenses: otherExpenses
+                    car: car,
+                    rentOrMortgage: rentOrMortgage,
+                    groceries: groceries,
+                    bills: bills,
+                    otherExpenses: otherExpenses
                 },
                 liability: {
-                  mortgage:mortgage,
-                  homeEquityLoans: homeEquityLoans,
-                  studentLoans: studentLoans,
-                  creditCardDebt: creditCardDebt,
-                  otherDebt: otherDebt
+                    mortgage: mortgage,
+                    homeEquityLoans: homeEquityLoans,
+                    studentLoans: studentLoans,
+                    creditCardDebt: creditCardDebt,
+                    otherDebt: otherDebt
                 }
 
-              }
-            };
-            
-            var requestConfig = {
-                method: "PUT",
-                url: "/customers/update",
-                contentType: 'application/json',
-                data: JSON.stringify(credentials),
-                success: function(responseMessage) {
-                    successText.classList.remove("hidden");
-                    //alert("Financial information successfully updated.");
-                },
-                error: function(responseMessage) {
-                    errorText.classList.remove("hidden");
-                }
-            };
-            
-            $.ajax(requestConfig).then(function (responseMessage) {
-                console.log(responseMessage);
-            });
-            
+            }
+        };
+
+        var requestConfig = {
+            method: "PUT",
+            url: "/customers/update",
+            contentType: 'application/json',
+            data: JSON.stringify(credentials),
+            success: function (responseMessage) {
+                successText.classList.remove("hidden");
+                //alert("Financial information successfully updated.");
+            },
+            error: function (responseMessage) {
+                errorText.classList.remove("hidden");
+            }
+        };
+
+        $.ajax(requestConfig).then(function (responseMessage) {
+            console.log(responseMessage);
+        });
+
         return false;
     });
 
