@@ -128,7 +128,9 @@ dbConnection().then((db)=> {
   });
 }).then(() => {
   return customers.addCustomer({
-    hashedUserNameAndPassword: "$2a$08$XdvNkfdNIL8Fq7l8xsuIUeSbNOFgK0M0iV5HOskfVn7.PWncShU.O",
+    username: "janedoe@stevens.edu",
+    password: "123",
+    //hashedUserNameAndPassword: "$2a$08$XdvNkfdNIL8Fq7l8xsuIUeSbNOFgK0M0iV5HOskfVn7.PWncShU.O",
     profile: {
       firstName: "Jane",
       middleInit: "P",

@@ -35,24 +35,25 @@ router.get("/new", (req,res) => {
 router.get("/home", userAuthenticated, (req, res) => {
 
     let dateString = req.user.profile.DOB.toString();
-    req.user.profile.DOB = {year: dateString.substring(11,15),
-                            month: dateString.substring(4,7),
+    req.user.profile.DOB = {year: dateString.substring(0,4),
+                            month: dateString.substring(5,7),
                             day: dateString.substring(8,10)};
     res.render("pages/customerHome", {user: req.user});
 });
 
 router.get('/profile', userAuthenticated, (req, res) => {
   let dateString = req.user.profile.DOB.toString();
-   req.user.profile.DOB = {year: dateString.substring(11,15),
-                           month: dateString.substring(4,7),
+  console.log(dateString);
+   req.user.profile.DOB = {year: dateString.substring(0,4),
+                           month: dateString.substring(5,7),
                            day: dateString.substring(8,10)};
     res.render("pages/profile", {user: req.user});
 })
 
 router.get('/goals', userAuthenticated, (req, res) => {
   let dateString = req.user.profile.DOB.toString();
-   req.user.profile.DOB = {year: dateString.substring(11,15),
-                           month: dateString.substring(4,7),
+   req.user.profile.DOB = {year: dateString.substring(0,4),
+                           month: dateString.substring(5,7),
                            day: dateString.substring(8,10)};
     res.render("pages/goals", {user: req.user});
 })
