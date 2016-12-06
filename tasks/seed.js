@@ -5,7 +5,7 @@ const problems = data.problems;
 const finProds = data.finProds;
 const customers = data.customers;
 
-dbConnection().then((db)=> {
+dbConnection().then((db) => {
   return db.dropDatabase();
 }).then(() => {
   return dbConnection;
@@ -13,6 +13,26 @@ dbConnection().then((db)=> {
   return problems.addProblem({
     problemId: 999,
     problemDescription: "You are in serious debt"
+  })
+}).then(() => {
+  return problems.addProblem({
+    problemId: 888,
+    problemDescription: "You've already retired"
+  })
+}).then(() => {
+  return problems.addProblem({
+    problemId: 100,
+    problemDescription: "You have no income"
+  })
+}).then(() => {
+  return problems.addProblem({
+    problemId: 101,
+    problemDescription: "Your monthly expense is too high"
+  })
+}).then(() => {
+  return problems.addProblem({
+    problemId: 102,
+    problemDescription: "You're not saving enough money"
   })
 }).then(() => {
   return problems.addProblem({
@@ -31,13 +51,8 @@ dbConnection().then((db)=> {
   })
 }).then(() => {
   return problems.addProblem({
-    problemId: 100,
-    problemDescription: "too high monthly costs"
-  })
-}).then(() => {
-  return problems.addProblem({
     problemId: 212,
-    problemDescription: "monthly saving rate too low"
+    problemDescription: "Your monthly saving rate is too low"
   });
 }).then(() => {
   return problems.addProblem({
@@ -77,11 +92,11 @@ dbConnection().then((db)=> {
   })
 }).then(() => {
   return finProds.addFinProd({
-    name: "Montly Budgeting Tool",
+    name: "Monthly Budgeting Tool",
     URL: "www.stevensfinancial.com/BudgetTool",
     problemIds: [
-      100,
-      212,
+      101,
+      102,
       219
     ]
   });

@@ -90,8 +90,8 @@ router.post('/calculations', userAuthenticated, (req, res) => {
   let user = req.user;
   return calculation.getServicesForUser(user._id, req.body.goal, req.body.data).then((result) => {
     console.log(result);
-  })
-})
+  });
+});
 
 module.exports = router;
 

@@ -1,5 +1,6 @@
 //do calculation in here and return an collection of finaical products
 const customerData = require('../customers');
+const problemData = require('../problems');
 
 ///*test case
 let data = {
@@ -16,7 +17,11 @@ function calculateMonthlyPayment(data) {
 		throw "data not enough";
 	if (data.price <= 0 || data.downPayment < 0 || data.months <= 0 || data.interestRate < 0)
 		throw "meaningless data";
-	if (data.downPayment >= data.price) return 0;
+
+	if (data.downPayment >= data.price)
+		return 0;
+	if (data.interestRate === 0)
+		return (data.price - data.downPayment) / data.months;
 
 	let price = data.price,
 		downPayment = data.downPayment,
@@ -24,13 +29,12 @@ function calculateMonthlyPayment(data) {
 		interestRate = data.interestRate / 100, // due to percentage
 		monthlyInterestRate = interestRate / 12; // annual to monthly
 
-	let monthlyPayment = monthlyInterestRate * (price - downPayment) / (1 - Math.pow(1 + monthlyInterestRate, -months));
+	let monthlyPayment = monthlyInterestRate * (price - downPayment)
+		/ (1 - Math.pow(1 + monthlyInterestRate, -months));
 	return monthlyPayment;
-}
+};
 
-console.log(calculateMonthlyPayment(data));
-
-/*// with fixed monthly payment
+/* with fixed monthly payment
 function calculateprice(data) {
 	if (data.monthlyPayment == null || data.downPayment == null || data.months == null || data.interestRate == null)
 		throw "data not enough";
@@ -46,23 +50,32 @@ function calculateprice(data) {
 	let price = monthlyPayment * (1 - Math.pow(1 + monthlyInterestRate, -months)) / monthlyInterestRate + downPayment;
 	return price;
 }
-*/
+//*/
 
 exportedMethods = {
-	calculateNewCar: (id, data) => {
+	calculateProblem: (id, data) => {
+		let problemsArray = [];
+
 		customerData.getCustomerByNodeUUID(id).then((customer) => {
+			let newCustomer;
 			let newCarMonthlyPayment = calculateMonthlyPayment(data);
-			customer.profile.monthlyCosts.car += newCarMonthlyPayment;
-			customer.profile.monthlyCosts.total += newCarMonthlyPayment;
-			if (tooMuchMonthlyCosts())
-				return true;
+			newCustomer.profile.monthlyCosts.car = customer.profile.monthlyCosts.car + newCarMonthlyPayment;
+			newCustomer.profile.monthlyCosts.total = customer.profile.monthlyCosts.total + newCarMonthlyPayment;
+
+			let monthlyIncome = customer.profile.monthlyIncome;
+			let savingsRateOfIncome = (monthlyIncome - newCustomer.profile.monthlyCosts) / monthlyIncome;
+
+			if (savingsRateOfIncome < 0)
+				problemsArray.push(101); // Your monthly expense is too high
+			else if (savingsRateOfIncome < customer.profile.savingsRateOfIncome)
+				problemsArray.push(102); // You're not saving enough money
 			else
-				return false;
+				customerData.updateCustomer(newCustomer);
+
+			return problemsArray;
 		});
 	}
 }
-
-
 module.exports = exportedMethods;
 
 
