@@ -1,8 +1,12 @@
 <div class='card card-block'>
     <h2>Our Products</h2>
     <ul>
-        {{#each products}}
+        {{#if products}} 
+            {{#each products}}
             <p>{{name}}: {{URL}}</p>
-        {{/each}}
+            {{/each}}
+        {{else}}
+            <a href="/financialProducts">Check out all of our products!</a>
+        {{/if}}
     </ul>
 </div>

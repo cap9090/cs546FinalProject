@@ -13,7 +13,7 @@ exportedMethods = {
         problemIds: finProd.problemIds
       };
       return finProds.insertOne(newFinProd).then((insertedFinProd) => {
-        if(!insertedFinProd) throw "product not found";
+        if (!insertedFinProd) throw "product not found";
         return insertedFinProd.insertedId;
       });
     });
@@ -21,8 +21,8 @@ exportedMethods = {
 
   deleteFinProdByNodeUUID: (id) => {
     return finProdCollection().then((finProds) => {
-      return finProds.deleteOne({_id: id}).then((deletionInfo) => {
-        if(deletionInfo.deletedCount === 0 ) {
+      return finProds.deleteOne({ _id: id }).then((deletionInfo) => {
+        if (deletionInfo.deletedCount === 0) {
           throw ("Could not delete financial product with id " + id);
         } else {
           return id;
@@ -33,8 +33,8 @@ exportedMethods = {
 
   getFinProdByNodeUUID: (id) => {
     return finProdCollection().then((finProds) => {
-      return finProds.findOne({_id: id}).then((finProd) => {
-        if(!finProd) throw "product not found";
+      return finProds.findOne({ _id: id }).then((finProd) => {
+        if (!finProd) throw "product not found";
         return finProd;
       })
     })
@@ -49,29 +49,31 @@ exportedMethods = {
   },
 
   getProductsByProblemId: (problemId) => {
-    if(isNaN(problemId)){
+    if (isNaN(problemId)) {
       throw "must provide a number";
     }
     return finProdCollection().then((finProds) => {
-      return finProds.find({ problemIds: problemId}).toArray();
+      return finProds.find({ problemIds: problemId }).toArray();
     }).catch((error) => {
       return error;
     })
 
   },
 
-//called by finanical modules to get a full list of all products that will solve the problems with the problem ids in the array
+  //called by finanical modules to get a full list of all products that will solve the problems with the problem ids in the array
   getProductsFromArrayOfProductIds: (problemIdArray) => {
     let products = [];
-    for (let i = 0;  i < problemIdArray.length; i++){
+    if (!problemIdArray)
+      return Promise.resolve(products);
+    for (let i = 0; i < problemIdArray.length; i++) {
       let arrayOfFinProdsForThisId = this.getProductsByProblemId(problemIdArray[i]);
-      for (let k = 0; k < arrayOfFinProdsForThisId.length; k++){
+      for (let k = 0; k < arrayOfFinProdsForThisId.length; k++) {
         products.push(arrayOfFinProdsForThisId[k]);
       }
     }
-    return products;
+    return Promise.resolve(products);
   }
 
 }
 
-  module.exports = exportedMethods;
+module.exports = exportedMethods;

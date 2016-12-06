@@ -58,20 +58,16 @@ exportedMethods = {
 		let problemsArray = [];
 
 		customerData.getCustomerByNodeUUID(id).then((customer) => {
-			let newCustomer;
 			let newHouseMonthlyPayment = calculateMonthlyPayment(data);
-			newCustomer.profile.monthlyCosts.house = customer.profile.monthlyCosts.house + newHouseMonthlyPayment;
-			newCustomer.profile.monthlyCosts.total = customer.profile.monthlyCosts.total + newHouseMonthlyPayment;
-
 			let monthlyIncome = customer.profile.monthlyIncome;
-			let savingsRateOfIncome = (monthlyIncome - newCustomer.profile.monthlyCosts) / monthlyIncome;
+			let newMonthlyCosts = customer.profile.monthlyCosts.total + newHouseMonthlyPayment;
 
-			if (savingsRateOfIncome < 0)
+			let newSavingsRateOfIncome = (monthlyIncome - newMonthlyCosts) / monthlyIncome;
+
+			if (newSavingsRateOfIncome < 0)
 				problemsArray.push(101); // Your monthly expense is too high
-			else if (savingsRateOfIncome < customer.profile.savingsRateOfIncome)
+			else if (newSavingsRateOfIncome < customer.profile.savingsRateOfIncome)
 				problemsArray.push(102); // You're not saving enough money
-			else
-				customerData.updateCustomer(newCustomer);
 
 			return problemsArray;
 		});

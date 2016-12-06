@@ -123,6 +123,7 @@
         };
 
         $.ajax(carRequestConfig).then(function (responseMessage) {
+            console.log('success');
             console.log(responseMessage);
         });
     });
