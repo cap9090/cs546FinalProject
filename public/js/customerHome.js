@@ -27,13 +27,43 @@
         $('#show-update-form-button').removeClass('hidden');
 
     })
-
+    
     //create dropdown for retirement years
     $(function () {
         var $select = $(".retirementYears");
         for (i = 1; i <= 50; i++) {
             $select.append($('<option></option>').val(i).html(i))
         }
+    });
+
+//******GOAL: RETIREMENT**********************************************
+    var retirementForm = $('#retirement-form');
+
+    retirementForm.submit((event) => {
+        event.preventDefault();
+
+        var yearsAfterRetirement = $('#years-after-retirement').val();
+        var incomeIncrease = $('#income-increase').val();
+        var interestRate = $('#interest-rate').val();
+        var requiredIncome = $('#required-income').val();
+
+        var retirementData = {
+            expectedYearsAfterRetirement: yearsAfterRetirement,
+            expectedAnnualIncomeIncrease: incomeIncrease,
+            interestRate: interestRate,
+            incomeRequiredAfterRetirement: requiredIncome
+        }
+
+        var carRequestConfig = {
+            method: "POST",
+            url: "/customers/calculations",
+            contentType: 'application/json',
+            data: JSON.stringify(retirementData)
+        };
+
+        $.ajax(retirementRequestConfig).then(function (responseMessage) {
+            console.log(responseMessage);
+        });
     });
 
     //******GOAL: HOUSE**********************************************
@@ -47,26 +77,24 @@
         var interestRate = $('#house-finance-rate').val();
         var downPayment = $('#house-down-payment').val();
 
-        var carData = {
+        var houseData = {
             price: price,
             downPayment: downPayment,
             months: loanTerm,
             interestRate: interestRate
         }
 
-        var carRequestConfig = {
+        var houseRequestConfig = {
             method: "POST",
             url: "/customers/calculations",
             contentType: 'application/json',
-            data: JSON.stringify(carData)
+            data: JSON.stringify(houseData)
         };
 
-        $.ajax(carRequestConfig).then(function (responseMessage) {
+        $.ajax(houseRequestConfig).then(function (responseMessage) {
             console.log(responseMessage);
         });
     });
-
-
 
     //******GOAL: CAR**********************************************
     var buyCarForm = $('#buy-car-form');
