@@ -3,10 +3,19 @@ const router = express.Router();
 const data = require("../data");
 const finProdData = data.finProds;
 
+function userAuthenticated(req, res, next) {
+    if (req.isAuthenticated()){
+        return next();
+    }
 
-router.get("/", (req,res) => {
+    res.redirect('/');
+}
+
+
+router.get("/", userAuthenticated, (req,res) => {
   return finProdData.getAllFinProds().then((finProds) => {
-     res.status(200).json(finProds);
+    res.render("pages/products", {products: finProds, user: req.user});
+     //res.status(200).json(finProds);
   }).catch((error)=> {
     res.status(500).json(error);
   });
