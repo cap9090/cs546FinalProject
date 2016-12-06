@@ -41,7 +41,7 @@
 
     retirementForm.submit((event) => {
         event.preventDefault();
-
+        console.log('here')
         var yearsAfterRetirement = $('#years-after-retirement').val();
         var incomeIncrease = $('#income-increase').val();
         var interestRate = $('#interest-rate').val();
@@ -54,7 +54,7 @@
             incomeRequiredAfterRetirement: requiredIncome
         }
 
-        var carRequestConfig = {
+        var retirementRequestConfig = {
             method: "POST",
             url: "/customers/calculations",
             contentType: 'application/json',
