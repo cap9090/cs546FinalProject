@@ -11,24 +11,25 @@ let exportedMethods = {
 		//data is for extra info that a user must input beyond there profile, take a look at newCar.js for an example
 		let problemsArray = [];
 		switch(goal) {
-		case retirement:
+		case 'retirement':
 			if (retirementCalculations.calculateRetirement(id, data)) {
 				problemsArray.push(181);
 				problemsArray.push(123);
 			}
 			break;
-		case newCar:
+		case 'newCar':
 			if (newCarCalculations.calculateNewCar(id, data)) {
 				problemsArray.push(100);
 			}
 			break;
-		case newHouse:
+		case 'newHouse':
 			if (newHouseCalculations.calculateNewHouse(id, data)) {
 				problemsArray.push(100);
 			}
 			break;
 		}
-		return finProd.getProductsFromArrayOfProductIds(problemsArray);
+		return problemsArray;
+		//return finProd.getProductsFromArrayOfProductIds(problemsArray);
 	}
 }
 

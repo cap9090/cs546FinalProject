@@ -54,7 +54,7 @@ exportedMethods = {
 			let newCarMonthlyPayment = calculateMonthlyPayment(data);
 			customer.profile.monthlyCosts.car += newCarMonthlyPayment;
 			customer.profile.monthlyCosts.total += newCarMonthlyPayment;
-			if (tooMuchMonthlyCosts()) // not sure about the proper contition here yet
+			if (tooMuchMonthlyCosts())
 				return true;
 			else
 				return false;

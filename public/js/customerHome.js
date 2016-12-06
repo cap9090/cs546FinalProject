@@ -27,16 +27,8 @@
         $('#show-update-form-button').removeClass('hidden');
 
     })
-    
-    //create dropdown for retirement years
-    $(function () {
-        var $select = $(".retirementYears");
-        for (i = 1; i <= 50; i++) {
-            $select.append($('<option></option>').val(i).html(i))
-        }
-    });
 
-//******GOAL: RETIREMENT**********************************************
+    //******GOAL: RETIREMENT**********************************************
     var retirementForm = $('#retirement-form');
 
     retirementForm.submit((event) => {
@@ -48,13 +40,16 @@
         var requiredIncome = $('#required-income').val();
 
         var retirementData = {
-            expectedYearsAfterRetirement: yearsAfterRetirement,
-            expectedAnnualIncomeIncrease: incomeIncrease,
-            interestRate: interestRate,
-            incomeRequiredAfterRetirement: requiredIncome
+            goal: 'retirement',
+            data: {
+                expectedYearsAfterRetirement: yearsAfterRetirement,
+                expectedAnnualIncomeIncrease: incomeIncrease,
+                interestRate: interestRate,
+                incomeRequiredAfterRetirement: requiredIncome
+            }
         }
 
-        var carRequestConfig = {
+        var retirementRequestConfig = {
             method: "POST",
             url: "/customers/calculations",
             contentType: 'application/json',
@@ -78,10 +73,13 @@
         var downPayment = $('#house-down-payment').val();
 
         var houseData = {
-            price: price,
-            downPayment: downPayment,
-            months: loanTerm,
-            interestRate: interestRate
+            goal: 'newHouse',
+            data: {
+                price: price,
+                downPayment: downPayment,
+                months: loanTerm,
+                interestRate: interestRate
+            }
         }
 
         var houseRequestConfig = {
@@ -108,10 +106,13 @@
         var downPayment = $('#car-down-payment').val();
 
         var carData = {
-            price: price,
-            downPayment: downPayment,
-            months: loanTerm,
-            interestRate: interestRate
+            goal: 'newCar',
+            data: {
+                price: price,
+                downPayment: downPayment,
+                months: loanTerm,
+                interestRate: interestRate
+            }
         }
 
         var carRequestConfig = {
