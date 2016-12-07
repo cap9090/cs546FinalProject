@@ -71,7 +71,7 @@ exportedMethods = {
         products.push(arrayOfFinProdsForThisId[k]);
       }
     }
-    return Promise.resolve(products);
+    return Promise.resolve(new Set(products));
   }
 
 }
