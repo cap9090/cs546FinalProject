@@ -5,7 +5,7 @@ exportedMethods = {
     calculateProblem: (id, data) => {
         let problemsArray = [];
 
-        customerData.getCustomerByNodeUUID(id).then((customer) => {
+        return customerData.getCustomerByNodeUUID(id).then((customer) => {
             if (customer.profile.monthlyIncome <= 0)
                 problemsArray.push(100); // You have no income
             else {

@@ -89,7 +89,9 @@ router.put("/update", (req, res) => {
 router.post('/calculations', userAuthenticated, (req, res) => {
     let user = req.user;
     return calculation.getServicesForUser(user._id, req.body.goal, req.body.data).then((finProds) => {
-        res.render("pages/products", { products: finProds, user: user });
+        res.render("pages/products", { products: finProds, user: user }, (err, html) => {
+          res.send(html);
+        });
     }).catch((error) => {
         res.status(500).json(error);
     });

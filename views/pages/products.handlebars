@@ -1,12 +1,15 @@
 <div class='card card-block'>
-    <h2>Our Products</h2>
-    <ul>
-        {{#if products}} 
+    <h2>Our Products For You</h2>
+    {{#if products}}
+    <div id='product-list'>
+        <ul>
             {{#each products}}
             <p>{{name}}: {{URL}}</p>
             {{/each}}
-        {{else}}
-            <a href="/financialProducts">Check out all of our products!</a>
-        {{/if}}
-    </ul>
+        </ul>
+    </div>
+    {{else}}
+        <h3>You're all good with this goal!</h3>
+    {{/if}}
+    <a href="/financialProducts" id='no-product-message'>&lt&ltCheck out all of our products!</a>
 </div>
