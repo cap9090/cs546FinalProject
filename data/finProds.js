@@ -49,11 +49,13 @@ exportedMethods = {
   },
 
   getProductsByProblemId: (problemId) => {
-    if (isNaN(problemId)) {
+    if(isNaN(problemId)){
       throw "must provide a number";
     }
     return finProdCollection().then((finProds) => {
-      return finProds.find({ problemIds: problemId }).toArray();
+      return finProds.find({ problemIds: problemId}).toArray();
+    }).then((finProdArray) => {
+      return Promise.all(finProdArray);
     }).catch((error) => {
       return error;
     })
@@ -61,19 +63,27 @@ exportedMethods = {
   },
 
   //called by finanical modules to get a full list of all products that will solve the problems with the problem ids in the array
-  getProductsFromArrayOfProductIds: (problemIdArray) => {
-    let products = [];
-    let arrayOfFinProdsForThisId = [];
-    if (!problemIdArray)
-      return Promise.resolve(products);
-    for (let i = 0; i < problemIdArray.length; i++) {
-      arrayOfFinProdsForThisId = module.exports.getProductsByProblemId(problemIdArray[i]);
-      for (let k = 0; k < arrayOfFinProdsForThisId.length; k++) {
-        products.push(arrayOfFinProdsForThisId[k]);
-      }
-    }
-    return Promise.resolve(new Set(products));
+  getProductsFromArrayOfProblemIds: (problemIdArray) => {
+
+    let products = new Set();
+    let ready = Promise.resolve(null);
+
+    problemIdArray.forEach((problemId) => {
+      ready = ready.then(() => {
+        return problemId;
+      }).then((problemId) => {
+        return module.exports.getFinProductsFromProblemID(problemId).then((finProds) => {
+          return finProds.forEach((finProd) => {
+            products.add(finProd);
+          });
+        });
+      });
+    });
+
+    return products;
+
   }
+
 
 }
 
