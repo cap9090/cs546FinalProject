@@ -9,6 +9,7 @@ const newHouseCalculations = require('./newHouse');
 
 let exportedMethods = {
 	getServicesForUser: (id, goal, data) => {
+		console.log("here")
 		//data is for extra info that a user must input beyond there profile, take a look at newCar.js for an example
 		return currentCalculations.calculateProblem(id, data).then((problemsArray) => {
 			console.log("new car calculation")

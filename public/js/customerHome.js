@@ -146,7 +146,7 @@
     });
 
     var signupRemCheckBox = $("#update-remember-checkbox");
-    var idField = $('#nodeUUID');
+    //var idField = $('#nodeUUID');
     var updateUsername = $("#username");
     var updatePassword = $("#password");
     var updateFirstName = $("#firstName");
@@ -193,7 +193,7 @@
 
     $('#update-form').submit((event) => {
         event.preventDefault();
-        var id = idField.val();
+        //var id = idField.val();
         var password = updatePassword.val();
         var username = updateUsername.val();
         var firstName = updateFirstName.val();
@@ -235,7 +235,7 @@
         }
 
         var credentials = {
-            id: id,
+            //id: id,
             password: password,
             username: username,
             profile: {
@@ -290,7 +290,7 @@
         };
 
         $.ajax(requestConfig).then(function (responseMessage) {
-            console.log(responseMessage);
+            //console.log(responseMessage);
         });
 
         return false;

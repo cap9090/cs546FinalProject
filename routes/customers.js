@@ -78,7 +78,7 @@ router.post("/new", (req, res) => {
 
 router.put("/update", userAuthenticated, (req, res) => {
     let user = req.user;
-  let dateString = req.user.profile.DOB.toString();
+    let dateString = req.user.profile.DOB.toString();
     req.user.profile.DOB = {
         year: dateString.substring(0, 4),
         month: dateString.substring(5, 7),
@@ -97,8 +97,8 @@ router.put("/update", userAuthenticated, (req, res) => {
 router.post('/calculations', userAuthenticated, (req, res) => {
    
     let user = req.user;
-    //console.log(user);
-    //console.log(req.body);
+    console.log(user._id);
+    console.log(req.body.goal);
     return calculation.getServicesForUser(user._id, req.body.goal, req.body.data).then((finProds) => {
         res.render("pages/products", { products: finProds, user: user }, (err, html) => {
           res.send(html);
