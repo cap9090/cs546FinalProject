@@ -4,7 +4,7 @@
     <div id='product-list'>
         <ul>
             {{#each products}}
-            <p>{{name}}: {{URL}}</p>
+            <p>{{name}}: <a href="/financialProducts/{{_id}}"> {{URL}}</a></p>
             {{/each}}
         </ul>
     </div>

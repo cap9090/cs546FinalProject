@@ -71,7 +71,15 @@ dbConnection().then((db) => {
     problemIds: [
       432,
       123
-    ]
+    ],
+    description: "This is a description of our ETF tool",
+    contactInfo: {
+      name: "John Etf",
+      title: "Financial Advisor",
+      company: "Stevens Financial",
+      email: "John.Etf@stevensfinancial.com",
+      phone: "555-555-5555"
+    }
   });
 }).then(() => {
   return finProds.addFinProd({
@@ -80,7 +88,15 @@ dbConnection().then((db) => {
     problemIds: [
       123,
       829,
-    ]
+    ],
+    description: "This is a description of our Asset Allocation tool",
+    contactInfo: {
+      name: "Jane Assets",
+      title: "Financial Advisor",
+      company: "Stevens Financial",
+      email: "Jane.Assets@stevensfinancial.com",
+      phone: "555-555-5555"
+    }
   })
 }).then(() => {
   return finProds.addFinProd({
@@ -89,7 +105,15 @@ dbConnection().then((db) => {
     problemIds: [
       100,
       999
-    ]
+    ],
+    description: "This is a description of our Bankruptcy tool",
+    contactInfo: {
+      name: "Tom Bankruptcy",
+      title: "Financial Advisor",
+      company: "Stevens Financial",
+      email: "Tom.Bankruptcy@stevensfinancial.com",
+      phone: "555-555-5555"
+    }
   })
 }).then(() => {
   return finProds.addFinProd({
@@ -100,7 +124,15 @@ dbConnection().then((db) => {
       101,
       102,
       219
-    ]
+    ],
+    description: "This is a description of our Monthly Budgeting tool",
+    contactInfo: {
+      name: "Susie Budgets",
+      title: "Financial Advisor",
+      company: "Stevens Financial",
+      email: "Susie.Budgets@stevensfinancial.com",
+      phone: "555-555-5555"
+    }
   });
 }).then(() => {
   return customers.addCustomer({

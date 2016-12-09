@@ -10,7 +10,9 @@ exportedMethods = {
         _id: uuid.v4(),
         name: finProd.name,
         URL: finProd.URL,
-        problemIds: finProd.problemIds
+        problemIds: finProd.problemIds,
+        description: finProd.description,
+        contactInfo: finProd.contactInfo
       };
       return finProds.insertOne(newFinProd).then((insertedFinProd) => {
         if (!insertedFinProd) throw "product not found";
