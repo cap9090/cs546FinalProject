@@ -21,9 +21,9 @@ router.get("/", userAuthenticated, (req,res) => {
   });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", userAuthenticated, (req, res) => {
   return finProdData.getFinProdByNodeUUID(req.params.id).then((finProd) => {
-    res.render("pages/productDetails", {product: finProd});
+    res.render("pages/productDetails", {product: finProd, user: req.user});
   }).catch((error) => {
     res.status(500).json(error);
   })
