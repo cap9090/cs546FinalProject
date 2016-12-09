@@ -5,6 +5,7 @@ const xss = require('xss');
 const customerData = data.customers;
 const calculation = data.calculation;
 
+
 function userAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
@@ -75,8 +76,15 @@ router.post("/new", (req, res) => {
     })
 });
 
-router.put("/update", (req, res) => {
-    return customerData.updateCustomer(req.body.id, req.body).then((insertedId) => {
+router.put("/update", userAuthenticated, (req, res) => {
+    let user = req.user;
+  let dateString = req.user.profile.DOB.toString();
+    req.user.profile.DOB = {
+        year: dateString.substring(0, 4),
+        month: dateString.substring(5, 7),
+        day: dateString.substring(8, 10)
+    };
+    return customerData.updateCustomer(user._id, req.body).then((insertedId) => {
         return customerData.getCustomerByNodeUUID(insertedId).then((customer) => {
             res.status(200).json('success for' + customer._id);
         })
@@ -87,7 +95,10 @@ router.put("/update", (req, res) => {
 
 //   post extra data for calculations and call getServicesForUser(user, goal, data) as defined in finProdSelection Module
 router.post('/calculations', userAuthenticated, (req, res) => {
+   
     let user = req.user;
+    //console.log(user);
+    //console.log(req.body);
     return calculation.getServicesForUser(user._id, req.body.goal, req.body.data).then((finProds) => {
         res.render("pages/products", { products: finProds, user: user }, (err, html) => {
           res.send(html);
