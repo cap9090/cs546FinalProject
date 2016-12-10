@@ -102,3 +102,14 @@ input {
   padding-top: 20px;
   padding-bottom: 30px;
 }
+
+#contact-info p{
+  border-top: solid 1px #ddd;
+  text-align: center;
+  border-bottom: solid 1px #ddd;
+  padding: 10px;
+}
+
+#copyright p{
+  text-align: center;
+}
