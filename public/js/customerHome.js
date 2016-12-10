@@ -55,7 +55,9 @@
         };
 
         $.ajax(retirementRequestConfig).then(function (responseMessage) {
-            $('body').html(responseMessage);
+            //show only main part of html rendered
+            var body = responseMessage.split("<main")[1].split(">").slice(1).join(">").split("</main>")[0];
+            $('.goalresult').html(body);
         });
     });
 
@@ -88,7 +90,8 @@
         };
 
         $.ajax(houseRequestConfig).then(function (responseMessage) {
-            $('body').html(responseMessage);
+            var body = responseMessage.split("<main")[1].split(">").slice(1).join(">").split("</main>")[0];
+            $('.goalresult').html(body);
         });
     });
 
@@ -121,8 +124,8 @@
         };
 
         $.ajax(carRequestConfig).then(function (responseMessage) {
-            console.log(responseMessage)
-            $('body').html(responseMessage);
+            var body = responseMessage.split("<main")[1].split(">").slice(1).join(">").split("</main>")[0];
+            $('.goalresult').html(body);
         });
     });
 
