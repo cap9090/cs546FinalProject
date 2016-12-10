@@ -2,7 +2,7 @@
 <div class="login-signup">
     <div class="face login">
         <form id="login-form" class="login-form" action="/login" method="post">
-            <h2 class = "form-signin-heading"> Login</h2>
+            <h1 class = "form-signin-heading"> Login</h1>
             <label for="loginEmail" class="sr-only"> Email Address</label>
             <input type="email" name="username" id="loginEmail" class="form-control" placeholder="email address" required>
             <label for="loginPassword" class="sr-only"> Password</label>
@@ -23,10 +23,10 @@
     </div>
     <div class="face signup">
         <form id="signup-form" class="login-form">
-            <h2 class = "form-signup-heading"> Sign Up</h2>
+            <h1 class = "form-signup-heading"> Sign Up</h1>
 
             <label for="username" class="sr-only">Username</label>
-            <input type="email" id="username" class="form-control" placeholder="Username" required>
+            <input type="email" id="username" class="form-control" placeholder="Email" required>
 
             <label for="password" class="sr-only"> Password</label>
             <input type="password" id="password" class="form-control" placeholder="Password" required>
@@ -40,13 +40,13 @@
             <label for="lastName" class="sr-only">lastName</label>
             <input type="text" id="lastName" class="form-control" placeholder="Last Name" required >
 
-            <label for="year" class="sr-only">DOB</label>
+            <label for="dateofbirth" class="sr-only">DOB</label>
             <div class="input-group">
-	            	<input type="number" id="year" class="form-control"  placeholder="YYYY" required >
+	            	<input type="number" id="dateofbirth" min="1900" max="2016"class="form-control"  placeholder="YYYY" required >
 					<span class="input-group-addon">-</span>
-					<input type="number" id="month" class="form-control" placeholder="MM" required >
+					<input type="number" id="dateofbirth" min="1" max="12" class="form-control" placeholder="MM" required >
 					<span class="input-group-addon">-</span>
-					<input type="number" id="day" class="form-control" placeholder="DD" required >
+					<input type="number" id="dateofbirth" min="1" max="31" class="form-control" placeholder="DD" required >
 			</div>
 
             <label for="noDependents" class="sr-only">noDependents</label>
