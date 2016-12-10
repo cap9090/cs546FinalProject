@@ -17,7 +17,7 @@
         $('#myNavbar ul li.products').siblings().removeClass('active');
     }
     //show product details card for specifc tool
-    $('.toggleDetails').on('click', function () {
+    $('main').on('click','.toggleDetails', function () {
         $("#detail" + this.id).removeClass('hidden');
     });
     //hide product details card for specific tool

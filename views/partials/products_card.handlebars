@@ -1,7 +1,11 @@
 <div id='products' class='card card-block'>
-    <h2>Our Products</h2>
+    <h2>Our Products
+    {{#if goal }}
+    For Your Goal: {{goal}}
+    {{/if}}
+    </h2>
     {{#if products}}
-    <div id='product-list'>
+    <div id='product-list' class="productList">
         <ul>
             {{#each products}}
             <p><a id="{{this._id}}" href="#detail{{this._id}}" class="toggleDetails">{{this.name}}</a></p>
