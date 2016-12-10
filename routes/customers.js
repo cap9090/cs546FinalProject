@@ -95,10 +95,7 @@ router.put("/update", userAuthenticated, (req, res) => {
 
 //   post extra data for calculations and call getServicesForUser(user, goal, data) as defined in finProdSelection Module
 router.post('/calculations', userAuthenticated, (req, res) => {
-   
     let user = req.user;
-    console.log(user._id);
-    console.log(req.body.goal);
     return calculation.getServicesForUser(user._id, req.body.goal, req.body.data).then((finProds) => {
         res.render("pages/products", { products: finProds, user: user }, (err, html) => {
           res.send(html);

@@ -56,7 +56,7 @@ exportedMethods = {
 	calculateProblem: (id, data) => {
 		let problemsArray = [];
 
-		customerData.getCustomerByNodeUUID(id).then((customer) => {
+		return customerData.getCustomerByNodeUUID(id).then((customer) => {
 			let newCarMonthlyPayment = calculateMonthlyPayment(data);
 			let monthlyIncome = customer.profile.monthlyIncome;
 			let newMonthlyCosts = customer.profile.monthlyCosts.total + newCarMonthlyPayment;
@@ -67,9 +67,9 @@ exportedMethods = {
 				problemsArray.push(101); // Your monthly expense is too high
 			else if (newSavingsRateOfIncome < customer.profile.savingsRateOfIncome)
 				problemsArray.push(102); // You're not saving enough money
-
-			return problemsArray;
+			return Promise.resolve(problemsArray);
 		});
+		
 	}
 }
 module.exports = exportedMethods;

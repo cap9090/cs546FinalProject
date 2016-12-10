@@ -9,24 +9,30 @@ const newHouseCalculations = require('./newHouse');
 
 let exportedMethods = {
 	getServicesForUser: (id, goal, data) => {
-		console.log("here")
 		//data is for extra info that a user must input beyond there profile, take a look at newCar.js for an example
-		return currentCalculations.calculateProblem(id, data).then((problemsArray) => {
-			console.log("new car calculation")
-			if (!problemsArray) {
+		return currentCalculations.calculateProblem(id, data).then((currentProblemsArray) => {
+			if (currentProblemsArray.length === 0) {
 				switch (goal) {
 					case 'retirement':
-						problemsArray = retirementCalculations.calculateRetirement(id, data);
+						retirementCalculations.calculateProblem(id, data).then( (retirementProblemsArray) => {
+							return finProdData.getProductsFromArrayOfProblemIds(retirementProblemsArray);
+						});
 						break;
 					case 'newCar':
-						problemsArray = newCarCalculations.calculateProblem(id, data);
+						newCarCalculations.calculateProblem(id, data).then( (carProblemsArray) => {
+							return finProdData.getProductsFromArrayOfProblemIds(carProblemsArray);
+						});
 						break;
 					case 'newHouse':
-						problemsArray = newHouseCalculations.calculateProblem(id, data);
+						newHouseCalculations.calculateProblem(id, data).slice(0).then( (houseProblemsArray) => {
+							return finProdData.getProductsFromArrayOfProblemIds(houseProblemsArray);
+							});
 						break;
 				}
 			}
-			return finProdData.getProductsFromArrayOfProductIds(problemsArray);
+			else {
+				return finProdData.getProductsFromArrayOfProblemIds(currentProblemsArray);
+			}
 		})
 	}
 }

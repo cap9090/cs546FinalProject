@@ -69,7 +69,7 @@ exportedMethods = {
 			else if (newSavingsRateOfIncome < customer.profile.savingsRateOfIncome)
 				problemsArray.push(102); // You're not saving enough money
 
-			return problemsArray;
+			return Promise.resolve(problemsArray);
 		});
 	}
 }
