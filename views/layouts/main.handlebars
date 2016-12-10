@@ -10,8 +10,8 @@
     <link rel="shortcut icon" href="https://turbotax.intuit.com/handlebars/taxtools/calc-dependent/images/support-img.d00b7297.png">
 </head>
 
-<body>
-    <nav class="navbar navbar-inverse">
+<body data-spy="scroll" data-target=".navbar" data-offset="60">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -23,11 +23,11 @@
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="home active"><a href="/customers/home">Home</a></li>
+                    <li class="home active"><a href="#homecard">Home</a></li>
                     {{#if user }}
+                    <li class='products'><a href="#products">Our Products</a></li>
                     <li class='profile'><a href="#profile">My Profile</a></li>
                     <li class='goals'><a href="#goals">Goals</a></li>
-                    <li class='products'><a href="#products">Our Products</a></li>
                     {{/if}}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
