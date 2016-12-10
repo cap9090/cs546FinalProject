@@ -20,8 +20,11 @@ input {
   position: relative;
   margin: 80px auto 40px;
   perspective: 800px;
-
 }
+.flip a {
+  color: #004570;
+}
+
 .login-signup { 
   width: 100%;
   height: 100%;
@@ -117,4 +120,8 @@ input {
 
 #copyright p{
   text-align: center;
+}
+
+.input-group {
+  margin-bottom: 10px;
 }

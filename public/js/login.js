@@ -48,47 +48,6 @@
     var signupCreditCardDebt =$("#creditCardDebt");
     var signupOtherDebt = $("#otherDebt");
 
-
-
-/*authenticate user login*/
-/*
-    loginButton.on("click", () => {
-        var emailValue = loginEmailField.val();
-        var passValue = loginPassField.val();
-        var rememberMe = false;
-
-        if (loginRemCheckBox.is(':checked')) {
-            rememberMe = true;
-        }
-
-        var credentials = {
-            username: emailValue,
-            password: passValue
-        };
-
-        if (emailValue && passValue) {
-            var requestConfig = {
-                method: "POST",
-                url: "/auth/",
-                contentType: 'application/json',
-                data: JSON.stringify(credentials)
-            };
-
-            $.ajax(requestConfig).then(function (responseMessage) {
-                //logged in successfully
-                window.location.assign("/customers/home" + responseMessage.message);
-            },function () {
-               // alert("Sorry, we don't recognize those credentials. Please check them and try again!");
-                //login failed, prompt user to check credentials and retry
-                $("#errorModal").modal();
-                $('.login-error').removeClass('hidden');
-            });
-
-        }
-
-        return false;
-    });
-*/
 /*create new user*/
     if(localStorage["username"]){
         loginEmailField.val(JSON.parse(localStorage["username"]));
@@ -220,9 +179,10 @@
         $('.flip').find('.login-signup').addClass('flipped');
         return false;
     });
-/*Flip back to login card*/
+/*Flip back to login card and scroll to top*/
     $('.back-to-login').click(function(){
         $('.flip').find('.login-signup').removeClass('flipped');
+        $("html, body").animate( {scrollTop:0}, 600);
         return false;
     });
 
