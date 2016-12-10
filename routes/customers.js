@@ -68,7 +68,8 @@ router.post("/new", (req, res) => {
             res.send({ redirect: 'http://localhost:3000/customers/home' });
         })
     }).catch((error) => {
-        res.status(500).json(error);
+        //res.status(500).json(error);
+        res.send({error: "Sorry, that username is taken"});
     })
 });
 

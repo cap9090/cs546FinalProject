@@ -157,6 +157,12 @@
             };
 
             $.ajax(requestConfig).then(function (responseMessage) {
+                if(responseMessage.error) {
+                    $("#signuperrortext").html(responseMessage.error);
+                    $("#signuperror").removeClass('hidden');
+                    
+                }
+                else {
                  var loginRequest = {
                         method: "POST",
                         url: "/login",
@@ -166,6 +172,7 @@
                     $.ajax(loginRequest).then(function (response) {
                         window.location.assign("/customers/home");
                     });
+                }
             });
         }
 
