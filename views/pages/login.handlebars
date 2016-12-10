@@ -40,13 +40,15 @@
             <label for="lastName" class="sr-only">lastName</label>
             <input type="text" id="lastName" class="form-control" placeholder="Last Name" required >
 
-            <label for="dateofbirth" class="sr-only">DOB</label>
             <div class="input-group">
-	            	<input type="number" id="dateofbirth" min="1900" max="2016"class="form-control"  placeholder="YYYY" required >
+                    <label for="year" class="sr-only">DOB Year</label>
+	            	<input type="number" id="year" min="1900" max="2016"class="form-control"  placeholder="YYYY" required >
 					<span class="input-group-addon">-</span>
-					<input type="number" id="dateofbirth" min="1" max="12" class="form-control" placeholder="MM" required >
+                    <label for="month" class="sr-only">DOB Month</label>
+					<input type="number" id="month" min="1" max="12" class="form-control" placeholder="MM" required >
 					<span class="input-group-addon">-</span>
-					<input type="number" id="dateofbirth" min="1" max="31" class="form-control" placeholder="DD" required >
+                    <label for="day" class="sr-only">DOB Day</label>
+					<input type="number" id="day" min="1" max="31" class="form-control" placeholder="DD" required >
 			</div>
 
             <label for="noDependents" class="sr-only">noDependents</label>

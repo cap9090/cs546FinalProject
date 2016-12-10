@@ -24,7 +24,6 @@
     var signupYear = $("#year");
     var signupMonth = $("#month");
     var signupDay = $("#day");
-    //var signupDOB = $("#DOB");
     var signupNoDependents = $("#noDependents");
     var signupZipCode = $("#zipCode");
     var signupMonthlyIncome = $("#monthlyIncome");
@@ -78,7 +77,6 @@
         var dobMonth = signupMonth.val();
         var dobDay = signupDay.val();
         var DOB = dobYear + "-" + dobMonth + "-" + dobDay;
-        //var  DOB = signupDOB.val();
         var noDependents = signupNoDependents.val();
         var zipCode = signupZipCode.val();
         var monthlyIncome = signupMonthlyIncome.val();
