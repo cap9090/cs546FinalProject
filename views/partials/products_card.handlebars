@@ -1,0 +1,14 @@
+<div id='products' class='card card-block'>
+    <h2>Our Products For You</h2>
+    {{#if products}}
+    <div id='product-list'>
+        <ul>
+            {{#each products}}
+            <p><a href="/financialProducts/{{this._id}}"> {{this.name}}</a></p>
+            {{/each}}
+        </ul>
+    </div>
+    {{else}}
+        <h3>You're all good with this goal!</h3>
+    {{/if}}
+</div>
