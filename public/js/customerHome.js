@@ -16,19 +16,15 @@
         $('#myNavbar ul li.products').addClass('active');
         $('#myNavbar ul li.products').siblings().removeClass('active');
     }
-
-
-/*
-    $('#show-goal-form-button').click(() => {
-
-        $('#update-success').addClass('hidden');
-        $('#goal-form').removeClass('hidden');
-        $('#show-goal-form-button').addClass('hidden');
-        $('#update-form').addClass('hidden');
-        $('#show-update-form-button').removeClass('hidden');
-
-    })
-    */
+    //show product details card for specifc tool
+    $('.toggleDetails').on('click', function () {
+        $("#detail" + this.id).removeClass('hidden');
+    });
+    //hide product details card for specific tool
+    $('.no-product-message').on('click', function () {
+        var detailId = $(this).closest('div').attr('id'); 
+        $("#" + detailId).addClass('hidden');
+    });
 
     //******GOAL: RETIREMENT**********************************************
     var retirementForm = $('#retirement-form');
@@ -140,13 +136,6 @@
 
 
     //*****UPDATE INFO**********************************************
-    $('#show-update-form-button').click(() => {
-        $('#update-success').addClass('hidden');
-        $('#update-form').removeClass('hidden');
-        $('#show-update-form-button').addClass('hidden');
-        $('#goal-form').addClass('hidden');
-        $('#show-goal-form-button').removeClass('hidden');
-    });
 
     var signupRemCheckBox = $("#update-remember-checkbox");
     //var idField = $('#nodeUUID');

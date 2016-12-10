@@ -1,11 +1,15 @@
-<div class='card card-block hidden'>
-    <h2>{{product.name}}</h2>
-    <h3>{{product.description}}</h3>
+{{#each products}}
+<div id="detail{{this._id}}" class='card card-block hidden'>
+
+    <h2>{{this.name}}</h2>
+    <h3>{{this.description}}</h3>
     <h4>For more info contact:</h4>
-    <p>{{product.contactInfo.name}}<br>
-    {{product.contactInfo.title}}<br>
-    {{product.contactInfo.company}}<br>
-    {{product.contactInfo.email}}<br>
-    {{product.contactInfo.phone}}<br></p>
-    <a href="/financialProducts" id='no-product-message'>&lt&ltCheck out all of our products!</a>
+    <p>{{this.contactInfo.name}}
+        <br> {{this.contactInfo.title}}
+        <br> {{this.contactInfo.company}}
+        <br> {{this.contactInfo.email}}
+        <br> {{this.contactInfo.phone}}
+        <br></p>
+    <a href="#products" class='no-product-message'>&lt&lt Hide!</a>
 </div>
+{{/each}}

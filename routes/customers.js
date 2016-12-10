@@ -4,6 +4,7 @@ const data = require("../data");
 const xss = require('xss');
 const customerData = data.customers;
 const calculation = data.calculation;
+const finProdData = data.finProds;
 
 
 function userAuthenticated(req, res, next) {
@@ -14,16 +15,6 @@ function userAuthenticated(req, res, next) {
     res.redirect('/');
 }
 
-/*
-//Do we want to allow for customers to see list of other customers? I would think no
-router.get("/", (req,res) => {
-  return customerData.getAllCustomers().then((customers) => {
-     return res.status(200).json(customers);
-  }).catch((error)=> {
-     return res.status(500).json(error);
-  });
-});
-*/
 router.get("/", (req, res) => {
     res.render("/signup", {});
 });
@@ -41,7 +32,12 @@ router.get("/home", userAuthenticated, (req, res) => {
         month: dateString.substring(5, 7),
         day: dateString.substring(8, 10)
     };
-    res.render("pages/customerHome", { user: req.user });
+    return finProdData.getAllFinProds().then((finProds) => {
+        res.render("pages/customerHome", {products:finProds, user: req.user });
+    }).catch((error)=> {
+        res.status(500).json(error);
+    });
+    
 });
 
 router.get('/profile', userAuthenticated, (req, res) => {
@@ -106,19 +102,3 @@ router.post('/calculations', userAuthenticated, (req, res) => {
 });
 
 module.exports = router;
-
-
-
-
-
-
-
-/*
-router.get("/:id", (req, res) => {
-  return customerData.getCustomerByNodeUUID(req.params.id).then((customer) => {
-    res.status(200).json(customer)
-  }).catch((error) => {
-    res.status(500).json(error);
-  })
-});
-*/
