@@ -18,7 +18,7 @@
     }
 
 
-
+/*
     $('#show-goal-form-button').click(() => {
 
         $('#update-success').addClass('hidden');
@@ -28,6 +28,7 @@
         $('#show-update-form-button').removeClass('hidden');
 
     })
+    */
 
     //******GOAL: RETIREMENT**********************************************
     var retirementForm = $('#retirement-form');

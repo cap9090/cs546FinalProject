@@ -1,7 +1,12 @@
 <div class='card card-block'>
 	<h1>Welcome {{ user.profile.firstName }}!</h1>
 	<h2>What would you like to do?</h2>
-
+	<div class='action-button'>
+		<a href="/customers/profile" id='show-goal-form-button' type='button' class='btn btn-goal btn-primary'>Update my financial information</a>
+	</div>
+	<div class='action-button'>
+		<a href="/customers/goals" id='show-update-form-button' type='button' class='btn btn-update btn-primary'>Enter a financial goal</a>
+	</div>
 	
 
 
