@@ -64,13 +64,12 @@ exportedMethods = {
 
   //called by finanical modules to get a full list of all products that will solve the problems with the problem ids in the array
   getProductsFromArrayOfProblemIds: (problemIdArray) => {
-    let products = new Set();
-    console.log(problemIdArray)
+    let products = []
     return Promise.all(problemIdArray.map((problemId) => {
       return module.exports.getProductsByProblemId(problemId).then((finProdsArray) => {
         return Promise.all(finProdsArray.map(finProd => {
-          products.add(finProd);
-          //return Promise.resolve();
+          products.push(finProd);
+          return Promise.resolve();
        }));
       });
     })).then(() => {
@@ -79,5 +78,9 @@ exportedMethods = {
   }
 
 }
+
+
+
+
 
 module.exports = exportedMethods;

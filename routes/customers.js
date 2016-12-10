@@ -108,6 +108,11 @@ router.post('/calculations', userAuthenticated, (req, res) => {
 module.exports = router;
 
 
+
+
+
+
+
 /*
 router.get("/:id", (req, res) => {
   return customerData.getCustomerByNodeUUID(req.params.id).then((customer) => {

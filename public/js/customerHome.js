@@ -57,7 +57,7 @@
         };
 
         $.ajax(retirementRequestConfig).then(function (responseMessage) {
-            $('main').html(responseMessage);
+            $('body').html(responseMessage);
         });
     });
 
@@ -90,7 +90,7 @@
         };
 
         $.ajax(houseRequestConfig).then(function (responseMessage) {
-            $('main').html(responseMessage);
+            $('body').html(responseMessage);
         });
     });
 
@@ -123,7 +123,8 @@
         };
 
         $.ajax(carRequestConfig).then(function (responseMessage) {
-            $('main').html(responseMessage);
+            console.log(responseMessage)
+            $('body').html(responseMessage);
         });
     });
 
