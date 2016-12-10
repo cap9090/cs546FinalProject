@@ -19,7 +19,7 @@ exportedMethods = {
         if (data.interestRate < 0 || data.expectedYearsAfterRetirement <= 0 || data.incomeRequiredAfterRetirement <= 0)
             throw "meaningless data";
 
-        customerData.getCustomerByNodeUUID(id).then((customer) => {
+        return customerData.getCustomerByNodeUUID(id).then((customer) => {
             let problemsArray = [];
 
             if (customer.profile.age >= customer.profile.desiredRetirementAge) {
@@ -54,7 +54,7 @@ exportedMethods = {
                 problemsArray.push(181); // You're too young to 
                 problemsArray.push(212); // Your monthly saving rate is too low
             }
-            return problemsArray;
+            return Promise.resolve(problemsArray);
         });
     }
 }

@@ -24,7 +24,7 @@ let exportedMethods = {
 						});
 						break;
 					case 'newHouse':
-						newHouseCalculations.calculateProblem(id, data).slice(0).then( (houseProblemsArray) => {
+						newHouseCalculations.calculateProblem(id, data).then( (houseProblemsArray) => {
 							return finProdData.getProductsFromArrayOfProblemIds(houseProblemsArray);
 							});
 						break;

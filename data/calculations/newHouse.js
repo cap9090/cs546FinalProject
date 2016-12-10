@@ -57,7 +57,7 @@ exportedMethods = {
 	calculateProblem: (id, data) => {
 		let problemsArray = [];
 
-		customerData.getCustomerByNodeUUID(id).then((customer) => {
+		return customerData.getCustomerByNodeUUID(id).then((customer) => {
 			let newHouseMonthlyPayment = calculateMonthlyPayment(data);
 			let monthlyIncome = customer.profile.monthlyIncome;
 			let newMonthlyCosts = customer.profile.monthlyCosts.total + newHouseMonthlyPayment;
