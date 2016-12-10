@@ -12,10 +12,11 @@
         $('#myNavbar ul li.goals').addClass('active');
         $('#myNavbar ul li.goals').siblings().removeClass('active');
     }
-    if (window.location.href.includes('/products')) {
+    if (window.location.href.includes('/financialProducts')) {
         $('#myNavbar ul li.products').addClass('active');
         $('#myNavbar ul li.products').siblings().removeClass('active');
     }
+
 
 
     $('#show-goal-form-button').click(() => {
