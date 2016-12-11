@@ -7,43 +7,42 @@
 				<div id="profilecollapse" class="collapse">
 					<fieldset class="col-sm-4">
 						<label for="username" class="">Username</label>
-						<input type="email" id="username" class="form-control" value="{{ user.username}}" required autofocus>
+						<input type="email" id="username" class="form-control" value="{{ user.username }}" required>
 
 						<label for="password" class=""> Password</label>
-						<input type="password" id="password" class="form-control" placeholder="type new password" required>
+						<input type="password" id="password" class="form-control" placeholder="type new password">
 					</fieldset>
 					<fieldset class="col-sm-4">
 						<label for="firstName" class="">firstName</label>
-						<input type="text" id="firstName" class="form-control" value="{{ user.profile.firstName }}" required autofocus>
+						<input type="text" id="firstName" class="form-control" value="{{ user.profile.firstName }}" required>
 
 						<label for="middleInit" class="">Middle Init</label>
-						<input type="text" id="middleInit" class="form-control" value="{{ user.profile.middleInit}}" required autofocus>
+						<input type="text" id="middleInit" class="form-control" value="{{ user.profile.middleInit }}">
 
 						<label for="lastName" class="">lastName</label>
-						<input type="text" id="lastName" class="form-control" value="{{ user.profile.lastName }}" required autofocus>
+						<input type="text" id="lastName" class="form-control" value="{{ user.profile.lastName }}" required>
 
-						<label for="DOB" class="">DOB (Please use YYYY-MM-DD format)</label>
+						<label for="year" class="">DOB (Please use YYYY-MM-DD format)</label>
 						<div class="input-group">
-							<input type="number" id="DOB" class="form-control" placeholder="YYYY" value="{{ user.profile.DOB.year }}" required autofocus>
+							<input type="number" id="year" class="form-control" placeholder="YYYY" value="{{ user.profile.DOB.year }}" required>
 							<span class="input-group-addon">-</span>
-							<input type="number" id="DOB" class="form-control" placeholder="MM" value="{{ user.profile.DOB.month }}" required autofocus>
+							<input type="number" id="month" class="form-control" placeholder="MM" value="{{ user.profile.DOB.month }}" required>
 							<span class="input-group-addon">-</span>
-							<input type="number" id="DOB" class="form-control" placeholder="DD" value="{{ user.profile.DOB.day }}" required autofocus>
+							<input type="number" id="day" class="form-control" placeholder="DD" value="{{ user.profile.DOB.day }}" required>
 						</div>
 					</fieldset>
 					<fieldset class="col-sm-4">
 						<label for="noDependents" class="">noDependents</label>
-						<input type="number" id="noDependents" class="form-control" value="{{ user.profile.noDependents }}" required autofocus>
+						<input type="number" id="noDependents" class="form-control" value="{{ user.profile.noDependents }}" required>
 
 						<label for="zipCode" class="">zipCode</label>
-						<input type="text" id="zipCode" class="form-control" value="{{ user.profile.zipCode }}" required autofocus>
+						<input type="text" id="zipCode" class="form-control" value="{{ user.profile.zipCode }}" required>
 
 						<label for="monthlyIncome" class="">monthlyIncome</label>
-						<input type="number" id="monthlyIncome" class="form-control" value="{{ user.profile.monthlyIncome}}" required autofocus>
+						<input type="number" id="monthlyIncome" class="form-control" value="{{ user.profile.monthlyIncome }}" required>
 
 						<label for="desiredRetirementAge" class="">desiredRetirementAge</label>
-						<input type="number" id="desiredRetirementAge" class="form-control" value="{{ user.profile.desiredRetirementAge }}" required
-							autofocus>
+						<input type="number" id="desiredRetirementAge" class="form-control" value="{{ user.profile.desiredRetirementAge }}" required>
 					</fieldset>
 				</div>
 			</div>
@@ -52,31 +51,29 @@
 				<div id="assetscollapse" class="collapse">
 					<fieldset class="col-sm-4">
 						<label for="stocks" class="">stocks</label>
-						<input type="number" id="stocks" class="form-control" value="{{ user.profile.assets.stocks }}" required autofocus>
+						<input type="number" id="stocks" class="form-control" value="{{ user.profile.assets.stocks }}" required>
 
 						<label for="bonds" class="">bonds</label>
-						<input type="number" id="bonds" class="form-control" value="{{ user.profile.assets.bonds}}" required autofocus>
+						<input type="number" id="bonds" class="form-control" value="{{ user.profile.assets.bonds }}" required>
 
 						<label for="cash" class="">cash</label>
-						<input type="number" id="cash" class="form-control" value="{{ user.profile.assets.cash }}" required autofocus>
+						<input type="number" id="cash" class="form-control" value="{{ user.profile.assets.cash }}" required>
 
 						<label for="retirementAccounts" class="">retirementAccounts</label>
-						<input type="number" id="retirementAccounts" class="form-control" value="{{ user.profile.assets.retirementAccounts }}" required
-							autofocus>
+						<input type="number" id="retirementAccounts" class="form-control" value="{{ user.profile.assets.retirementAccounts }}" required>
 					</fieldset>
 					<fieldset class="col-sm-4">
 						<label for="annuities" class="">annuities</label>
-						<input type="number" id="annuities" class="form-control" value="{{ user.profile.assets.annuities }}" required autofocus>
+						<input type="number" id="annuities" class="form-control" value="{{ user.profile.assets.annuities }}" required>
 
 						<label for="property" class="">property</label>
-						<input type="number" id="property" class="form-control" value="{{ user.profile.assets.property}}" required autofocus>
+						<input type="number" id="property" class="form-control" value="{{ user.profile.assets.property }}" required>
 
 						<label for="other" class="">other</label>
-						<input type="number" id="other" class="form-control" value="{{ user.profile.assets.other }}" required autofocus>
+						<input type="number" id="other" class="form-control" value="{{ user.profile.assets.other }}" required>
 
 						<label for="savingsRateOfIncome" class="">savingsRateOfIncome</label>
-						<input type="number" id="savingsRateOfIncome" class="form-control" value="{{ user.profile.savingsRateOfIncome}}" required
-							autofocus>
+						<input type="number" id="savingsRateOfIncome" class="form-control" value="{{ user.profile.savingsRateOfIncome }}" required>
 					</fieldset>
 				</div>
 			</div>
@@ -85,21 +82,19 @@
 				<div id="monthlycollapse" class="collapse">
 					<fieldset class="col-sm-4">
 						<label for="car" class="">car</label>
-						<input type="car" id="car" class="form-control" value="{{ user.profile.monthlyCosts.car }}" required autofocus>
+						<input type="car" id="car" class="form-control" value="{{ user.profile.monthlyCosts.car }}" required>
 
 						<label for="rentOrMortgage" class="">rentOrMortgage</label>
-						<input type="number" id="rentOrMortgage" class="form-control" value="{{ user.profile.monthlyCosts.rentOrMortgage }}" required
-							autofocus>
+						<input type="number" id="rentOrMortgage" class="form-control" value="{{ user.profile.monthlyCosts.rentOrMortgage }}" required>
 
 						<label for="groceries" class="">groceries</label>
-						<input type="number" id="groceries" class="form-control" value="{{ user.profile.monthlyCosts.groceries }}" required autofocus>
+						<input type="number" id="groceries" class="form-control" value="{{ user.profile.monthlyCosts.groceries }}" required>
 
 						<label for="bills" class="">bills</label>
-						<input type="number" id="bills" class="form-control" value="{{ user.profile.monthlyCosts.bills}}" required autofocus>
+						<input type="number" id="bills" class="form-control" value="{{ user.profile.monthlyCosts.bills }}" required>
 
 						<label for="otherExpenses" class="">otherExpenses</label>
-						<input type="number" id="otherExpenses" class="form-control" value="{{ user.profile.monthlyCosts.otherExpenses }}" required
-							autofocus>
+						<input type="number" id="otherExpenses" class="form-control" value="{{ user.profile.monthlyCosts.otherExpenses }}" required>
 					</fieldset>
 				</div>
 			</div>
@@ -108,21 +103,19 @@
 				<div id="liabilitiescollapse" class="collapse">
 					<fieldset class="col-sm-4">
 						<label for="mortgage" class="">mortgage</label>
-						<input type="number" id="mortgage" class="form-control" value="{{ user.profile.liability.mortgage }}" required autofocus>
+						<input type="number" id="mortgage" class="form-control" value="{{ user.profile.liability.mortgage }}" required>
 
 						<label for="homeEquityLoans" class="">homeEquityLoans</label>
-						<input type="number" id="homeEquityLoans" class="form-control" value="{{ user.profile.liability.homeEquityLoans}}" required
-							autofocus>
+						<input type="number" id="homeEquityLoans" class="form-control" value="{{ user.profile.liability.homeEquityLoans }}" required>
 
 						<label for="studentLoans" class="">studentLoans</label>
-						<input type="number" id="studentLoans" class="form-control" value="{{ user.profile.liability.studentLoans}}" required autofocus>
+						<input type="number" id="studentLoans" class="form-control" value="{{ user.profile.liability.studentLoans }}" required>
 
 						<label for="creditCardDebt" class="">creditCardDebt</label>
-						<input type="number" id="creditCardDebt" class="form-control" value="{{ user.profile.liability.creditCardDebt }}" required
-							autofocus>
+						<input type="number" id="creditCardDebt" class="form-control" value="{{ user.profile.liability.creditCardDebt }}" required>
 
 						<label for="otherDebt" class="">otherDebt</label>
-						<input type="number" id="otherDebt" class="form-control" value="{{ user.profile.liability.otherDebt }}" required autofocus>
+						<input type="number" id="otherDebt" class="form-control" value="{{ user.profile.liability.otherDebt }}" required>
 					</fieldset>
 				</div>
 			</div>

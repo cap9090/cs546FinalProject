@@ -31,7 +31,6 @@
 
     retirementForm.submit((event) => {
         event.preventDefault();
-        console.log('here')
         var yearsAfterRetirement = $('#years-after-retirement').val();
         var incomeIncrease = $('#income-increase').val();
         var interestRate = $('#interest-rate').val();
@@ -56,8 +55,7 @@
 
         $.ajax(retirementRequestConfig).then(function (responseMessage) {
             //show only main part of html rendered
-            var body = responseMessage.split("<main")[1].split(">").slice(1).join(">").split("</main>")[0];
-            $('.goalresult').html(body);
+            $('.goal-result').html(responseMessage);
         });
     });
 
@@ -90,8 +88,7 @@
         };
 
         $.ajax(houseRequestConfig).then(function (responseMessage) {
-            var body = responseMessage.split("<main")[1].split(">").slice(1).join(">").split("</main>")[0];
-            $('.goalresult').html(body);
+            $('.goal-result').html(responseMessage);
         });
     });
 
@@ -124,17 +121,9 @@
         };
 
         $.ajax(carRequestConfig).then(function (responseMessage) {
-            var body = responseMessage.split("<main")[1].split(">").slice(1).join(">").split("</main>")[0];
-            $('.goalresult').html(body);
+            $('.goal-result').html(responseMessage);
         });
     });
-
-
-
-
-
-
-
 
 
 

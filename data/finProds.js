@@ -60,32 +60,8 @@ exportedMethods = {
       return error;
     })
 
-  },
-
-  //called by finanical modules to get a full list of all products that will solve the problems with the problem ids in the array
-  getProductsFromArrayOfProblemIds: (problemIdArray) => {
-    let productsUUID = new Set();
-    let products = [];
-    return Promise.all(problemIdArray.map((problemId) => {
-      return exportedMethods.getProductsByProblemId(problemId).then((finProdsArray) => {
-        return Promise.all(finProdsArray.map(finProd => {
-          if (!productsUUID.has(finProd._id)) {
-            productsUUID.add(finProd._id);
-            products.push(finProd);
-          }
-          return Promise.resolve();
-       }));
-      });
-    })).then(() => {
-      return new Set(products);
-    });
   }
 
 }
-
-
-exportedMethods.getProductsFromArrayOfProblemIds([100,101]).then((result) => {
-  console.log(result);
-});
 
 module.exports = exportedMethods;
