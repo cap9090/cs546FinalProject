@@ -16,7 +16,7 @@ function userAuthenticated(req, res, next) {
 }
 
 router.get("/", (req, res) => {
-    res.render("/signup", {});
+    res.redirect("/customers/home");
 });
 
 //redirect new customer from signup page to form for customer data entry
