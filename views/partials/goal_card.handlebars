@@ -20,7 +20,8 @@
 						<p>We need more details about this.</p><br>
 						<form id="retirement-form" class='goal retirement'>
 							<label for='years-after-retirement'>How many years do you expect after your retirement?</label>
-							<input id='years-after-retirement' type='number' class='form-control' name='years-after-retirement' placeholder='Enter amount' required/>
+							<input id='years-after-retirement' type='number' class='form-control' name='years-after-retirement' placeholder='Enter amount'
+								required/>
 
 							<label for='income-increase'>How much do you expect your income will increase annually? (%)</label>
 							<input id='income-increase' type='number' class='form-control' name='income-increase' placeholder='Enter amount' required/>
@@ -69,7 +70,13 @@
 							<label for='car-down-payment'>How much do you expect your down payment to be?</label>
 							<input id='car-down-payment' type='number' class='form-control' name='car-down-payment' placeholder='Enter amount' required/>
 
+							<div class="alert alert-danger hidden" id="goal-error">
+								<p id="goal-error-text"></p>
+							</div>
 							<input type='submit' class="btn btn-signup btn-primary" id='car-submit' />
+
+
+
 						</form>
 					</div>
 				</div>

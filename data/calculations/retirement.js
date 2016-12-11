@@ -15,9 +15,9 @@ exportedMethods = {
     calculateProblem: (id, data) => {
         if (data.expectedYearsAfterRetirement == null || data.expectedAnnualIncomeIncrease == null
             || data.interestRate == null || data.incomeRequiredAfterRetirement == null)
-            throw "data not enough";
+            return Promise.reject("data not enough");
         if (data.interestRate < 0 || data.expectedYearsAfterRetirement <= 0 || data.incomeRequiredAfterRetirement <= 0)
-            throw "meaningless data";
+            return Promise.reject("meaningless data");
 
         return customerData.getCustomerByNodeUUID(id).then((customer) => {
             let problemsArray = [];

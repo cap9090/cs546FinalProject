@@ -17,12 +17,12 @@
         $('#myNavbar ul li.products').siblings().removeClass('active');
     }
     //show product details card for specifc tool
-    $('main').on('click','.toggleDetails', function () {
+    $('main').on('click', '.toggleDetails', function () {
         $("#detail" + this.id).removeClass('hidden');
     });
     //hide product details card for specific tool
     $('.no-product-message').on('click', function () {
-        var detailId = $(this).closest('div').attr('id'); 
+        var detailId = $(this).closest('div').attr('id');
         $("#" + detailId).addClass('hidden');
     });
 
@@ -57,6 +57,9 @@
             //show only main part of html rendered
             var body = responseMessage.split("<main")[1].split(">").slice(1).join(">").split("</main>")[0];
             $('.goal-result').html(body);
+        }, function (error) {
+            $("#goal-error-text").html(error.responseJSON);
+            $("#goal-error").removeClass('hidden');
         });
     });
 
@@ -91,6 +94,9 @@
         $.ajax(houseRequestConfig).then(function (responseMessage) {
             var body = responseMessage.split("<main")[1].split(">").slice(1).join(">").split("</main>")[0];
             $('.goal-result').html(body);
+        }, function (error) {
+            $("#goal-error-text").html(error.responseJSON);
+            $("#goal-error").removeClass('hidden');
         });
     });
 
@@ -125,6 +131,9 @@
         $.ajax(carRequestConfig).then(function (responseMessage) {
             var body = responseMessage.split("<main")[1].split(">").slice(1).join(">").split("</main>")[0];
             $('.goal-result').html(body);
+        }, function (error) {
+            $("#goal-error-text").html(error.responseJSON);
+            $("#goal-error").removeClass('hidden');
         });
     });
 
@@ -284,21 +293,21 @@
     });
 
 
-//*****Smooth scrolling for navbar and homecard links**********************************************
-  $("#myNavbar a, #homecard a").on('click', function(event) {
-    if (this.hash !== "") {
-      event.preventDefault();
-      var hash = this.hash;
+    //*****Smooth scrolling for navbar and homecard links**********************************************
+    $("#myNavbar a, #homecard a").on('click', function (event) {
+        if (this.hash !== "") {
+            event.preventDefault();
+            var hash = this.hash;
 
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-   
-        //location hash to URL
-        window.location.hash = hash;
-      });
-    }
-  });
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 800, function () {
+
+                //location hash to URL
+                window.location.hash = hash;
+            });
+        }
+    });
 
 
 
