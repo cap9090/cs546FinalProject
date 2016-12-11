@@ -71,7 +71,11 @@ exportedMethods = {
 				else if (newSavingsRateOfIncome < customer.profile.savingsRateOfIncome)
 					problemsArray.push(102); // You're not saving enough money
 
-				return problemsArray;
+				let result = {
+					problems: problemsArray,
+					message: "Your monthly payment for new house will be " + newHouseMonthlyPayment.toFixed(2) + "."
+				};
+				return result;
 			});
 
 		});

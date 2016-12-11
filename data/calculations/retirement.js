@@ -25,7 +25,7 @@ exportedMethods = {
             if (customer.profile.age >= customer.profile.desiredRetirementAge) {
                 problemsArray.push(888); // You've already retired
                 return problemsArray;
-			}
+            }
 
             let interestRate = data.interestRate / 100;
             let inflationRate = 3 / 100;
@@ -54,7 +54,13 @@ exportedMethods = {
                 problemsArray.push(181); // You're too young to 
                 problemsArray.push(212); // Your monthly saving rate is too low
             }
-            return problemsArray;
+
+            let runoutAge = customer.profile.desiredRetirementAge + yearsAfterRetirement;
+            let result = {
+                problems: problemsArray,
+                message: "Retirement savings will run out at age " + runoutAge.toFixed(1) + "."
+            };
+            return result;
         });
     }
 }

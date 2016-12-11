@@ -4,7 +4,7 @@ const problemData = require('../problems');
 exportedMethods = {
     calculateProblem: (id, data) => {
         let problemsArray = [];
-        
+
         return customerData.getCustomerByNodeUUID(id).then((customer) => {
             if (customer.profile.monthlyIncome <= 0) {
                 problemsArray.push(100); // You have no income
@@ -20,7 +20,11 @@ exportedMethods = {
                 problemsArray.push(432);
                 problemsArray.push(123);
             }
-            return problemsArray;
+            let result = {
+                problems: problemsArray,
+                message: "You're in trouble even without this goal!"
+            };
+            return result;
         });
     }
 }

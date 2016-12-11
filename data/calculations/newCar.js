@@ -19,9 +19,9 @@ function calculateMonthlyPayment(data) {
 		if (data.price <= 0 || data.downPayment < 0 || data.months <= 0 || data.interestRate < 0)
 			return reject("meaningless data");
 
-		if (data.downPayment >= data.price) 
+		if (data.downPayment >= data.price)
 			return resolve(0);
-		if (data.interestRate === 0) 
+		if (data.interestRate === 0)
 			return resolve((data.price - data.downPayment) / data.months);
 
 		let price = data.price,
@@ -69,7 +69,12 @@ exportedMethods = {
 					problemsArray.push(101); // Your monthly expense is too high
 				else if (newSavingsRateOfIncome < customer.profile.savingsRateOfIncome)
 					problemsArray.push(102); // You're not saving enough money
-				return problemsArray;
+
+				let result = {
+					problems: problemsArray,
+					message: "Your monthly payment for new car will be " + newCarMonthlyPayment.toFixed(2) + "."
+				};
+				return result;
 			});
 		});
 

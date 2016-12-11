@@ -1,8 +1,5 @@
 <div id='products' class='card card-block'>
-    <h2>Our Products
-    {{#if goal }}
-    For Your Goal: {{goal}}
-    {{/if}}
+    <h2>Our Products {{#if goal }} For Your Goal: {{goal}} {{/if}}
     </h2>
     {{#if products}}
     <div id='product-list' class="productList">
@@ -13,6 +10,8 @@
         </ul>
     </div>
     {{else}}
-        <h3>You're all good with this goal!</h3>
+    <h3>You're all good with this goal!</h3>
+    {{/if}} {{#if goal}}
+    <div id='goal-message' class='goals'>{{message}}</div>
     {{/if}}
 </div>
