@@ -72,7 +72,7 @@ dbConnection().then((db) => {
       432,
       123
     ],
-    description: "This is a description of our ETF tool",
+    description: "Use our ETF tool for all of your exchange-traded fund needs!",
     contactInfo: {
       name: "John Etf",
       title: "Financial Advisor",
@@ -89,7 +89,7 @@ dbConnection().then((db) => {
       123,
       829,
     ],
-    description: "This is a description of our Asset Allocation tool",
+    description: "Manage and receive assistance in acquiring new assets with our Asset Allocation Tool.",
     contactInfo: {
       name: "Jane Assets",
       title: "Financial Advisor",
@@ -106,7 +106,7 @@ dbConnection().then((db) => {
       100,
       999
     ],
-    description: "This is a description of our Bankruptcy tool",
+    description: "Declaring bankruptcy? Use our Bankruptcy tool to plan out your next move.",
     contactInfo: {
       name: "Tom Bankruptcy",
       title: "Financial Advisor",
@@ -125,7 +125,7 @@ dbConnection().then((db) => {
       102,
       219
     ],
-    description: "This is a description of our Monthly Budgeting tool",
+    description: "Having trouble staying on top of your monthly budget? Get help with out Monthly Budgeting Tool.",
     contactInfo: {
       name: "Susie Budgets",
       title: "Financial Advisor",
