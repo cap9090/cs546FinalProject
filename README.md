@@ -13,7 +13,8 @@ To run the financial planner application, please follow the below steps:
 5. Once here, the login page will be displayed.  Our seed.js script has created two accounts with the following credentials:
  - username: admin@stevens.edu  password: abc123
  - username: janedoe@stevens.edu  password: 123
-The "Remember me" checkbox will store the supplied username in local storage so that it will be presented again upon next login.
+
+- The "Remember me" checkbox will store the supplied username in local storage so that it will be presented again upon next login.
  
 6. As an alternate to logging in with an existing account, you can also click the "New User? Sign up!" link to create a new account with your own credentials and financial information.
 7. Once logged in, all options available to the user are shown on the customers/home page.  You can:
