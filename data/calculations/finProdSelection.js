@@ -48,12 +48,13 @@ function getProductsFromArrayOfProblemIds(problemIdArray) {
 					productsUUID.add(finProd._id);
 					products.push(finProd);
 				}
-				return Promise.resolve();
+				// return Promise.resolve();
 			}));
 		});
 	})).then(() => {
 		return products;
 	});
 }
+getProductsFromArrayOfProblemIds([100,101,102,999,421]).then(result => console.log(result));
 
 module.exports = exportedMethods;

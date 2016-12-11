@@ -20,7 +20,7 @@ exportedMethods = {
                 problemsArray.push(432);
                 problemsArray.push(123);
             }
-            return Promise.resolve(problemsArray);
+            return problemsArray;
         });
     }
 }
