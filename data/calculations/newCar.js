@@ -67,7 +67,7 @@ exportedMethods = {
 				problemsArray.push(101); // Your monthly expense is too high
 			else if (newSavingsRateOfIncome < customer.profile.savingsRateOfIncome)
 				problemsArray.push(102); // You're not saving enough money
-			return Promise.resolve(problemsArray);
+			return problemsArray;
 		}).catch(error => console.log(error));
 		
 	}

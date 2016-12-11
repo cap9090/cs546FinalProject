@@ -13,27 +13,19 @@ let exportedMethods = {
 		return currentCalculations.calculateProblem(id, data).then((currentProblemsArray) => {
 			if (currentProblemsArray.length === 0) {
 				switch (goal) {
-					case 'retirement':
-						retirementCalculations.calculateProblem(id, data).then((retirementProblemsArray) => {
-							return getProductsFromArrayOfProblemIds(retirementProblemsArray);
-						});
-						break;
-					case 'newCar':
-						newCarCalculations.calculateProblem(id, data).then((carProblemsArray) => {
-							return getProductsFromArrayOfProblemIds(carProblemsArray);
-						});
-						break;
-					case 'newHouse':
-						newHouseCalculations.calculateProblem(id, data).then((houseProblemsArray) => {
-							return getProductsFromArrayOfProblemIds(houseProblemsArray);
-						});
-						break;
+					case 'Retirement':
+						return retirementCalculations.calculateProblem(id, data);
+					case 'New Car':
+						return newCarCalculations.calculateProblem(id, data);
+					case 'New House':
+						return newHouseCalculations.calculateProblem(id, data);
 				}
 			}
-			else {
-				return getProductsFromArrayOfProblemIds(currentProblemsArray);
-			}
-		})
+			else
+				return currentProblemsArray;
+		}).then((problemsArray) => {
+			return getProductsFromArrayOfProblemIds(problemsArray);
+		});
 	}
 }
 
@@ -55,6 +47,5 @@ function getProductsFromArrayOfProblemIds(problemIdArray) {
 		return products;
 	});
 }
-getProductsFromArrayOfProblemIds([100,101,102,999,421]).then(result => console.log(result));
 
 module.exports = exportedMethods;

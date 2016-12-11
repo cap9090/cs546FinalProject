@@ -37,7 +37,7 @@
         var requiredIncome = $('#required-income').val();
 
         var retirementData = {
-            goal: 'retirement',
+            goal: 'Retirement',
             data: {
                 expectedYearsAfterRetirement: yearsAfterRetirement,
                 expectedAnnualIncomeIncrease: incomeIncrease,
@@ -72,7 +72,7 @@
         var downPayment = $('#house-down-payment').val();
 
         var houseData = {
-            goal: 'newHouse',
+            goal: 'New House',
             data: {
                 price: price,
                 downPayment: downPayment,
@@ -106,7 +106,7 @@
         var downPayment = $('#car-down-payment').val();
 
         var carData = {
-            goal: 'newCar',
+            goal: 'New Car',
             data: {
                 price: price,
                 downPayment: downPayment,

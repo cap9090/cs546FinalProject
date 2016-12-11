@@ -54,7 +54,7 @@ exportedMethods = {
                 problemsArray.push(181); // You're too young to 
                 problemsArray.push(212); // Your monthly saving rate is too low
             }
-            return Promise.resolve(problemsArray);
+            return problemsArray;
         });
     }
 }
