@@ -55,7 +55,6 @@ function calculateprice(data) {
 exportedMethods = {
 	calculateProblem: (id, data) => {
 		let problemsArray = [];
-
 		return customerData.getCustomerByNodeUUID(id).then((customer) => {
 			let newCarMonthlyPayment = calculateMonthlyPayment(data);
 			let monthlyIncome = customer.profile.monthlyIncome;
@@ -67,6 +66,7 @@ exportedMethods = {
 				problemsArray.push(101); // Your monthly expense is too high
 			else if (newSavingsRateOfIncome < customer.profile.savingsRateOfIncome)
 				problemsArray.push(102); // You're not saving enough money
+			//console.log(problemsArray)
 			return Promise.resolve(problemsArray);
 		});
 		

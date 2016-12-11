@@ -15,23 +15,31 @@ let exportedMethods = {
 				switch (goal) {
 					case 'retirement':
 						retirementCalculations.calculateProblem(id, data).then( (retirementProblemsArray) => {
-							return finProdData.getProductsFromArrayOfProblemIds(retirementProblemsArray);
+							return finProdData.getProductsFromArrayOfProblemIds(retirementProblemsArray). then((products) => {
+								return products;
+							})
 						});
 						break;
 					case 'newCar':
-						newCarCalculations.calculateProblem(id, data).then( (carProblemsArray) => {
-							return finProdData.getProductsFromArrayOfProblemIds(carProblemsArray);
+						return newCarCalculations.calculateProblem(id, data).then( (carProblemsArray) => {
+							return finProdData.getProductsFromArrayOfProblemIds(carProblemsArray).then((products) => {
+								return products;
+							})
 						});
 						break;
 					case 'newHouse':
-						newHouseCalculations.calculateProblem(id, data).then( (houseProblemsArray) => {
-							return finProdData.getProductsFromArrayOfProblemIds(houseProblemsArray);
+						return newHouseCalculations.calculateProblem(id, data).then( (houseProblemsArray) => {
+							return finProdData.getProductsFromArrayOfProblemIds(houseProblemsArray).then((products) => {
+								return products;
+							})
 							});
 						break;
 				}
 			}
 			else {
-				return finProdData.getProductsFromArrayOfProblemIds(currentProblemsArray);
+				return finProdData.getProductsFromArrayOfProblemIds(currentProblemsArray).then((products) => {
+					return products;
+				})
 			}
 		})
 	}

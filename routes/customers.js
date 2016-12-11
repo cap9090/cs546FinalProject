@@ -94,6 +94,7 @@ router.put("/update", userAuthenticated, (req, res) => {
 router.post('/calculations', userAuthenticated, (req, res) => {
     let user = req.user;
     return calculation.getServicesForUser(user._id, req.body.goal, req.body.data).then((finProds) => {
+        //console.log(finProds)
         res.render("partials/products_card", { products: finProds, user: user, goal: req.body.goal }, (err, html) => {
           res.send(html);
         });

@@ -67,25 +67,26 @@ exportedMethods = {
     let productsUUID = new Set();
     let products = [];
     return Promise.all(problemIdArray.map((problemId) => {
-      return exportedMethods.getProductsByProblemId(problemId).then((finProdsArray) => {
+      return module.exports.getProductsByProblemId(problemId).then((finProdsArray) => {
         return Promise.all(finProdsArray.map(finProd => {
           if (!productsUUID.has(finProd._id)) {
             productsUUID.add(finProd._id);
             products.push(finProd);
           }
-          return Promise.resolve();
+          //return Promise.resolve();
        }));
       });
     })).then(() => {
-      return new Set(products);
+      //console.log(products)
+      return products;
     });
   }
 
 }
 
-
+/*
 exportedMethods.getProductsFromArrayOfProblemIds([100,101]).then((result) => {
   console.log(result);
 });
-
+*/
 module.exports = exportedMethods;
